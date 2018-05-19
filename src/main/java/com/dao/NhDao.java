@@ -14,4 +14,7 @@ public interface NhDao {
 
     @Select("select * from nh_basic where nh_telephone=#{telephone}")
     NhBasic getNhBasicByTelephone(@Param("telephone") String telephone);
+
+
+
 }

@@ -2,9 +2,11 @@ package com.controller;
 
 import com.result.CodeMsg;
 import com.result.Result;
+import com.service.MjService;
 import com.service.NhService;
 import com.util.StringUtils;
 import com.util.ValidatorUtil;
+import com.vo.MjLoginVo;
 import com.vo.NhLoginVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,9 @@ public class LoginController {
 
     @Autowired
     NhService nhService;
+    
+    @Autowired
+    MjService mjService;
 
     @RequestMapping(value="/to_nh_login", method=RequestMethod.GET)
     public String toNhLogin() {
@@ -45,6 +50,37 @@ public class LoginController {
             return Result.error(CodeMsg.TELEPHONE_ERROR);
         }
         CodeMsg msg = nhService.login(response, vo);
+        if(msg.getCode() == 0) {
+            return Result.success(msg);
+        } else {
+            return Result.error(msg);
+        }
+    }
+
+    @RequestMapping(value="/to_mj_login", method=RequestMethod.GET)
+    public String toMjLogin() {
+        return "index/mj_login";
+    }
+
+    @RequestMapping(value="/mj_login", method=RequestMethod.POST)
+    @ResponseBody
+    public Result<CodeMsg> mjRegister(MjLoginVo vo) {
+        //参数校验
+        if(null == vo) {
+            return Result.error(CodeMsg.BIND_ERROR);
+        }
+        String mjTelephone = vo.getMjTelephone();
+        String mjPassword = vo.getMjPassword();
+        if(StringUtils.isEmpty(mjTelephone)) {
+            return Result.error(CodeMsg.TELEPHONE_EMPTY);
+        }
+        if(StringUtils.isEmpty(mjPassword)) {
+            return Result.error(CodeMsg.PASSWORD_EMPTY);
+        }
+        if(!ValidatorUtil.isTelephone(mjTelephone)) {
+            return Result.error(CodeMsg.TELEPHONE_ERROR);
+        }
+        CodeMsg msg = mjService.login(vo);
         if(msg.getCode() == 0) {
             return Result.success(msg);
         } else {
