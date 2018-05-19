@@ -9,11 +9,6 @@
         <webroots>
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
-<<<<<<< HEAD
-      </configuration>
-    </facet>
-  </component>
-=======
         <sourceRoots>
           <root url="file://$MODULE_DIR$/src/main/java" />
           <root url="file://$MODULE_DIR$/src/main/resources" />
@@ -115,5 +110,4 @@
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-validation:1.5.9.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-el:8.5.23" level="project" />
   </component>
->>>>>>> 67cab516c8d70b19f2e058e1b0bda346b4db63c1
 </module>

@@ -64,7 +64,7 @@ public class LoginController {
 
     @RequestMapping(value="/mj_login", method=RequestMethod.POST)
     @ResponseBody
-    public Result<CodeMsg> mjRegister(MjLoginVo vo) {
+    public Result<CodeMsg> mjRegister(HttpServletResponse response, MjLoginVo vo) {
         //参数校验
         if(null == vo) {
             return Result.error(CodeMsg.BIND_ERROR);
@@ -80,7 +80,7 @@ public class LoginController {
         if(!ValidatorUtil.isTelephone(mjTelephone)) {
             return Result.error(CodeMsg.TELEPHONE_ERROR);
         }
-        CodeMsg msg = mjService.login(vo);
+        CodeMsg msg = mjService.login(response, vo);
         if(msg.getCode() == 0) {
             return Result.success(msg);
         } else {

@@ -7,6 +7,7 @@ import com.redis.RedisService;
 import com.result.CodeMsg;
 import com.util.MD5Util;
 import com.util.SaltUtil;
+import com.util.StringUtils;
 import com.util.UUIDUtil;
 import com.vo.NhLoginVo;
 import com.vo.NhRegisterVo;
@@ -20,7 +21,7 @@ import java.util.UUID;
 @Service
 public class NhService {
 
-    private static final String COOKI_NH_ID_TOKEN = "COOKI_NH_ID_TOKEN";
+    public static final String COOKI_NH_ID_TOKEN = "COOKI_NH_ID_TOKEN";
 
     @Autowired
     NhDao nhDao;
@@ -57,6 +58,20 @@ public class NhService {
         return nhDao.getNhBasicByTelephone(telephone);
     }
 
+    public NhBasic getNhBasicByIdToken(HttpServletResponse response, String token) {
+        if(StringUtils.isEmpty(token)) {
+            return null;
+        }
+        NhBasic nhBasic = redisService.get(NhKey.token, token, NhBasic.class);
+        //延长有效期
+        if(null == nhBasic) {
+            return null;
+        } else {
+            addCookie(nhBasic, response);
+        }
+        return nhBasic;
+    }
+
     public CodeMsg login(HttpServletResponse response, NhLoginVo vo) {
         String nhTelephone = vo.getNhTelephone();
         String nhPassword = vo.getNhPassword();
@@ -73,12 +88,16 @@ public class NhService {
             return CodeMsg.PASSWORD_ERROR;
         }
         //生成cookie
+        addCookie(nhBasic, response);
+        return CodeMsg.SUCCESS;
+    }
+
+    public void addCookie(NhBasic nhBasic, HttpServletResponse response) {
         String token = UUIDUtil.uuid();
         redisService.set(NhKey.token, token, nhBasic);
         Cookie cookie = new Cookie(COOKI_NH_ID_TOKEN, token);
         cookie.setMaxAge(NhKey.token.expireSecond());
         cookie.setPath("/");
         response.addCookie(cookie);
-        return CodeMsg.SUCCESS;
     }
 }

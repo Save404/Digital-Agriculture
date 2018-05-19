@@ -2,21 +2,32 @@ package com.service;
 
 import com.dao.MjDao;
 import com.domain.MjBasic;
+import com.redis.MjKey;
+import com.redis.RedisService;
 import com.result.CodeMsg;
 import com.util.MD5Util;
 import com.util.SaltUtil;
+import com.util.StringUtils;
+import com.util.UUIDUtil;
 import com.vo.MjLoginVo;
 import com.vo.MjRegisterVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 @Service
 public class MjService {
 
+    public static final String COOKI_MJ_ID_TOKEN = "COOKI_MJ_ID_TOKEN";
+
     @Autowired
     MjDao mjDao;
+
+    @Autowired
+    RedisService redisService;
 
     public CodeMsg register(MjRegisterVo vo) {
         if(null == vo) {
@@ -47,7 +58,21 @@ public class MjService {
         return mjDao.getMjBasicByTelephone(telephone);
     }
 
-    public CodeMsg login(MjLoginVo vo) {
+    public MjBasic getMjBasicByIdToken(HttpServletResponse response, String token) {
+        if(StringUtils.isEmpty(token)) {
+            return null;
+        }
+        MjBasic mjBasic = redisService.get(MjKey.token, token, MjBasic.class);
+        //延长有效期
+        if(null == mjBasic) {
+            return null;
+        } else {
+            addCookie(mjBasic, response);
+        }
+        return mjBasic;
+    }
+
+    public CodeMsg login(HttpServletResponse response, MjLoginVo vo) {
         String mjTelephone = vo.getMjTelephone();
         String mjPassword = vo.getMjPassword();
         //判断用户是否存在
@@ -62,6 +87,17 @@ public class MjService {
         if(!calcPass.equals(dbPass)) {
             return CodeMsg.PASSWORD_ERROR;
         }
+        //生成cookie
+        addCookie(mjBasic, response);
         return CodeMsg.SUCCESS;
+    }
+
+    public void addCookie(MjBasic mjBasic, HttpServletResponse response) {
+        String token = UUIDUtil.uuid();
+        redisService.set(MjKey.token, token, mjBasic);
+        Cookie cookie = new Cookie(COOKI_MJ_ID_TOKEN, token);
+        cookie.setMaxAge(MjKey.token.expireSecond());
+        cookie.setPath("/");
+        response.addCookie(cookie);
     }
 }
