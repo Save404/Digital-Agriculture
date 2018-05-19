@@ -2,21 +2,31 @@ package com.service;
 
 import com.dao.NhDao;
 import com.domain.NhBasic;
+import com.redis.NhKey;
+import com.redis.RedisService;
 import com.result.CodeMsg;
 import com.util.MD5Util;
 import com.util.SaltUtil;
+import com.util.UUIDUtil;
 import com.vo.NhLoginVo;
 import com.vo.NhRegisterVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 @Service
 public class NhService {
 
+    private static final String COOKI_NH_ID_TOKEN = "COOKI_NH_ID_TOKEN";
+
     @Autowired
     NhDao nhDao;
+
+    @Autowired
+    RedisService redisService;
 
     public CodeMsg register(NhRegisterVo vo) {
         if(null == vo) {
@@ -47,7 +57,7 @@ public class NhService {
         return nhDao.getNhBasicByTelephone(telephone);
     }
 
-    public CodeMsg login(NhLoginVo vo) {
+    public CodeMsg login(HttpServletResponse response, NhLoginVo vo) {
         String nhTelephone = vo.getNhTelephone();
         String nhPassword = vo.getNhPassword();
         //判断用户是否存在
@@ -62,6 +72,13 @@ public class NhService {
         if(!calcPass.equals(dbPass)) {
             return CodeMsg.PASSWORD_ERROR;
         }
+        //生成cookie
+        String token = UUIDUtil.uuid();
+        redisService.set(NhKey.token, token, nhBasic);
+        Cookie cookie = new Cookie(COOKI_NH_ID_TOKEN, token);
+        cookie.setMaxAge(NhKey.token.expireSecond());
+        cookie.setPath("/");
+        response.addCookie(cookie);
         return CodeMsg.SUCCESS;
     }
 }

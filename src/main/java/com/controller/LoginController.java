@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 @RequestMapping("/login")
 public class LoginController {
@@ -26,7 +28,7 @@ public class LoginController {
 
     @RequestMapping(value="/nh_login", method=RequestMethod.POST)
     @ResponseBody
-    public Result<CodeMsg> nhRegister(NhLoginVo vo) {
+    public Result<CodeMsg> nhRegister(HttpServletResponse response, NhLoginVo vo) {
         //参数校验
         if(null == vo) {
             return Result.error(CodeMsg.BIND_ERROR);
@@ -42,7 +44,7 @@ public class LoginController {
         if(!ValidatorUtil.isTelephone(nhTelephone)) {
             return Result.error(CodeMsg.TELEPHONE_ERROR);
         }
-        CodeMsg msg = nhService.login(vo);
+        CodeMsg msg = nhService.login(response, vo);
         if(msg.getCode() == 0) {
             return Result.success(msg);
         } else {

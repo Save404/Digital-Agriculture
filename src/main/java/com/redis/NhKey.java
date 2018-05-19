@@ -2,9 +2,11 @@ package com.redis;
 
 public class NhKey extends BasePrefix {
 
-    private NhKey(String prefix) {
-        super(prefix);
+    public static final int TOKEN_EXPIRE = 3600 * 24;
+
+    private NhKey(int expireSeconds, String prefix) {
+        super(expireSeconds, prefix);
     }
 
-    public static NhKey getById = new NhKey("id");
+    public static NhKey token = new NhKey(TOKEN_EXPIRE,"token");
 }
