@@ -39,13 +39,13 @@ public class MjServiceTest {
         Assert.assertEquals(phone, mjBasic.getMjTelephone());
     }
 
-    @Test
-    public void login(){
-        MjLoginVo vo = new MjLoginVo();
-        vo.setMjTelephone("17367077253");
-        //String pwd = MD5Util.inputPassToFormPass("123456");
-        //vo.setMjPassword(pwd);
-        CodeMsg codeMsg = mjService.login(vo);
-        Assert.assertEquals(0, codeMsg.getCode());
-    }
+//    @Test
+//    public void login(){
+//        MjLoginVo vo = new MjLoginVo();
+//        vo.setMjTelephone("17367077253");
+//        //String pwd = MD5Util.inputPassToFormPass("123456");
+//        //vo.setMjPassword(pwd);
+//        CodeMsg codeMsg = mjService.login(vo);
+//        Assert.assertEquals(0, codeMsg.getCode());
+//    }
 }

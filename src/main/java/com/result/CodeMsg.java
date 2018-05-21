@@ -18,6 +18,8 @@ public class CodeMsg {
     public static CodeMsg REPASSWORD_ERROR = new CodeMsg(500204, "两次密码不一致");
     public static CodeMsg NH_NOT_EXISTS = new CodeMsg(500205, "该用户不存在");
     public static CodeMsg PASSWORD_ERROR = new CodeMsg(500206, "密码错误");
+    //农户信息完善模块 5003XX
+    //买家信息完善模块 5004XX
 
     private CodeMsg() {
     }
