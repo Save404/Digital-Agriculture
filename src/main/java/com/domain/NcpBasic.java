@@ -3,25 +3,25 @@ package com.domain;
 import java.util.Date;
 
 public class NcpBasic {
-    private String ncpId;
+    private String ncpBasicId;
     private String ncpName;
     private Date ncpPublishDate;
-    private String pCode;
+    private String ncpPCode;
     private String ncpAreaCode;
     private String ncpAddress;
-    private String nhId;
+    private String nhBasicId;
     private String ncpFeature;
     private String ncpBrand;
     private String ncpAnnualOutput;
     private String ncpSupplyAmount;
     private String ncpReferencePrice;
 
-    public String getNcpId() {
-        return ncpId;
+    public String getNcpBasicId() {
+        return ncpBasicId;
     }
 
-    public void setNcpId(String ncpId) {
-        this.ncpId = ncpId;
+    public void setNcpBasicId(String ncpBasicId) {
+        this.ncpBasicId = ncpBasicId;
     }
 
     public String getNcpName() {
@@ -40,12 +40,12 @@ public class NcpBasic {
         this.ncpPublishDate = ncpPublishDate;
     }
 
-    public String getpCode() {
-        return pCode;
+    public String getNcpPCode() {
+        return ncpPCode;
     }
 
-    public void setpCode(String pCode) {
-        this.pCode = pCode;
+    public void setNcpPCode(String ncpPCode) {
+        this.ncpPCode = ncpPCode;
     }
 
     public String getNcpAreaCode() {
@@ -64,12 +64,12 @@ public class NcpBasic {
         this.ncpAddress = ncpAddress;
     }
 
-    public String getNhId() {
-        return nhId;
+    public String getNhBasicId() {
+        return nhBasicId;
     }
 
-    public void setNhId(String nhId) {
-        this.nhId = nhId;
+    public void setNhBasicId(String nhBasicId) {
+        this.nhBasicId = nhBasicId;
     }
 
     public String getNcpFeature() {
@@ -115,13 +115,13 @@ public class NcpBasic {
     @Override
     public String toString() {
         return "NcpBasic{" +
-                "ncpId='" + ncpId + '\'' +
+                "ncpBasicId='" + ncpBasicId + '\'' +
                 ", ncpName='" + ncpName + '\'' +
                 ", ncpPublishDate=" + ncpPublishDate +
-                ", pCode='" + pCode + '\'' +
+                ", ncpPCode='" + ncpPCode + '\'' +
                 ", ncpAreaCode='" + ncpAreaCode + '\'' +
                 ", ncpAddress='" + ncpAddress + '\'' +
-                ", nhId='" + nhId + '\'' +
+                ", nhBasicId='" + nhBasicId + '\'' +
                 ", ncpFeature='" + ncpFeature + '\'' +
                 ", ncpBrand='" + ncpBrand + '\'' +
                 ", ncpAnnualOutput='" + ncpAnnualOutput + '\'' +

@@ -1,50 +1,50 @@
 package com.domain;
 
 public class Product {
-    private Long pid;
-    private String pcode;
-    private String pname;
-    private String fcode;
+    private Long pId;
+    private String pCode;
+    private String pName;
+    private String fCode;
 
-    public Long getPid() {
-        return pid;
+    public Long getpId() {
+        return pId;
     }
 
-    public void setPid(Long pid) {
-        this.pid = pid;
+    public void setpId(Long pId) {
+        this.pId = pId;
     }
 
-    public String getPcode() {
-        return pcode;
+    public String getpCode() {
+        return pCode;
     }
 
-    public void setPcode(String pcode) {
-        this.pcode = pcode;
+    public void setpCode(String pCode) {
+        this.pCode = pCode;
     }
 
-    public String getPname() {
-        return pname;
+    public String getpName() {
+        return pName;
     }
 
-    public void setPname(String pname) {
-        this.pname = pname;
+    public void setpName(String pName) {
+        this.pName = pName;
     }
 
-    public String getFcode() {
-        return fcode;
+    public String getfCode() {
+        return fCode;
     }
 
-    public void setFcode(String fcode) {
-        this.fcode = fcode;
+    public void setfCode(String fCode) {
+        this.fCode = fCode;
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                "pid=" + pid +
-                ", pcode='" + pcode + '\'' +
-                ", pname='" + pname + '\'' +
-                ", fcode='" + fcode + '\'' +
+                "pId=" + pId +
+                ", pCode='" + pCode + '\'' +
+                ", pName='" + pName + '\'' +
+                ", fCode='" + fCode + '\'' +
                 '}';
     }
 }

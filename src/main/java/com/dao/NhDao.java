@@ -1,14 +1,16 @@
 package com.dao;
 
 import com.domain.NhBasic;
+import com.domain.NhMore;
+import com.result.CodeMsg;
 import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface NhDao {
 
 
-    @Insert("insert into nh_basic(nh_id, nh_telephone, nh_password, nh_salt) values (" +
-            "#{nhId}, #{nhTelephone}, #{nhPassword}, #{nhSalt})")
+    @Insert("insert into nh_basic(nh_basic_id, nh_telephone, nh_password, nh_salt) values (" +
+            "#{nhBasicId}, #{nhTelephone}, #{nhPassword}, #{nhSalt})")
     //@SelectKey(statement="select LAST_INSERT_ID()", keyProperty ="nhId", keyColumn="nh_id", before=false, resultType=String.class)
     int register(NhBasic nhBasic);
 
@@ -16,5 +18,5 @@ public interface NhDao {
     NhBasic getNhBasicByTelephone(@Param("telephone") String telephone);
 
 
-
+    int addNhDetailInfo(NhMore nhMore);
 }

@@ -3,7 +3,7 @@ package com.domain;
 import java.util.Date;
 
 public class NhBasic {
-    private String nhId;
+    private String nhBasicId;
     private String nhTelephone;
     private String nhPassword;
     private String nhSalt;
@@ -11,12 +11,12 @@ public class NhBasic {
     private Date nhLastLoginDate;
     private Long nhLoginCount;
 
-    public String getNhId() {
-        return nhId;
+    public String getNhBasicId() {
+        return nhBasicId;
     }
 
-    public void setNhId(String nhId) {
-        this.nhId = nhId;
+    public void setNhBasicId(String nhBasicId) {
+        this.nhBasicId = nhBasicId;
     }
 
     public String getNhTelephone() {
@@ -70,7 +70,7 @@ public class NhBasic {
     @Override
     public String toString() {
         return "NhBasic{" +
-                "nhId='" + nhId + '\'' +
+                "nhBasicId='" + nhBasicId + '\'' +
                 ", nhTelephone='" + nhTelephone + '\'' +
                 ", nhPassword='" + nhPassword + '\'' +
                 ", nhSalt='" + nhSalt + '\'' +

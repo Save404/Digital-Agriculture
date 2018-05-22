@@ -3,7 +3,7 @@ package com.domain;
 import java.util.Date;
 
 public class MjBasic {
-    private String mjId;
+    private String mjBasicId;
     private String mjTelephone;
     private String mjPassword;
     private String mjSalt;
@@ -11,12 +11,12 @@ public class MjBasic {
     private Date mjLastLoginDate;
     private Long mjLoginCount;
 
-    public String getMjId() {
-        return mjId;
+    public String getMjBasicId() {
+        return mjBasicId;
     }
 
-    public void setMjId(String mjId) {
-        this.mjId = mjId;
+    public void setMjBasicId(String mjBasicId) {
+        this.mjBasicId = mjBasicId;
     }
 
     public String getMjTelephone() {
@@ -70,7 +70,7 @@ public class MjBasic {
     @Override
     public String toString() {
         return "MjBasic{" +
-                "mjId='" + mjId + '\'' +
+                "mjBasicId='" + mjBasicId + '\'' +
                 ", mjTelephone='" + mjTelephone + '\'' +
                 ", mjPassword='" + mjPassword + '\'' +
                 ", mjSalt='" + mjSalt + '\'' +

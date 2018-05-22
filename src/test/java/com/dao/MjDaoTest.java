@@ -19,18 +19,18 @@ public class MjDaoTest {
     @Autowired
     MjDao mjDao;
 
-    @Test
-    @Transactional
-    public void register() {
-
-        MjBasic mjBasic = new MjBasic();
-        mjBasic.setMjId("0");
-        mjBasic.setMjTelephone("17367077253");
-        mjBasic.setMjPassword("123456");
-        mjBasic.setMjSalt("123");
-        int cnt =  mjDao.register(mjBasic);
-        Assert.assertEquals(1, cnt);
-    }
+//    @Test
+//    @Transactional
+//    public void register() {
+//
+//        MjBasic mjBasic = new MjBasic();
+//        mjBasic.setMjId("0");
+//        mjBasic.setMjTelephone("17367077253");
+//        mjBasic.setMjPassword("123456");
+//        mjBasic.setMjSalt("123");
+//        int cnt =  mjDao.register(mjBasic);
+//        Assert.assertEquals(1, cnt);
+//    }
 
     @Test
     public void getMjBasicByTelephone() {

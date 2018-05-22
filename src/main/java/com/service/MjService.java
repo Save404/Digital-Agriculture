@@ -40,7 +40,7 @@ public class MjService {
             return CodeMsg.TELEPHONE_REPEAT;
         }
         MjBasic mjBasic = new MjBasic();
-        mjBasic.setMjId(UUID.randomUUID().toString());
+        mjBasic.setMjBasicId(UUID.randomUUID().toString());
         mjBasic.setMjTelephone(telephone);
         String inputPass = vo.getMjPassword();
         String salt = SaltUtil.getSalt(8);
