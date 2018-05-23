@@ -3,7 +3,7 @@ package com.domain;
 public class Area {
     private String id;
     private String codeA;
-    private String name;
+    private String nameA;
     private String codeC;
 
     public String getId() {
@@ -22,12 +22,12 @@ public class Area {
         this.codeA = codeA;
     }
 
-    public String getName() {
-        return name;
+    public String getNameA() {
+        return nameA;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameA(String nameA) {
+        this.nameA = nameA;
     }
 
     public String getCodeC() {
@@ -43,7 +43,7 @@ public class Area {
         return "Area{" +
                 "id='" + id + '\'' +
                 ", codeA='" + codeA + '\'' +
-                ", name='" + name + '\'' +
+                ", nameA='" + nameA + '\'' +
                 ", codeC='" + codeC + '\'' +
                 '}';
     }

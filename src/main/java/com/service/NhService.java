@@ -103,6 +103,10 @@ public class NhService {
     }
 
     public CodeMsg addNhDetailInfo(NhBasic nhBasic, NhMore nhMore) {
+        String nhTelephone = nhBasic.getNhTelephone();
+        if(null == getNhBasicByTelephone(nhTelephone)) {
+            return CodeMsg.NH_NOT_EXISTS;
+        }
         nhMore.setNhBasicId(nhBasic.getNhBasicId());
         nhMore.setNhMoreId(UUID.randomUUID().toString());
         return nhDao.addNhDetailInfo(nhMore) == 1 ? CodeMsg.SUCCESS : CodeMsg.SERVER_ERROR;
