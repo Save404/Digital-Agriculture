@@ -1,40 +1,40 @@
 package com.domain;
 
 public class Category1 {
-    private Long cid;
-    private String ccode;
-    private String cname;
+    private Long c1Id;
+    private String c1Code;
+    private String c1Name;
 
-    public Long getCid() {
-        return cid;
+    public Long getC1Id() {
+        return c1Id;
     }
 
-    public void setCid(Long cid) {
-        this.cid = cid;
+    public void setC1Id(Long c1Id) {
+        this.c1Id = c1Id;
     }
 
-    public String getCcode() {
-        return ccode;
+    public String getC1Code() {
+        return c1Code;
     }
 
-    public void setCcode(String ccode) {
-        this.ccode = ccode;
+    public void setC1Code(String c1Code) {
+        this.c1Code = c1Code;
     }
 
-    public String getCname() {
-        return cname;
+    public String getC1Name() {
+        return c1Name;
     }
 
-    public void setCname(String cname) {
-        this.cname = cname;
+    public void setC1Name(String c1Name) {
+        this.c1Name = c1Name;
     }
 
     @Override
     public String toString() {
         return "Category1{" +
-                "cid=" + cid +
-                ", ccode='" + ccode + '\'' +
-                ", cname='" + cname + '\'' +
+                "c1Id=" + c1Id +
+                ", c1Code='" + c1Code + '\'' +
+                ", c1Name='" + c1Name + '\'' +
                 '}';
     }
 }

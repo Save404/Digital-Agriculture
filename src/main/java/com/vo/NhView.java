@@ -1,28 +1,24 @@
-package com.domain;
+package com.vo;
 
-public class NhMore {
-    private String nhMoreId;
+import java.util.Date;
+
+public class NhView {
     private String nhBasicId;
+    private String nhTelephone;
+    private Date nhRegisterDate;
+    private Date nhLastLoginDate;
+    private Long nhLoginCount;
+    private String nhMoreId;
     private String nhRealName;
     private String nhIdCard;
     private String nhGhdwAddress;
     private String nhGndwAreaCode;
     private String nhGhdwPhone;
-    private String nhPayPassword;
-    private String nhPaySalt;
     private Integer nhStatus;
     private String nhSex;
     private String nhOrigin;
     private String nhNation;
     private String nhPolitics;
-
-    public String getNhMoreId() {
-        return nhMoreId;
-    }
-
-    public void setNhMoreId(String nhMoreId) {
-        this.nhMoreId = nhMoreId;
-    }
 
     public String getNhBasicId() {
         return nhBasicId;
@@ -30,6 +26,46 @@ public class NhMore {
 
     public void setNhBasicId(String nhBasicId) {
         this.nhBasicId = nhBasicId;
+    }
+
+    public String getNhTelephone() {
+        return nhTelephone;
+    }
+
+    public void setNhTelephone(String nhTelephone) {
+        this.nhTelephone = nhTelephone;
+    }
+
+    public Date getNhRegisterDate() {
+        return nhRegisterDate;
+    }
+
+    public void setNhRegisterDate(Date nhRegisterDate) {
+        this.nhRegisterDate = nhRegisterDate;
+    }
+
+    public Date getNhLastLoginDate() {
+        return nhLastLoginDate;
+    }
+
+    public void setNhLastLoginDate(Date nhLastLoginDate) {
+        this.nhLastLoginDate = nhLastLoginDate;
+    }
+
+    public Long getNhLoginCount() {
+        return nhLoginCount;
+    }
+
+    public void setNhLoginCount(Long nhLoginCount) {
+        this.nhLoginCount = nhLoginCount;
+    }
+
+    public String getNhMoreId() {
+        return nhMoreId;
+    }
+
+    public void setNhMoreId(String nhMoreId) {
+        this.nhMoreId = nhMoreId;
     }
 
     public String getNhRealName() {
@@ -70,22 +106,6 @@ public class NhMore {
 
     public void setNhGhdwPhone(String nhGhdwPhone) {
         this.nhGhdwPhone = nhGhdwPhone;
-    }
-
-    public String getNhPayPassword() {
-        return nhPayPassword;
-    }
-
-    public void setNhPayPassword(String nhPayPassword) {
-        this.nhPayPassword = nhPayPassword;
-    }
-
-    public String getNhPaySalt() {
-        return nhPaySalt;
-    }
-
-    public void setNhPaySalt(String nhPaySalt) {
-        this.nhPaySalt = nhPaySalt;
     }
 
     public Integer getNhStatus() {
@@ -130,16 +150,18 @@ public class NhMore {
 
     @Override
     public String toString() {
-        return "NhMore{" +
-                "nhMoreId='" + nhMoreId + '\'' +
-                ", nhBasicId='" + nhBasicId + '\'' +
+        return "NhView{" +
+                "nhBasicId='" + nhBasicId + '\'' +
+                ", nhTelephone='" + nhTelephone + '\'' +
+                ", nhRegisterDate=" + nhRegisterDate +
+                ", nhLastLoginDate=" + nhLastLoginDate +
+                ", nhLoginCount=" + nhLoginCount +
+                ", nhMoreId='" + nhMoreId + '\'' +
                 ", nhRealName='" + nhRealName + '\'' +
                 ", nhIdCard='" + nhIdCard + '\'' +
                 ", nhGhdwAddress='" + nhGhdwAddress + '\'' +
                 ", nhGndwAreaCode='" + nhGndwAreaCode + '\'' +
                 ", nhGhdwPhone='" + nhGhdwPhone + '\'' +
-                ", nhPayPassword='" + nhPayPassword + '\'' +
-                ", nhPaySalt='" + nhPaySalt + '\'' +
                 ", nhStatus=" + nhStatus +
                 ", nhSex='" + nhSex + '\'' +
                 ", nhOrigin='" + nhOrigin + '\'' +

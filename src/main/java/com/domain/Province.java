@@ -3,7 +3,7 @@ package com.domain;
 public class Province {
     private String id;
     private String codeP;
-    private String name;
+    private String nameP;
 
     public String getId() {
         return id;
@@ -21,12 +21,12 @@ public class Province {
         this.codeP = codeP;
     }
 
-    public String getName() {
-        return name;
+    public String getNameP() {
+        return nameP;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameP(String nameP) {
+        this.nameP = nameP;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class Province {
         return "Province{" +
                 "id='" + id + '\'' +
                 ", codeP='" + codeP + '\'' +
-                ", name='" + name + '\'' +
+                ", nameP='" + nameP + '\'' +
                 '}';
     }
 }

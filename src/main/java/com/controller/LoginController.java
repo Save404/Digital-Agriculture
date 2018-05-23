@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.domain.NhBasic;
 import com.result.CodeMsg;
 import com.result.Result;
 import com.service.MjService;
@@ -63,11 +64,11 @@ public class LoginController {
 //    @ResponseBody
 //    public Result<CodeMsg> nhRegister(HttpServletResponse response, @RequestBody Map map) {
 //        //参数校验
-//        if(null == vo) {
-//            return Result.error(CodeMsg.BIND_ERROR);
-//        }
-//        String nhTelephone = vo.getNhTelephone();
-//        String nhPassword = vo.getNhPassword();
+////        if(null == vo) {
+////            return Result.error(CodeMsg.BIND_ERROR);
+////        }
+////        String nhTelephone = vo.getNhTelephone();
+////        String nhPassword = vo.getNhPassword();
 //        String nhTelephone = map.get("nhTelephone").toString();
 //        String nhPassword = map.get("nhPassword").toString();
 //        NhLoginVo nhLoginVo = new NhLoginVo();
