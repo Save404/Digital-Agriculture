@@ -59,7 +59,7 @@ public class LoginController {
             return Result.error(msg);
         }
     }
-
+//
 //    @RequestMapping(value="/nh_login", method=RequestMethod.POST)
 //    @ResponseBody
 //    public Result<CodeMsg> nhRegister(HttpServletResponse response, @RequestBody Map map) {

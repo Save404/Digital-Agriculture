@@ -1,5 +1,7 @@
 package com.domain;
 
+import java.util.Date;
+
 public class NcpMore {
     private String ncpMoreId;
     private String ncpBasicId;
@@ -11,10 +13,11 @@ public class NcpMore {
     private String ncpGrowthSurrounding;
     private String ncpPlantArea;
     private String ncpBatchPrice;
-    private String ncpSupplyPeriod;
+    private Date ncpSupplyPeriodStart;
     private String ncpDeliveryAbility;
     private String ncpMinCount;
     private String ncpDeliveryCost;
+    private Date ncpSupplyPeriodEnd;
 
     public String getNcpMoreId() {
         return ncpMoreId;
@@ -96,12 +99,12 @@ public class NcpMore {
         this.ncpBatchPrice = ncpBatchPrice;
     }
 
-    public String getNcpSupplyPeriod() {
-        return ncpSupplyPeriod;
+    public Date getNcpSupplyPeriodStart() {
+        return ncpSupplyPeriodStart;
     }
 
-    public void setNcpSupplyPeriod(String ncpSupplyPeriod) {
-        this.ncpSupplyPeriod = ncpSupplyPeriod;
+    public void setNcpSupplyPeriodStart(Date ncpSupplyPeriodStart) {
+        this.ncpSupplyPeriodStart = ncpSupplyPeriodStart;
     }
 
     public String getNcpDeliveryAbility() {
@@ -128,6 +131,14 @@ public class NcpMore {
         this.ncpDeliveryCost = ncpDeliveryCost;
     }
 
+    public Date getNcpSupplyPeriodEnd() {
+        return ncpSupplyPeriodEnd;
+    }
+
+    public void setNcpSupplyPeriodEnd(Date ncpSupplyPeriodEnd) {
+        this.ncpSupplyPeriodEnd = ncpSupplyPeriodEnd;
+    }
+
     @Override
     public String toString() {
         return "NcpMore{" +
@@ -141,10 +152,11 @@ public class NcpMore {
                 ", ncpGrowthSurrounding='" + ncpGrowthSurrounding + '\'' +
                 ", ncpPlantArea='" + ncpPlantArea + '\'' +
                 ", ncpBatchPrice='" + ncpBatchPrice + '\'' +
-                ", ncpSupplyPeriod='" + ncpSupplyPeriod + '\'' +
+                ", ncpSupplyPeriodStart=" + ncpSupplyPeriodStart +
                 ", ncpDeliveryAbility='" + ncpDeliveryAbility + '\'' +
                 ", ncpMinCount='" + ncpMinCount + '\'' +
                 ", ncpDeliveryCost='" + ncpDeliveryCost + '\'' +
+                ", ncpSupplyPeriodEnd=" + ncpSupplyPeriodEnd +
                 '}';
     }
 }
