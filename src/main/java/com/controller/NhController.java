@@ -1,13 +1,12 @@
 package com.controller;
 
-import com.exception.GlobalException;
+import com.domain.NhBasic;
+import com.domain.NhMore;
 import com.result.CodeMsg;
 import com.result.Result;
-import com.service.MjService;
+import com.service.NcpService;
 import com.service.NhService;
-import com.util.StringUtils;
-import com.util.ValidatorUtil;
-import com.vo.MjRegisterVo;
+import com.vo.NhLoginVo;
 import com.vo.NhRegisterVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,26 +14,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/register")
-public class RegisterController {
+@RequestMapping("/nh")
+public class NhController {
 
     @Autowired
     NhService nhService;
 
-    @Autowired
-    MjService mjService;
-
-    @RequestMapping(value="/to_nh_register", method=RequestMethod.GET)
-    public String toNhRegister() {
-        return "index/nh_register";
-    }
-
-    @RequestMapping(value="/to_mj_register", method=RequestMethod.GET)
-    public String toMjRegister() {
-        return "index/mj_register";
+    @RequestMapping("/add_nh_detail")
+    @ResponseBody
+    public Result<Boolean> addNhDetailInfo(NhBasic nhBasic, @Valid NhMore nhMore) {
+        if(null == nhBasic) {
+            return Result.error(CodeMsg.LOGIN_ERROR);
+        }
+        nhMore.setNhBasicId(nhBasic.getNhBasicId());
+        nhService.addNhDetailInfo(nhMore);
+        return Result.success(true);
     }
 
     @RequestMapping(value="/nh_register", method=RequestMethod.POST)
@@ -50,16 +48,10 @@ public class RegisterController {
         return Result.success(true);
     }
 
-    @RequestMapping(value="/mj_register", method=RequestMethod.POST)
+    @RequestMapping(value="/nh_login", method=RequestMethod.POST)
     @ResponseBody
-    public Result<Boolean> mjRegister(@Valid MjRegisterVo vo) {
-        String mjPassword = vo.getMjPassword();
-        String rePassword = vo.getRePassword();
-        if(!mjPassword.equals(rePassword)) {
-            return Result.error(CodeMsg.REPASSWORD_ERROR);
-        }
-        //注册
-        mjService.register(vo);
+    public Result<Boolean> nhLogin(HttpServletResponse response, @Valid NhLoginVo vo) {
+        nhService.login(response, vo);
         return Result.success(true);
     }
 }

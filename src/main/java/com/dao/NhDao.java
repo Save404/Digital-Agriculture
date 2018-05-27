@@ -2,7 +2,7 @@ package com.dao;
 
 import com.domain.NhBasic;
 import com.domain.NhMore;
-import com.result.CodeMsg;
+import com.sql.NhSqlProvider;
 import org.apache.ibatis.annotations.*;
 
 @Mapper
@@ -17,6 +17,6 @@ public interface NhDao {
     @Select("select * from nh_basic where nh_telephone=#{telephone}")
     NhBasic getNhBasicByTelephone(@Param("telephone") String telephone);
 
-
-    int  addNhDetailInfo(NhMore nhMore);
+    @InsertProvider(type=NhSqlProvider.class, method="insertNhDetailInfo")
+    int addNhDetailInfo(NhMore nhMore);
 }

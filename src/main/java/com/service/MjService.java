@@ -73,24 +73,27 @@ public class MjService {
         return mjBasic;
     }
 
-    public CodeMsg login(HttpServletResponse response, MjLoginVo vo) {
+    public Boolean login(HttpServletResponse response, MjLoginVo vo) {
+        if(null == response || null == vo) {
+            throw new GlobalException(CodeMsg.SERVER_ERROR);
+        }
         String mjTelephone = vo.getMjTelephone();
         String mjPassword = vo.getMjPassword();
         //判断用户是否存在
         MjBasic mjBasic = getMjBasicByTelephone(mjTelephone);
         if(null == mjBasic) {
-            return CodeMsg.NH_NOT_EXISTS;
+            throw new GlobalException(CodeMsg.NH_NOT_EXISTS);
         }
         //验证密码
         String dbPass = mjBasic.getMjPassword();
         String salt = mjBasic.getMjSalt();
         String calcPass = MD5Util.formPassToDBPass(mjPassword, salt);
         if(!calcPass.equals(dbPass)) {
-            return CodeMsg.PASSWORD_ERROR;
+            throw new GlobalException(CodeMsg.PASSWORD_ERROR);
         }
         //生成cookie
         addCookie(mjBasic, response);
-        return CodeMsg.SUCCESS;
+        return true;
     }
 
     public void addCookie(MjBasic mjBasic, HttpServletResponse response) {
