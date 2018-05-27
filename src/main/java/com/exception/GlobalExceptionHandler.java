@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import java.net.BindException;
 
-/*
 @ControllerAdvice
 @ResponseBody
-*/
 public class GlobalExceptionHandler {
     /*
     @ExceptionHandler(value=Exception.class)
@@ -21,4 +19,10 @@ public class GlobalExceptionHandler {
         }
     }
     */
+
+    @ExceptionHandler(value = AgricultureException.class)
+    @ResponseBody
+    public Result handlerSellerException(AgricultureException e) {
+        return Result.error(e.getCodeMsg());
+    }
 }

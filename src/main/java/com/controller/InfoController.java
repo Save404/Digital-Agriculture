@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.domain.NcpBasic;
+import com.domain.NcpMore;
 import com.domain.NhBasic;
 import com.domain.NhMore;
 import com.result.CodeMsg;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import redis.clients.jedis.JedisCluster;
 
 @Controller
 @RequestMapping("/info")
@@ -69,9 +71,49 @@ public class InfoController {
         }
     }
 
-    @RequestMapping("/add_ncp_basic")
+    @RequestMapping("/add_ncp")
     @ResponseBody
-    public Result<CodeMsg> addNcpBasic(NhBasic nhBasic, NcpBasic ncpBasic) {
+    public Result<CodeMsg> addNcp(NhBasic nhBasic, NcpBasic ncpBasic, NcpMore ncpMore) {
 
+        //登录检验
+        if (nhBasic == null){
+            return Result.error(CodeMsg.LOGIN_ERROR);
+        }
+
+        //数据传输检验
+        if (ncpBasic == null || ncpMore == null){
+            return Result.error(CodeMsg.BIND_ERROR);
+        }
+
+        //传入参数检验
+        if (StringUtils.isEmpty(ncpBasic.getNcpName())){
+            return Result.error(CodeMsg.NCP_NAME_EMPTY);
+        }
+        if (StringUtils.isEmpty(ncpBasic.getNcpPCode())){
+            return Result.error(CodeMsg.NCP_P_CODE);
+        }
+        if (StringUtils.isEmpty(ncpBasic.getNcpAreaCode())){
+            return Result.error(CodeMsg.NCP_AREA_CODE);
+        }
+        if (StringUtils.isEmpty(ncpBasic.getNcpAddress())){
+            return Result.error(CodeMsg.NCP_ADDRESS_EMPTY);
+        }
+        if (StringUtils.isEmpty(ncpBasic.getNcpFeature())) {
+            return Result.error(CodeMsg.NCP_FEATURE_EMPTY);
+        }
+        if (ncpMore.getNcpSupplyPeriodStart() != null && ncpMore.getNcpSupplyPeriodEnd() != null
+                &&  ncpMore.getNcpSupplyPeriodStart().getTime() > ncpMore.getNcpSupplyPeriodEnd().getTime()){
+            return Result.error(CodeMsg.NCP_SUPPLY_PERIOD_ERROR);
+        }
+
+        //服务处理，返回结果
+        ncpBasic.setNhBasicId(nhBasic.getNhBasicId());
+        CodeMsg res =  ncpService.addNcpInfo(ncpBasic, ncpMore);
+        if (res.getCode() == 0){
+            return Result.success(res);
+        }
+        else {
+            return Result.error(res);
+        }
     }
 }

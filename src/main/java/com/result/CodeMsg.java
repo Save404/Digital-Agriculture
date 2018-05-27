@@ -28,6 +28,15 @@ public class CodeMsg {
     public static CodeMsg ORIGIN_EMPTY = new CodeMsg(500304, "籍贯不能为空");
     public static CodeMsg NATION_EMPTY = new CodeMsg(500305, "民族不能为空");
     //买家信息完善模块 5004XX
+    //农产品信息记录模块 5005XX
+    public static CodeMsg NCP_NAME_EMPTY = new CodeMsg(500500, "农产品名称不能为空");
+    public static CodeMsg NCP_P_CODE = new CodeMsg(500501, "农产品类别不能为空");
+    public static CodeMsg NCP_AREA_CODE  = new CodeMsg(500502, "农产品产地不能为空");
+    public static CodeMsg NCP_ADDRESS_EMPTY = new CodeMsg(500503, "农产品生产详细地址不能为空");
+    public static CodeMsg NCP_FEATURE_EMPTY = new CodeMsg(500504, "农产品特征不能为空");
+    public static CodeMsg NCP_SUPPLY_PERIOD_ERROR = new CodeMsg(500505, "农产品供应时间错误");
+    public static CodeMsg NCP_ADD_FAIL = new CodeMsg(500506, "农产品添加失败");
+
 
     private CodeMsg() {
     }
