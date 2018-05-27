@@ -1,18 +1,28 @@
 package com.domain;
 
+import com.validator.IsIdCard;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class NhMore {
     private String nhMoreId;
+    @NotEmpty(message = "身份证不能为空")
+    @IsIdCard
     private String nhBasicId;
+    @NotEmpty(message = "真实姓名不能为空")
     private String nhRealName;
     private String nhIdCard;
     private String nhGhdwAddress;
+    @NotEmpty(message = "供货单位地区选项错误")
     private String nhGndwAreaCode;
     private String nhGhdwPhone;
     private String nhPayPassword;
     private String nhPaySalt;
     private Integer nhStatus;
+    @NotEmpty(message = "性别不能为空")
     private String nhSex;
+    @NotEmpty(message = "籍贯不能为空")
     private String nhOrigin;
+    @NotEmpty(message = "民族不能为空")
     private String nhNation;
     private String nhPolitics;
 

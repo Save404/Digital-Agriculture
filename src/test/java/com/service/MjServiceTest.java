@@ -22,15 +22,15 @@ public class MjServiceTest {
     @Autowired
     MjService mjService;
 
-    @Test
-    public void register() {
-        MjRegisterVo vo = new MjRegisterVo();
-        vo.setMjTelephone("17367077253");
-        vo.setMjPassword("123456");
-        vo.setRePassword("123456");
-        CodeMsg codeMsg =  mjService.register(vo);
-        Assert.assertEquals(0, codeMsg.getCode());
-    }
+//    @Test
+//    public void register() {
+//        MjRegisterVo vo = new MjRegisterVo();
+//        vo.setMjTelephone("17367077253");
+//        vo.setMjPassword("123456");
+//        vo.setRePassword("123456");
+//        CodeMsg codeMsg =  mjService.register(vo);
+//        Assert.assertEquals(0, codeMsg.getCode());
+//    }
 
     @Test
     public void getMjBasicByTelephone(){
