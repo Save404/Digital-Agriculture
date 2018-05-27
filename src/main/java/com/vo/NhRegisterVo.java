@@ -1,15 +1,20 @@
 package com.vo;
 
 import com.validator.IsMobile;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
 
 public class NhRegisterVo {
 
+    @NotEmpty(message = "手机号不能为空")
+    @IsMobile
     private String nhTelephone;
 
+    @NotEmpty(message = "密码不能为空")
     private String nhPassword;
 
+    @NotEmpty(message = "重复密码不能为空")
     private String rePassword;
 
     public String getNhTelephone() {

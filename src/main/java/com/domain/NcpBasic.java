@@ -1,15 +1,22 @@
 package com.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import java.util.Date;
 
 public class NcpBasic {
     private String ncpBasicId;
+    @NotEmpty(message = "农产品名不能为空")
     private String ncpName;
     private Date ncpPublishDate;
+    @NotEmpty(message = "农产品种类不能为空")
     private String ncpPCode;
+    @NotEmpty(message = "地区选项不能为空")
     private String ncpAreaCode;
+    @NotEmpty(message = "详细地址不能为空")
     private String ncpAddress;
     private String nhBasicId;
+    @NotEmpty(message = "产品特质不能为空")
     private String ncpFeature;
     private String ncpBrand;
     private String ncpAnnualOutput;

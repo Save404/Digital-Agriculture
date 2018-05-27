@@ -18,5 +18,5 @@ public interface NhDao {
     NhBasic getNhBasicByTelephone(@Param("telephone") String telephone);
 
     @InsertProvider(type=NhSqlProvider.class, method="insertNhDetailInfo")
-    int  addNhDetailInfo(NhMore nhMore);
+    int addNhDetailInfo(NhMore nhMore);
 }
