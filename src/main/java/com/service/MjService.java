@@ -2,6 +2,7 @@ package com.service;
 
 import com.dao.MjDao;
 import com.domain.MjBasic;
+import com.exception.GlobalException;
 import com.redis.MjKey;
 import com.redis.RedisService;
 import com.result.CodeMsg;
@@ -29,15 +30,15 @@ public class MjService {
     @Autowired
     RedisService redisService;
 
-    public CodeMsg register(MjRegisterVo vo) {
+    public Boolean register(MjRegisterVo vo) {
         if(null == vo) {
-            return CodeMsg.BIND_ERROR;
+            throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
         String telephone = vo.getMjTelephone();
         //查询手机号是否已经注册
         MjBasic mj = mjDao.getMjBasicByTelephone(telephone);
         if(null != mj) {
-            return CodeMsg.TELEPHONE_REPEAT;
+            throw new GlobalException(CodeMsg.TELEPHONE_REPEAT);
         }
         MjBasic mjBasic = new MjBasic();
         mjBasic.setMjBasicId(UUID.randomUUID().toString());
@@ -49,9 +50,9 @@ public class MjService {
         mjBasic.setMjPassword(dbPass);
         int res = mjDao.register(mjBasic);
         if(res != 1) {
-            return CodeMsg.SERVER_ERROR;
+            throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
-        return CodeMsg.SUCCESS;
+        return true;
     }
 
     public MjBasic getMjBasicByTelephone(String telephone) {

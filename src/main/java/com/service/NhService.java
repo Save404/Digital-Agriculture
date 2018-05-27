@@ -3,6 +3,7 @@ package com.service;
 import com.dao.NhDao;
 import com.domain.NhBasic;
 import com.domain.NhMore;
+import com.exception.GlobalException;
 import com.redis.NhKey;
 import com.redis.RedisService;
 import com.result.CodeMsg;
@@ -30,15 +31,15 @@ public class NhService {
     @Autowired
     RedisService redisService;
 
-    public CodeMsg register(NhRegisterVo vo) {
+    public Boolean register(NhRegisterVo vo) {
         if(null == vo) {
-            return CodeMsg.BIND_ERROR;
+            throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
         String telephone = vo.getNhTelephone();
         //查询手机号是否已经注册
         NhBasic nh = nhDao.getNhBasicByTelephone(telephone);
         if(null != nh) {
-            return CodeMsg.TELEPHONE_REPEAT;
+            throw new GlobalException(CodeMsg.TELEPHONE_REPEAT);
         }
         NhBasic nhBasic = new NhBasic();
         nhBasic.setNhBasicId(UUID.randomUUID().toString());
@@ -50,9 +51,9 @@ public class NhService {
         nhBasic.setNhPassword(dbPass);
         int res = nhDao.register(nhBasic);
         if(res != 1) {
-            return CodeMsg.SERVER_ERROR;
+            throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
-        return CodeMsg.SUCCESS;
+        return true;
     }
 
     public NhBasic getNhBasicByTelephone(String telephone) {

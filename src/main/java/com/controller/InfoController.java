@@ -69,9 +69,9 @@ public class InfoController {
         }
     }
 
-    @RequestMapping("/add_ncp_basic")
-    @ResponseBody
-    public Result<CodeMsg> addNcpBasic(NhBasic nhBasic, NcpBasic ncpBasic) {
-
-    }
+//    @RequestMapping("/add_ncp_basic")
+//    @ResponseBody
+//    public Result<CodeMsg> addNcpBasic(NhBasic nhBasic, NcpBasic ncpBasic) {
+//
+//    }
 }

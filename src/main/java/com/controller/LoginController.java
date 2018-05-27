@@ -36,7 +36,7 @@ public class LoginController {
 
     @RequestMapping(value="/nh_login", method=RequestMethod.POST)
     @ResponseBody
-    public Result<CodeMsg> nhRegister(HttpServletResponse response, NhLoginVo vo) {
+    public Result<CodeMsg> nhLogin(HttpServletResponse response, NhLoginVo vo) {
         //参数校验
         if(null == vo) {
             return Result.error(CodeMsg.BIND_ERROR);
@@ -98,7 +98,7 @@ public class LoginController {
 
     @RequestMapping(value="/mj_login", method=RequestMethod.POST)
     @ResponseBody
-    public Result<CodeMsg> mjRegister(HttpServletResponse response, MjLoginVo vo) {
+    public Result<CodeMsg> mjLogin(HttpServletResponse response, MjLoginVo vo) {
         //参数校验
         if(null == vo) {
             return Result.error(CodeMsg.BIND_ERROR);

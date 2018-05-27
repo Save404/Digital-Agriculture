@@ -25,11 +25,8 @@ public class NhDaoTest {
 
     @Test
     public void getNhBasicByTelephone() {
-        NhBasic nhBasic = nhDao.getNhBasicByTelephone("17367077253");
-        Assert.assertEquals("17367077253",nhBasic.getNhTelephone());
-
-        nhBasic = nhDao.getNhBasicByTelephone("17367077254");
-        Assert.assertEquals(null, nhBasic);
+        NhBasic nhBasic = nhDao.getNhBasicByTelephone("13588781652");
+        System.out.print(nhBasic);
 
     }
 }

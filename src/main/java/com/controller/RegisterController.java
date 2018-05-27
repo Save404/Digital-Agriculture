@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.exception.GlobalException;
 import com.result.CodeMsg;
 import com.result.Result;
 import com.service.MjService;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/register")
@@ -36,64 +39,27 @@ public class RegisterController {
 
     @RequestMapping(value="/nh_register", method=RequestMethod.POST)
     @ResponseBody
-    public Result<CodeMsg> nhRegister(NhRegisterVo vo) {
-        //参数校验
-        if(null == vo) {
-            return Result.error(CodeMsg.BIND_ERROR);
-        }
-        String nhTelephone = vo.getNhTelephone();
+    public Result<Boolean> nhRegister(@Valid NhRegisterVo vo) {
         String nhPassword = vo.getNhPassword();
         String rePassword = vo.getRePassword();
-        if(StringUtils.isEmpty(nhTelephone)) {
-            return Result.error(CodeMsg.TELEPHONE_EMPTY);
-        }
-        if(StringUtils.isEmpty(nhPassword)) {
-            return Result.error(CodeMsg.PASSWORD_EMPTY);
-        }
-        if(!ValidatorUtil.isTelephone(nhTelephone)) {
-            return Result.error(CodeMsg.TELEPHONE_ERROR);
-        }
-        if(StringUtils.isEmpty(rePassword) || !nhPassword.equals(rePassword)) {
+        if(!nhPassword.equals(rePassword)) {
             return Result.error(CodeMsg.REPASSWORD_ERROR);
         }
         //注册
-        CodeMsg msg = nhService.register(vo);
-        if(msg.getCode() == 0) {
-            return Result.success(msg);
-        } else {
-            return Result.error(msg);
-        }
+        nhService.register(vo);
+        return Result.success(true);
     }
-
 
     @RequestMapping(value="/mj_register", method=RequestMethod.POST)
     @ResponseBody
-    public Result<CodeMsg> mjRegister(MjRegisterVo vo) {
-        //参数校验
-        if(null == vo) {
-            return Result.error(CodeMsg.BIND_ERROR);
-        }
-        String mjTelephone = vo.getMjTelephone();
+    public Result<Boolean> mjRegister(@Valid MjRegisterVo vo) {
         String mjPassword = vo.getMjPassword();
         String rePassword = vo.getRePassword();
-        if(StringUtils.isEmpty(mjTelephone)) {
-            return Result.error(CodeMsg.TELEPHONE_EMPTY);
-        }
-        if(StringUtils.isEmpty(mjPassword)) {
-            return Result.error(CodeMsg.PASSWORD_EMPTY);
-        }
-        if(!ValidatorUtil.isTelephone(mjTelephone)) {
-            return Result.error(CodeMsg.TELEPHONE_ERROR);
-        }
-        if(StringUtils.isEmpty(rePassword) || !mjPassword.equals(rePassword)) {
+        if(!mjPassword.equals(rePassword)) {
             return Result.error(CodeMsg.REPASSWORD_ERROR);
         }
         //注册
-        CodeMsg msg = mjService.register(vo);
-        if(msg.getCode() == 0) {
-            return Result.success(msg);
-        } else {
-            return Result.error(msg);
-        }
+        mjService.register(vo);
+        return Result.success(true);
     }
 }
