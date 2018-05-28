@@ -42,7 +42,7 @@ public class NhDaoTest {
         nhMore.setNhRealName("123");
         nhMore.setNhIdCard("123");
         nhMore.setNhGhdwAddress("123");
-        nhMore.setNhGndwAreaCode("110108");
+        nhMore.setNhGhdwAreaCode("110108");
         nhMore.setNhGhdwPhone("123");
         nhMore.setNhPayPassword("123");
         nhMore.setNhPaySalt("123");
