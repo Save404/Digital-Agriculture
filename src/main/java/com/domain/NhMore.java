@@ -5,15 +5,16 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class NhMore {
     private String nhMoreId;
-    @NotEmpty(message = "身份证不能为空")
-    @IsIdCard
+
     private String nhBasicId;
     @NotEmpty(message = "真实姓名不能为空")
     private String nhRealName;
+    @NotEmpty(message = "身份证不能为空")
+    @IsIdCard
     private String nhIdCard;
     private String nhGhdwAddress;
     @NotEmpty(message = "供货单位地区选项错误")
-    private String nhGndwAreaCode;
+    private String nhGhdwAreaCode;
     private String nhGhdwPhone;
     private String nhPayPassword;
     private String nhPaySalt;
@@ -66,12 +67,12 @@ public class NhMore {
         this.nhGhdwAddress = nhGhdwAddress;
     }
 
-    public String getNhGndwAreaCode() {
-        return nhGndwAreaCode;
+    public String getNhGhdwAreaCode() {
+        return nhGhdwAreaCode;
     }
 
-    public void setNhGndwAreaCode(String nhGndwAreaCode) {
-        this.nhGndwAreaCode = nhGndwAreaCode;
+    public void setNhGhdwAreaCode(String nhGndwAreaCode) {
+        this.nhGhdwAreaCode = nhGndwAreaCode;
     }
 
     public String getNhGhdwPhone() {
@@ -146,7 +147,7 @@ public class NhMore {
                 ", nhRealName='" + nhRealName + '\'' +
                 ", nhIdCard='" + nhIdCard + '\'' +
                 ", nhGhdwAddress='" + nhGhdwAddress + '\'' +
-                ", nhGndwAreaCode='" + nhGndwAreaCode + '\'' +
+                ", nhGhdwAreaCode='" + nhGhdwAreaCode + '\'' +
                 ", nhGhdwPhone='" + nhGhdwPhone + '\'' +
                 ", nhPayPassword='" + nhPayPassword + '\'' +
                 ", nhPaySalt='" + nhPaySalt + '\'' +

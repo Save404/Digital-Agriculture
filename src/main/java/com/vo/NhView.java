@@ -12,7 +12,7 @@ public class NhView {
     private String nhRealName;
     private String nhIdCard;
     private String nhGhdwAddress;
-    private String nhGndwAreaCode;
+    private String nhGhdwAreaCode;
     private String nhGhdwPhone;
     private Integer nhStatus;
     private String nhSex;
@@ -92,12 +92,12 @@ public class NhView {
         this.nhGhdwAddress = nhGhdwAddress;
     }
 
-    public String getNhGndwAreaCode() {
-        return nhGndwAreaCode;
+    public String getNhGhdwAreaCode() {
+        return nhGhdwAreaCode;
     }
 
-    public void setNhGndwAreaCode(String nhGndwAreaCode) {
-        this.nhGndwAreaCode = nhGndwAreaCode;
+    public void setNhGhdwAreaCode(String nhGndwAreaCode) {
+        this.nhGhdwAreaCode = nhGndwAreaCode;
     }
 
     public String getNhGhdwPhone() {
@@ -160,7 +160,7 @@ public class NhView {
                 ", nhRealName='" + nhRealName + '\'' +
                 ", nhIdCard='" + nhIdCard + '\'' +
                 ", nhGhdwAddress='" + nhGhdwAddress + '\'' +
-                ", nhGndwAreaCode='" + nhGndwAreaCode + '\'' +
+                ", nhGhdwAreaCode='" + nhGhdwAreaCode + '\'' +
                 ", nhGhdwPhone='" + nhGhdwPhone + '\'' +
                 ", nhStatus=" + nhStatus +
                 ", nhSex='" + nhSex + '\'' +

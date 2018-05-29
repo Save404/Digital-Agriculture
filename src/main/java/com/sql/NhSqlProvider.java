@@ -2,7 +2,7 @@ package com.sql;
 
 import com.alibaba.druid.sql.SQLUtils;
 import com.domain.NhMore;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.MethodAccessor_Short;
+//import com.sun.xml.internal.bind.v2.runtime.reflect.opt.MethodAccessor_Short;
 import com.util.SqlProviderlUtil;
 import com.util.StringUtils;
 import org.apache.ibatis.jdbc.SQL;
@@ -18,7 +18,7 @@ public class NhSqlProvider {
         map.put("nh_real_name", nhMore.getNhRealName());
         map.put("nh_id_card", nhMore.getNhIdCard());
         map.put("nh_ghdw_address", nhMore.getNhGhdwAddress());
-        map.put("nh_ghdw_area_code", nhMore.getNhGndwAreaCode());
+        map.put("nh_ghdw_area_code", nhMore.getNhGhdwAreaCode());
         map.put("nh_ghdw_phone", nhMore.getNhGhdwPhone());
         map.put("nh_pay_password", nhMore.getNhPayPassword());
         map.put("nh_pay_salt", nhMore.getNhPaySalt());
