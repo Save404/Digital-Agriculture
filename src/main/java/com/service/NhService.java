@@ -115,7 +115,6 @@ public class NhService {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
         nhMore.setNhMoreId(UUID.randomUUID().toString());
-        nhMore.setNhStatus(0);
         if(!StringUtils.isEmpty(nhMore.getNhPayPassword())) {
             String inputPass = nhMore.getNhPayPassword();
             String salt = SaltUtil.getSalt(8);

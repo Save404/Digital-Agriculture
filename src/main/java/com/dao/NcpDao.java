@@ -1,6 +1,8 @@
 package com.dao;
 
 import com.domain.*;
+import com.vo.NcpView;
+import com.vo.NcpView1;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -28,4 +30,8 @@ public interface NcpDao {
 
     @InsertProvider(type=com.sql.NcpSqlProvider.class, method="insertNcpMoreInfo")
     public int addNcpMoreInfo(NcpMore ncpMore);
+
+    List<NcpView1> getNcpList(String nhBasic);
+
+    NcpView getNcpByNcpBasicId(String ncpBasicId);
 }

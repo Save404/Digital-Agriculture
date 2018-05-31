@@ -2,18 +2,14 @@ package com.dao;
 
 import com.domain.NhBasic;
 import com.domain.NhMore;
-import com.util.UUIDUtil;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
-
-import static org.junit.Assert.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -42,7 +38,7 @@ public class NhDaoTest {
         nhMore.setNhRealName("123");
         nhMore.setNhIdCard("123");
         nhMore.setNhGhdwAddress("123");
-        nhMore.setNhGndwAreaCode("110108");
+        nhMore.setNhGhdwAreaCode("110108");
         nhMore.setNhGhdwPhone("123");
         nhMore.setNhPayPassword("123");
         nhMore.setNhPaySalt("123");
