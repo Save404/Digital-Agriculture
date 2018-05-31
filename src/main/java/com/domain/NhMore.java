@@ -1,4 +1,4 @@
-﻿package com.domain;
+package com.domain;
 
 import com.validator.IsIdCard;
 import org.hibernate.validator.constraints.NotEmpty;
