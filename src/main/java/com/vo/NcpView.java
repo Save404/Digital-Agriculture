@@ -1,5 +1,7 @@
 package com.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 public class NcpView {
@@ -9,6 +11,7 @@ public class NcpView {
     private String ncpPCode;
     private String ncpAreaCode;
     private String ncpAddress;
+    @JsonIgnore
     private String nhBasicId;
     private String ncpFeature;
     private String ncpBrand;

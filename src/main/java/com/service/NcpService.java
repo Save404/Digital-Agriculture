@@ -54,12 +54,18 @@ public class NcpService {
     }
 
     public List<NcpView1> getNcpList(NhBasic nhBasic) {
+        if (nhBasic == null){
+            throw new GlobalException(CodeMsg.SERVER_ERROR);
+        }
         List<NcpView1> list = ncpDao.getNcpList(nhBasic.getNhBasicId());
         return list;
     }
 
     public NcpView getNcpByNcpBasicId(String ncpBasicId) {
         NcpView ncpView = ncpDao.getNcpByNcpBasicId(ncpBasicId);
+        if (ncpView == null){
+            throw new GlobalException(CodeMsg.NCP_BASIC_ID_ERROR);
+        }
         return ncpView;
     }
 }

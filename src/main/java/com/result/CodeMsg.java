@@ -36,6 +36,7 @@ public class CodeMsg {
     public static CodeMsg NCP_FEATURE_EMPTY = new CodeMsg(500504, "农产品特征不能为空");
     public static CodeMsg NCP_SUPPLY_PERIOD_ERROR = new CodeMsg(500505, "农产品供应时间错误");
     public static CodeMsg NCP_ADD_FAIL = new CodeMsg(500506, "农产品添加失败");
+    public static CodeMsg NCP_BASIC_ID_ERROR = new CodeMsg(500507, "农产品编号错误");
 
 
     private CodeMsg() {
