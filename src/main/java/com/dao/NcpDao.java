@@ -31,6 +31,12 @@ public interface NcpDao {
     @InsertProvider(type=com.sql.NcpSqlProvider.class, method="insertNcpMoreInfo")
     public int addNcpMoreInfo(NcpMore ncpMore);
 
+    @Delete("delete from ncp_more where ncp_more_id = #{ncpMoreId}")
+    int deleteMoreById(@Param("ncpMoreId") String ncpMoreId);
+
+    @Delete("delete from ncp_basic where ncp_basic_id = #{ncpBasicId}")
+    int deleteBasicById(@Param("ncpBasicId") String ncpBasicId);
+
     @Select("select ncp_basic.ncp_basic_id, ncp_basic.ncp_name, " +
             "cp.c1_name, cp.c2_name, cp.c3_name, cp.p_name, " +
             "pca.name_p, pca.name_c, pca.name_a, ncp_basic.ncp_feature, " +

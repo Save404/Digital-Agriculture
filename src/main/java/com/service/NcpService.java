@@ -20,6 +20,9 @@ public class NcpService {
     @Autowired
     NcpDao ncpDao;
 
+    @Autowired
+    NhService nhService;
+
     @Transactional
     public Boolean addNcpInfo(NcpBasic ncpBasic, NcpMore ncpMore){
         //输入参数检验
@@ -54,7 +57,7 @@ public class NcpService {
     }
 
     public List<NcpView1> getNcpList(NhBasic nhBasic) {
-        if (nhBasic == null){
+        if(null == nhService.getNhBasicByTelephone(nhBasic.getNhTelephone())) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
         List<NcpView1> list = ncpDao.getNcpList(nhBasic.getNhBasicId());
@@ -64,8 +67,19 @@ public class NcpService {
     public NcpView getNcpByNcpBasicId(String ncpBasicId) {
         NcpView ncpView = ncpDao.getNcpByNcpBasicId(ncpBasicId);
         if (ncpView == null){
-            throw new GlobalException(CodeMsg.NCP_BASIC_ID_ERROR);
+            throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
         return ncpView;
+    }
+
+    @Transactional
+    public void modifyNcp(NcpBasic ncpBasic, NcpMore ncpMore) {
+        if (null == ncpBasic || null == ncpMore){
+            throw new GlobalException(CodeMsg.SERVER_ERROR);
+        }
+        if(ncpDao.deleteMoreById(ncpMore.getNcpMoreId()) != 1 || ncpDao.deleteBasicById(ncpBasic.getNcpBasicId()) != 1) {
+            throw new GlobalException(CodeMsg.SERVER_ERROR);
+        }
+        addNcpInfo(ncpBasic, ncpMore);
     }
 }
