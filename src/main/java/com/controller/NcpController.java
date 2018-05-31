@@ -56,4 +56,21 @@ public class NcpController {
         NcpView ncpView = ncpService.getNcpByNcpBasicId(ncpBasicId);
         return Result.success(ncpView);
     }
+
+    @RequestMapping("/modify_ncp")
+    @ResponseBody
+    public Result<Boolean> modifyNcp(NhBasic nhBasic, @Valid NcpBasic ncpBasic, @Valid NcpMore ncpMore) {
+        //登录检验
+        if (nhBasic == null){
+            return Result.error(CodeMsg.LOGIN_ERROR);
+        }
+        if (ncpMore.getNcpSupplyPeriodStart() != null && ncpMore.getNcpSupplyPeriodEnd() != null){
+            if(ncpMore.getNcpSupplyPeriodStart().getTime() > ncpMore.getNcpSupplyPeriodEnd().getTime()) {
+                return Result.error(CodeMsg.NCP_SUPPLY_PERIOD_ERROR);
+            }
+        }
+        ncpBasic.setNhBasicId(nhBasic.getNhBasicId());
+        ncpService.modifyNcp(ncpBasic, ncpMore);
+        return Result.success(true);
+    }
 }
