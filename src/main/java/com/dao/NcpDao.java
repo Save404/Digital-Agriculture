@@ -31,13 +31,19 @@ public interface NcpDao {
     @InsertProvider(type=com.sql.NcpSqlProvider.class, method="insertNcpMoreInfo")
     public int addNcpMoreInfo(NcpMore ncpMore);
 
-    List<NcpView1> getNcpList(String nhBasic);
-
-    NcpView getNcpByNcpBasicId(String ncpBasicId);
-
     @Delete("delete from ncp_more where ncp_more_id = #{ncpMoreId}")
     int deleteMoreById(@Param("ncpMoreId") String ncpMoreId);
 
     @Delete("delete from ncp_basic where ncp_basic_id = #{ncpBasicId}")
     int deleteBasicById(@Param("ncpBasicId") String ncpBasicId);
+
+    @Select("select ncp_basic.ncp_basic_id, ncp_basic.ncp_name, " +
+            "cp.c1_name, cp.c2_name, cp.c3_name, cp.p_name, " +
+            "pca.name_p, pca.name_c, pca.name_a, ncp_basic.ncp_feature, " +
+            "ncp_basic.ncp_publish_date from ncp_basic, category_product_view as cp, province_city_area_view as pca " +
+            "where ncp_basic.ncp_p_code = cp.p_code and ncp_basic.ncp_area_code = pca.code_a and ncp_basic.nh_basic_id = #{nhid}")
+    List<NcpView1> getNcpList(@Param("nhid") String nhBasic);
+
+    @Select("select * from ncp_view where ncp_basic_id = #{ncpBasicId}")
+    NcpView getNcpByNcpBasicId(@Param("ncpBasicId") String ncpBasicId);
 }

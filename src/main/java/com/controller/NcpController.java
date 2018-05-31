@@ -46,6 +46,11 @@ public class NcpController {
     @RequestMapping("/get_ncp_list")
     @ResponseBody
     public Result<List<NcpView1>> getNcpList(NhBasic nhBasic) {
+
+        //数据传输异常检测
+        if (nhBasic == null){
+            return Result.error(CodeMsg.SERVER_ERROR);
+        }
         List<NcpView1> list = ncpService.getNcpList(nhBasic);
         return Result.success(list);
     }
