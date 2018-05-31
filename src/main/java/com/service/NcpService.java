@@ -4,6 +4,8 @@ import com.dao.NcpDao;
 import com.domain.*;
 import com.exception.GlobalException;
 import com.result.CodeMsg;
+import com.vo.NcpView;
+import com.vo.NcpView1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,5 +51,15 @@ public class NcpService {
 
     public List<Category1> getCategory1All() {
         return ncpDao.getCategory1All();
+    }
+
+    public List<NcpView1> getNcpList(NhBasic nhBasic) {
+        List<NcpView1> list = ncpDao.getNcpList(nhBasic.getNhBasicId());
+        return list;
+    }
+
+    public NcpView getNcpByNcpBasicId(String ncpBasicId) {
+        NcpView ncpView = ncpDao.getNcpByNcpBasicId(ncpBasicId);
+        return ncpView;
     }
 }

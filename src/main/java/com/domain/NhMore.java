@@ -1,23 +1,23 @@
-package com.domain;
+﻿package com.domain;
 
 import com.validator.IsIdCard;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class NhMore {
     private String nhMoreId;
-    @NotEmpty(message = "身份证不能为空")
-    @IsIdCard
     private String nhBasicId;
     @NotEmpty(message = "真实姓名不能为空")
     private String nhRealName;
+    @NotEmpty(message = "身份证不能为空")
+    @IsIdCard
     private String nhIdCard;
     private String nhGhdwAddress;
     @NotEmpty(message = "供货单位地区选项错误")
-    private String nhGndwAreaCode;
+    private String nhGhdwAreaCode;
     private String nhGhdwPhone;
     private String nhPayPassword;
     private String nhPaySalt;
-    private Integer nhStatus;
+    private int nhStatus;
     @NotEmpty(message = "性别不能为空")
     private String nhSex;
     @NotEmpty(message = "籍贯不能为空")
@@ -66,12 +66,12 @@ public class NhMore {
         this.nhGhdwAddress = nhGhdwAddress;
     }
 
-    public String getNhGndwAreaCode() {
-        return nhGndwAreaCode;
+    public String getNhGhdwAreaCode() {
+        return nhGhdwAreaCode;
     }
 
-    public void setNhGndwAreaCode(String nhGndwAreaCode) {
-        this.nhGndwAreaCode = nhGndwAreaCode;
+    public void setNhGhdwAreaCode(String nhGhdwAreaCode) {
+        this.nhGhdwAreaCode = nhGhdwAreaCode;
     }
 
     public String getNhGhdwPhone() {
@@ -98,11 +98,11 @@ public class NhMore {
         this.nhPaySalt = nhPaySalt;
     }
 
-    public Integer getNhStatus() {
+    public int getNhStatus() {
         return nhStatus;
     }
 
-    public void setNhStatus(Integer nhStatus) {
+    public void setNhStatus(int nhStatus) {
         this.nhStatus = nhStatus;
     }
 
@@ -146,7 +146,7 @@ public class NhMore {
                 ", nhRealName='" + nhRealName + '\'' +
                 ", nhIdCard='" + nhIdCard + '\'' +
                 ", nhGhdwAddress='" + nhGhdwAddress + '\'' +
-                ", nhGndwAreaCode='" + nhGndwAreaCode + '\'' +
+                ", nhGhdwAreaCode='" + nhGhdwAreaCode + '\'' +
                 ", nhGhdwPhone='" + nhGhdwPhone + '\'' +
                 ", nhPayPassword='" + nhPayPassword + '\'' +
                 ", nhPaySalt='" + nhPaySalt + '\'' +
