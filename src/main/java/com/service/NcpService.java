@@ -4,6 +4,7 @@ import com.dao.NcpDao;
 import com.domain.*;
 import com.exception.GlobalException;
 import com.result.CodeMsg;
+import com.util.StringUtils;
 import com.vo.NcpView;
 import com.vo.NcpView1;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,12 @@ public class NcpService {
         ncpMore.setNcpBasicId(id);
         ncpMore.setNcpMoreId(UUID.randomUUID().toString());
         //数据交付给dao层处理
-        if(ncpDao.addNcpBasicInfo(ncpBasic) != 1 || ncpDao.addNcpMoreInfo(ncpMore) != 1)
-            throw new GlobalException(CodeMsg.SERVER_ERROR);
+        try {
+            if(ncpDao.addNcpBasicInfo(ncpBasic) != 1 || ncpDao.addNcpMoreInfo(ncpMore) != 1)
+                throw new GlobalException(CodeMsg.SERVER_ERROR);
+        } catch (Exception e) {
+            throw new GlobalException(CodeMsg.DB_ERROR);
+        }
         return true;
     }
 
@@ -60,25 +65,39 @@ public class NcpService {
         if(null == nhService.getNhBasicByTelephone(nhBasic.getNhTelephone())) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
-        List<NcpView1> list = ncpDao.getNcpList(nhBasic.getNhBasicId());
+        List<NcpView1> list = null;
+        try {
+            list = ncpDao.getNcpList(nhBasic.getNhBasicId());
+        } catch (Exception e) {
+            throw new GlobalException(CodeMsg.DB_ERROR);
+        }
         return list;
     }
 
     public NcpView getNcpByNcpBasicId(String ncpBasicId) {
         NcpView ncpView = ncpDao.getNcpByNcpBasicId(ncpBasicId);
-        if (ncpView == null){
-            throw new GlobalException(CodeMsg.SERVER_ERROR);
+        try {
+            if (ncpView == null){
+                throw new GlobalException(CodeMsg.SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            throw new GlobalException(CodeMsg.DB_ERROR);
         }
+
         return ncpView;
     }
 
     @Transactional
-    public void modifyNcp(NcpBasic ncpBasic, NcpMore ncpMore) {
-        if (null == ncpBasic || null == ncpMore){
+    public void modifyNcp(String ncpBasicId, NcpBasic ncpBasic, NcpMore ncpMore) {
+        if (null == ncpBasic || null == ncpMore || StringUtils.isEmpty(ncpBasicId)){
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
-        if(ncpDao.deleteMoreById(ncpMore.getNcpMoreId()) != 1 || ncpDao.deleteBasicById(ncpBasic.getNcpBasicId()) != 1) {
-            throw new GlobalException(CodeMsg.SERVER_ERROR);
+        try {
+            if(ncpDao.deleteMoreByBasicId(ncpBasicId) != 1 || ncpDao.deleteBasicById(ncpBasicId) != 1) {
+                throw new GlobalException(CodeMsg.SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            throw new GlobalException(CodeMsg.DB_ERROR);
         }
         addNcpInfo(ncpBasic, ncpMore);
     }

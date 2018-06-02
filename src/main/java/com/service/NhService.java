@@ -15,6 +15,7 @@ import com.vo.NhLoginVo;
 import com.vo.NhRegisterVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -110,21 +111,61 @@ public class NhService {
         response.addCookie(cookie);
     }
 
-    public Boolean addNhDetailInfo(NhMore nhMore) {
+    @Transactional
+    public Boolean addNhDetailInfo(NhBasic nhBasic, NhMore nhMore) {
         if(null == nhMore) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
-        nhMore.setNhMoreId(UUID.randomUUID().toString());
-        if(!StringUtils.isEmpty(nhMore.getNhPayPassword())) {
-            String inputPass = nhMore.getNhPayPassword();
-            String salt = SaltUtil.getSalt(8);
-            String dbPass = MD5Util.inputPassToDBPass(inputPass, salt);
-            nhMore.setNhPayPassword(dbPass);
-            nhMore.setNhPaySalt(salt);
+        //判断数据库中是否存在详情表
+        NhMore nhDetail = getNhDetail(nhBasic);
+        if(null != nhDetail) {
+            try {
+                if(nhDao.deleteMoreById(nhDetail.getNhMoreId()) != 1) {
+                    throw new GlobalException(CodeMsg.SERVER_ERROR);
+                }
+            } catch (Exception e) {
+                throw new GlobalException(CodeMsg.DB_ERROR);
+            }
         }
-        if(nhDao.addNhDetailInfo(nhMore) != 1) {
-            throw new GlobalException(CodeMsg.SERVER_ERROR);
+        nhMore.setNhBasicId(nhBasic.getNhBasicId());
+        nhMore.setNhMoreId(UUID.randomUUID().toString());
+        String inputPass = nhMore.getNhPayPassword();
+        String salt = SaltUtil.getSalt(8);
+        String dbPass = MD5Util.inputPassToDBPass(inputPass, salt);
+        nhMore.setNhPayPassword(dbPass);
+        nhMore.setNhPaySalt(salt);
+        try {
+            if(nhDao.addNhDetailInfo(nhMore) != 1) {
+                throw new GlobalException(CodeMsg.SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            throw new GlobalException(CodeMsg.DB_ERROR);
         }
         return true;
+    }
+
+    public NhMore getNhDetail(NhBasic nhBasic) {
+        if(null == nhBasic) {
+            throw new GlobalException(CodeMsg.SERVER_ERROR);
+        }
+        String nhBasicId = nhBasic.getNhBasicId();
+        try {
+            if(null == nhDao.getNhBasicById(nhBasicId)) {
+                throw new GlobalException(CodeMsg.SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            throw new GlobalException(CodeMsg.DB_ERROR);
+        }
+        NhMore nhMore = null;
+        try {
+            nhMore = nhDao.getNhDetail(nhBasicId);
+        } catch (Exception e) {
+            throw new GlobalException(CodeMsg.DB_ERROR);
+        }
+        if(null == nhMore) {
+            return null;
+        } else {
+            return nhMore;
+        }
     }
 }

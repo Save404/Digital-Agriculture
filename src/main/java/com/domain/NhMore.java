@@ -11,10 +11,13 @@ public class NhMore {
     @NotEmpty(message = "身份证不能为空")
     @IsIdCard
     private String nhIdCard;
+    @NotEmpty(message = "供货单位地址不能为空")
     private String nhGhdwAddress;
     @NotEmpty(message = "供货单位地区选项错误")
     private String nhGhdwAreaCode;
+    @NotEmpty(message = "供货单位联系方式不能为空")
     private String nhGhdwPhone;
+    @NotEmpty(message = "支付密码不能为空")
     private String nhPayPassword;
     private String nhPaySalt;
     private int nhStatus;
@@ -24,6 +27,7 @@ public class NhMore {
     private String nhOrigin;
     @NotEmpty(message = "民族不能为空")
     private String nhNation;
+    @NotEmpty(message = "政治面貌不能为空")
     private String nhPolitics;
 
     public String getNhMoreId() {

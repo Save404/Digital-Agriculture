@@ -34,6 +34,9 @@ public interface NcpDao {
     @Delete("delete from ncp_more where ncp_more_id = #{ncpMoreId}")
     int deleteMoreById(@Param("ncpMoreId") String ncpMoreId);
 
+    @Delete("delete from ncp_more where ncp_basic_id = #{ncpBasicId}")
+    int deleteMoreByBasicId(@Param("ncpBasicId") String ncpBasicId);
+
     @Delete("delete from ncp_basic where ncp_basic_id = #{ncpBasicId}")
     int deleteBasicById(@Param("ncpBasicId") String ncpBasicId);
 

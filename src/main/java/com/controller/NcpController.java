@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
@@ -43,7 +44,7 @@ public class NcpController {
         return Result.success(true);
     }
 
-    @RequestMapping("/get_ncp_list")
+    @RequestMapping(value = "/get_ncp_list", method = RequestMethod.GET)
     @ResponseBody
     public Result<List<NcpView1>> getNcpList(NhBasic nhBasic) {
 
@@ -55,16 +56,17 @@ public class NcpController {
         return Result.success(list);
     }
 
-    @RequestMapping("/get_ncp/{NcpBasicId}")
+    @RequestMapping(value = "/get_ncp/{NcpBasicId}", method = RequestMethod.GET)
     @ResponseBody
     public Result<NcpView> getNcpByNcpBasicId(@PathVariable("NcpBasicId") String ncpBasicId) {
         NcpView ncpView = ncpService.getNcpByNcpBasicId(ncpBasicId);
         return Result.success(ncpView);
     }
 
-    @RequestMapping("/modify_ncp")
+    @RequestMapping("/modify_ncp/{NcpBasicId}")
     @ResponseBody
-    public Result<Boolean> modifyNcp(NhBasic nhBasic, @Valid NcpBasic ncpBasic, @Valid NcpMore ncpMore) {
+    public Result<Boolean> modifyNcp(@PathVariable("NcpBasicId") String ncpBasicId,NhBasic nhBasic,
+                                     @Valid NcpBasic ncpBasic, @Valid NcpMore ncpMore) {
         //登录检验
         if (nhBasic == null){
             return Result.error(CodeMsg.LOGIN_ERROR);
@@ -75,7 +77,7 @@ public class NcpController {
             }
         }
         ncpBasic.setNhBasicId(nhBasic.getNhBasicId());
-        ncpService.modifyNcp(ncpBasic, ncpMore);
+        ncpService.modifyNcp(ncpBasicId, ncpBasic, ncpMore);
         return Result.success(true);
     }
 }
