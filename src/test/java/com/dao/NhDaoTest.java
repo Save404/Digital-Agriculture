@@ -50,4 +50,9 @@ public class NhDaoTest {
         int res =  nhDao.addNhDetailInfo(nhMore);
         Assert.assertEquals(1, res);
     }
+
+    @Test
+    public void getNhDetail() {
+        System.out.println(nhDao.getNhBasicById("7dc9af3b-bcb4-42a7-8525-2629dd40bcac"));
+    }
 }

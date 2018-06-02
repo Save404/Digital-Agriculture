@@ -30,9 +30,22 @@ public class NhController {
         if(null == nhBasic) {
             return Result.error(CodeMsg.LOGIN_ERROR);
         }
-        nhMore.setNhBasicId(nhBasic.getNhBasicId());
-        nhService.addNhDetailInfo(nhMore);
+        nhService.addNhDetailInfo(nhBasic, nhMore);
         return Result.success(true);
+    }
+
+    @RequestMapping(value = "/get_nh_detail", method = RequestMethod.GET)
+    @ResponseBody
+    public Result<NhMore> getNhDetail(NhBasic nhBasic) {
+        if(null == nhBasic) {
+            return Result.error(CodeMsg.LOGIN_ERROR);
+        }
+        NhMore nhMore = nhService.getNhDetail(nhBasic);
+        if(null != nhMore) {
+            return Result.success(nhMore);
+        } else {
+            return Result.error(null);
+        }
     }
 
     @RequestMapping(value="/nh_register", method=RequestMethod.POST)
