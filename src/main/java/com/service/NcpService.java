@@ -5,6 +5,7 @@ import com.domain.*;
 import com.exception.GlobalException;
 import com.result.CodeMsg;
 import com.util.StringUtils;
+import com.util.UUIDUtil;
 import com.vo.NcpView;
 import com.vo.NcpView1;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +32,10 @@ public class NcpService {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
         //设置参数值
-        String id = UUID.randomUUID().toString();
+        String id = UUIDUtil.uuid();
         ncpBasic.setNcpBasicId(id);
         ncpMore.setNcpBasicId(id);
-        ncpMore.setNcpMoreId(UUID.randomUUID().toString());
+        ncpMore.setNcpMoreId(UUIDUtil.uuid());
         //数据交付给dao层处理
         try {
             if(ncpDao.addNcpBasicInfo(ncpBasic) != 1 || ncpDao.addNcpMoreInfo(ncpMore) != 1)

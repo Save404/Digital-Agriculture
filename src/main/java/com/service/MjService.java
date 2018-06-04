@@ -2,6 +2,8 @@ package com.service;
 
 import com.dao.MjDao;
 import com.domain.MjBasic;
+import com.domain.MjMore;
+import com.dto.MjMoreDto;
 import com.exception.GlobalException;
 import com.redis.MjKey;
 import com.redis.RedisService;
@@ -41,7 +43,7 @@ public class MjService {
             throw new GlobalException(CodeMsg.TELEPHONE_REPEAT);
         }
         MjBasic mjBasic = new MjBasic();
-        mjBasic.setMjBasicId(UUID.randomUUID().toString());
+        mjBasic.setMjBasicId(UUIDUtil.uuid());
         mjBasic.setMjTelephone(telephone);
         String inputPass = vo.getMjPassword();
         String salt = SaltUtil.getSalt(8);
@@ -103,5 +105,50 @@ public class MjService {
         cookie.setMaxAge(MjKey.token.expireSecond());
         cookie.setPath("/");
         response.addCookie(cookie);
+    }
+
+    public Boolean addMjDetailInfo(MjBasic mjBasic, MjMore mjMore) {
+        if(null == mjMore || null == mjBasic) {
+            throw new GlobalException(CodeMsg.SERVER_ERROR);
+        }
+        try {
+            mjDao.deleteMoreByBasicId(mjBasic.getMjBasicId());
+        } catch (Exception e) {
+            throw new GlobalException(CodeMsg.DB_ERROR);
+        }
+        mjMore.setMjBasicId(mjBasic.getMjBasicId());
+        mjMore.setMjMoreId(UUIDUtil.uuid());
+        String inputPass = mjMore.getMjPayPassword();
+        String salt = SaltUtil.getSalt(8);
+        String dbPass = MD5Util.inputPassToDBPass(inputPass, salt);
+        mjMore.setMjPayPassword(dbPass);
+        mjMore.setMjPaySalt(salt);
+        try {
+            if(mjDao.addMjDetailInfo(mjMore) != 1) {
+                throw new GlobalException(CodeMsg.SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            throw new GlobalException(CodeMsg.DB_ERROR);
+        }
+        return true;
+    }
+
+    public MjMoreDto getMjDetail(MjBasic mjBasic) {
+        if(null == mjBasic) {
+            throw new GlobalException(CodeMsg.SERVER_ERROR);
+        }
+        String mjBasicId = mjBasic.getMjBasicId();
+        MjMoreDto mjMoreDto = null;
+        try {
+            mjMoreDto = mjDao.getMjMoreDtoByBasicId(mjBasicId);
+            //需解析密码
+        } catch (Exception e) {
+            throw new GlobalException(CodeMsg.DB_ERROR);
+        }
+        if(null == mjMoreDto) {
+            return null;
+        } else {
+            return mjMoreDto;
+        }
     }
 }

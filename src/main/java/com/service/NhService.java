@@ -3,6 +3,7 @@ package com.service;
 import com.dao.NhDao;
 import com.domain.NhBasic;
 import com.domain.NhMore;
+import com.dto.NhMoreDto;
 import com.exception.GlobalException;
 import com.redis.NhKey;
 import com.redis.RedisService;
@@ -44,7 +45,7 @@ public class NhService {
             throw new GlobalException(CodeMsg.TELEPHONE_REPEAT);
         }
         NhBasic nhBasic = new NhBasic();
-        nhBasic.setNhBasicId(UUID.randomUUID().toString());
+        nhBasic.setNhBasicId(UUIDUtil.uuid());
         nhBasic.setNhTelephone(telephone);
         String inputPass = vo.getNhPassword();
         String salt = SaltUtil.getSalt(8);
@@ -60,6 +61,10 @@ public class NhService {
 
     public NhBasic getNhBasicByTelephone(String telephone) {
         return nhDao.getNhBasicByTelephone(telephone);
+    }
+
+    public NhBasic getNhBasicById(String nhBasicId) {
+        return nhDao.getNhBasicById(nhBasicId);
     }
 
     public NhBasic getNhBasicByIdToken(HttpServletResponse response, String token) {
@@ -113,22 +118,16 @@ public class NhService {
 
     @Transactional
     public Boolean addNhDetailInfo(NhBasic nhBasic, NhMore nhMore) {
-        if(null == nhMore) {
+        if(null == nhMore || null == nhBasic) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
-        //判断数据库中是否存在详情表
-        NhMore nhDetail = getNhDetail(nhBasic);
-        if(null != nhDetail) {
-            try {
-                if(nhDao.deleteMoreById(nhDetail.getNhMoreId()) != 1) {
-                    throw new GlobalException(CodeMsg.SERVER_ERROR);
-                }
-            } catch (Exception e) {
-                throw new GlobalException(CodeMsg.DB_ERROR);
-            }
+        try {
+            nhDao.deleteMoreByBasicId(nhBasic.getNhBasicId());
+        } catch (Exception e) {
+            throw new GlobalException(CodeMsg.DB_ERROR);
         }
         nhMore.setNhBasicId(nhBasic.getNhBasicId());
-        nhMore.setNhMoreId(UUID.randomUUID().toString());
+        nhMore.setNhMoreId(UUIDUtil.uuid());
         String inputPass = nhMore.getNhPayPassword();
         String salt = SaltUtil.getSalt(8);
         String dbPass = MD5Util.inputPassToDBPass(inputPass, salt);
@@ -144,28 +143,22 @@ public class NhService {
         return true;
     }
 
-    public NhMore getNhDetail(NhBasic nhBasic) {
+    public NhMoreDto getNhDetail(NhBasic nhBasic) {
         if(null == nhBasic) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
         String nhBasicId = nhBasic.getNhBasicId();
+        NhMoreDto nhMoreDto = null;
         try {
-            if(null == nhDao.getNhBasicById(nhBasicId)) {
-                throw new GlobalException(CodeMsg.SERVER_ERROR);
-            }
+            nhMoreDto = nhDao.getNhMoreDtoByBasicId(nhBasicId);
+            //需解析密码
         } catch (Exception e) {
             throw new GlobalException(CodeMsg.DB_ERROR);
         }
-        NhMore nhMore = null;
-        try {
-            nhMore = nhDao.getNhDetail(nhBasicId);
-        } catch (Exception e) {
-            throw new GlobalException(CodeMsg.DB_ERROR);
-        }
-        if(null == nhMore) {
+        if(null == nhMoreDto) {
             return null;
         } else {
-            return nhMore;
+            return nhMoreDto;
         }
     }
 }

@@ -1,6 +1,8 @@
 package com.config;
 
 import com.domain.NhBasic;
+import com.exception.GlobalException;
+import com.result.CodeMsg;
 import com.service.NhService;
 import com.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +37,14 @@ public class NhArgumentResolver implements HandlerMethodArgumentResolver {
         String paramToken = request.getParameter(NhService.COOKI_NH_ID_TOKEN);
         String cookieToken = getCookieValue(request, NhService.COOKI_NH_ID_TOKEN);
         if(StringUtils.isEmpty(cookieToken) && StringUtils.isEmpty(paramToken)) {
-            return null;
+            throw new GlobalException(CodeMsg.LOGIN_ERROR);
         }
         String token = StringUtils.isEmpty(paramToken)?cookieToken:paramToken;
-        return nhService.getNhBasicByIdToken(response, token);
+        NhBasic nhBasic = nhService.getNhBasicByIdToken(response, token);
+        if(null == nhBasic) {
+            throw new GlobalException(CodeMsg.LOGIN_ERROR);
+        }
+        return nhBasic;
     }
 
     private String getCookieValue(HttpServletRequest request, String cookiNhIdToken) {
