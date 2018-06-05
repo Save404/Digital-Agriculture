@@ -1,5 +1,8 @@
 package com.controller;
 
+import com.domain.MjBasic;
+import com.domain.MjMore;
+import com.dto.MjMoreDto;
 import com.result.CodeMsg;
 import com.result.Result;
 import com.service.MjService;
@@ -20,6 +23,30 @@ public class MjController {
 
     @Autowired
     MjService mjService;
+
+    @RequestMapping(value = "/get_mj_detail", method = RequestMethod.GET)
+    @ResponseBody
+    public Result<MjMoreDto> getMjDetail(MjBasic mjBasic) {
+        if(null == mjBasic) {
+            return Result.error(CodeMsg.LOGIN_ERROR);
+        }
+        MjMoreDto mjMoreDto = mjService.getMjDetail(mjBasic);
+        if(null != mjMoreDto) {
+            return Result.success(mjMoreDto);
+        } else {
+            return Result.error(null);
+        }
+    }
+
+    @RequestMapping(value = "/add_mj_detail", method = RequestMethod.POST)
+    @ResponseBody
+    public Result<Boolean> addMjDetail(@Valid MjMore mjMore, MjBasic mjBasic) {
+        if(null == mjBasic) {
+            return Result.error(CodeMsg.LOGIN_ERROR);
+        }
+        mjService.addMjDetailInfo(mjBasic, mjMore);
+        return Result.success(true);
+    }
 
     @RequestMapping(value="/mj_register", method=RequestMethod.POST)
     @ResponseBody

@@ -18,6 +18,7 @@ public class NcpView {
     private String ncpAnnualOutput;
     private String ncpSupplyAmount;
     private String ncpReferencePrice;
+    @JsonIgnore
     private String ncpMoreId;
     private String ncpDetail;
     private String ncpPackage;

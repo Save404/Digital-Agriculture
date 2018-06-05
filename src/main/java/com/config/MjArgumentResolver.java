@@ -1,6 +1,8 @@
 package com.config;
 
 import com.domain.MjBasic;
+import com.exception.GlobalException;
+import com.result.CodeMsg;
 import com.service.MjService;
 import com.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,16 +30,22 @@ public class MjArgumentResolver implements HandlerMethodArgumentResolver {
     }
 
     @Override
-    public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory) throws Exception {
+    public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer,
+                                  NativeWebRequest nativeWebRequest,
+                                  WebDataBinderFactory webDataBinderFactory) throws Exception {
         HttpServletRequest request = nativeWebRequest.getNativeRequest(HttpServletRequest.class);
         HttpServletResponse response = nativeWebRequest.getNativeResponse(HttpServletResponse.class);
         String paramToken = request.getParameter(MjService.COOKI_MJ_ID_TOKEN);
         String cookieToken = getCookieValue(request, MjService.COOKI_MJ_ID_TOKEN);
         if(StringUtils.isEmpty(cookieToken) && StringUtils.isEmpty(paramToken)) {
-            return null;
+            throw new GlobalException(CodeMsg.LOGIN_ERROR);
         }
         String token = StringUtils.isEmpty(paramToken)?cookieToken:paramToken;
-        return mjService.getMjBasicByIdToken(response, token);
+        MjBasic mjBasic = mjService.getMjBasicByIdToken(response, token);
+        if(null == mjBasic) {
+            throw new GlobalException(CodeMsg.LOGIN_ERROR);
+        }
+        return mjBasic;
     }
 
     private String getCookieValue(HttpServletRequest request, String cookiMjIdToken) {

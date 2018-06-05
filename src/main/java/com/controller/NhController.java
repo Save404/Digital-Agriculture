@@ -2,6 +2,7 @@ package com.controller;
 
 import com.domain.NhBasic;
 import com.domain.NhMore;
+import com.dto.NhMoreDto;
 import com.result.CodeMsg;
 import com.result.Result;
 import com.service.NcpService;
@@ -36,13 +37,13 @@ public class NhController {
 
     @RequestMapping(value = "/get_nh_detail", method = RequestMethod.GET)
     @ResponseBody
-    public Result<NhMore> getNhDetail(NhBasic nhBasic) {
+    public Result<NhMoreDto> getNhDetail(NhBasic nhBasic) {
         if(null == nhBasic) {
             return Result.error(CodeMsg.LOGIN_ERROR);
         }
-        NhMore nhMore = nhService.getNhDetail(nhBasic);
-        if(null != nhMore) {
-            return Result.success(nhMore);
+        NhMoreDto nhMoreDto = nhService.getNhDetail(nhBasic);
+        if(null != nhMoreDto) {
+            return Result.success(nhMoreDto);
         } else {
             return Result.error(null);
         }
