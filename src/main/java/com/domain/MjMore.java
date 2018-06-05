@@ -18,8 +18,6 @@ public class MjMore {
     private String mjPaySalt;
     @NotEmpty(message = "地区选项不能为空")
     private String mjACode;
-    @NotEmpty(message = "收货地址不能为空")
-    private String mjReceivingAddress;
     private int mjStatus;
     @NotEmpty(message = "籍贯不能为空")
     private String mjOrigin;
@@ -92,14 +90,6 @@ public class MjMore {
         this.mjACode = mjACode;
     }
 
-    public String getMjReceivingAddress() {
-        return mjReceivingAddress;
-    }
-
-    public void setMjReceivingAddress(String mjReceivingAddress) {
-        this.mjReceivingAddress = mjReceivingAddress;
-    }
-
     public int getMjStatus() {
         return mjStatus;
     }
@@ -143,7 +133,6 @@ public class MjMore {
                 ", mjPayPassword='" + mjPayPassword + '\'' +
                 ", mjPaySalt='" + mjPaySalt + '\'' +
                 ", mjACode='" + mjACode + '\'' +
-                ", mjReceivingAddress='" + mjReceivingAddress + '\'' +
                 ", mjStatus=" + mjStatus +
                 ", mjOrigin='" + mjOrigin + '\'' +
                 ", mjNation='" + mjNation + '\'' +

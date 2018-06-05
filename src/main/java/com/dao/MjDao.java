@@ -23,7 +23,7 @@ public interface MjDao {
     int addMjDetailInfo(MjMore mjMore);
 
     @Select("select pca.name_p, pca.name_c, pca.name_a,mj_more.mj_real_name, mj_more.mj_sex,mj_more.mj_origin," +
-            "mj_more.mj_nation,mj_more.mj_politics,mj_more.mj_id_card,mj_more.mj_receiving_address," +
+            "mj_more.mj_nation,mj_more.mj_politics,mj_more.mj_id_card," +
             "mj_more.mj_pay_password,mj_more.mj_pay_salt from mj_more,province_city_area_view as pca where " +
             "mj_more.mj_a_code=pca.code_a and mj_basic_id = #{mjBasicId}")
     MjMoreDto getMjMoreDtoByBasicId(@Param("mjBasicId") String mjBasicId);

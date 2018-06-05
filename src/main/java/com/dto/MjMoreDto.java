@@ -9,7 +9,6 @@ public class MjMoreDto {
     private String mjPayPassword;
     @JsonIgnore
     private String mjPaySalt;
-    private String mjReceivingAddress;
     private String mjOrigin;
     private String mjNation;
     private String mjPolitics;

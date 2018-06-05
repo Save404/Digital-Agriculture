@@ -76,15 +76,15 @@ public class NcpService {
     }
 
     public NcpView getNcpByNcpBasicId(String ncpBasicId) {
-        NcpView ncpView = ncpDao.getNcpByNcpBasicId(ncpBasicId);
+        NcpView ncpView = null;
         try {
+            ncpView = ncpDao.getNcpByNcpBasicId(ncpBasicId);
             if (ncpView == null){
                 throw new GlobalException(CodeMsg.SERVER_ERROR);
             }
         } catch (Exception e) {
             throw new GlobalException(CodeMsg.DB_ERROR);
         }
-
         return ncpView;
     }
 
