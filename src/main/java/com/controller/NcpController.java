@@ -62,7 +62,7 @@ public class NcpController {
         NcpView ncpView = ncpService.getNcpByNcpBasicId(ncpBasicId);
         return Result.success(ncpView);
     }
-
+    //COOKI_NH_ID_TOKEN=c4c9399dc6964f3aa01c74b5d6ffeb33
     @RequestMapping("/modify_ncp/{NcpBasicId}")
     @ResponseBody
     public Result<Boolean> modifyNcp(@PathVariable("NcpBasicId") String ncpBasicId,NhBasic nhBasic,

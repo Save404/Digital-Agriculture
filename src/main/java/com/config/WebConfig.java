@@ -35,6 +35,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(new StringToBigDecimalConverter());
         registry.addConverter(new StringToDateConverter());
     }
 }

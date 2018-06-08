@@ -2,6 +2,9 @@ package com.domain;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class NcpBasic {
@@ -19,9 +22,10 @@ public class NcpBasic {
     @NotEmpty(message = "产品特质不能为空")
     private String ncpFeature;
     private String ncpBrand;
-    private String ncpAnnualOutput;
-    private String ncpSupplyAmount;
-    private String ncpReferencePrice;
+    @DecimalMin(value = "0", message = "供应量不能为空")
+    private BigDecimal ncpSupplyAmount;
+    @NotEmpty(message = "年产量单位不能为空")
+    private String supplyUnit;
 
     public String getNcpBasicId() {
         return ncpBasicId;
@@ -95,28 +99,20 @@ public class NcpBasic {
         this.ncpBrand = ncpBrand;
     }
 
-    public String getNcpAnnualOutput() {
-        return ncpAnnualOutput;
-    }
-
-    public void setNcpAnnualOutput(String ncpAnnualOutput) {
-        this.ncpAnnualOutput = ncpAnnualOutput;
-    }
-
-    public String getNcpSupplyAmount() {
+    public BigDecimal getNcpSupplyAmount() {
         return ncpSupplyAmount;
     }
 
-    public void setNcpSupplyAmount(String ncpSupplyAmount) {
+    public void setNcpSupplyAmount(BigDecimal ncpSupplyAmount) {
         this.ncpSupplyAmount = ncpSupplyAmount;
     }
 
-    public String getNcpReferencePrice() {
-        return ncpReferencePrice;
+    public String getSupplyUnit() {
+        return supplyUnit;
     }
 
-    public void setNcpReferencePrice(String ncpReferencePrice) {
-        this.ncpReferencePrice = ncpReferencePrice;
+    public void setSupplyUnit(String supplyUnit) {
+        this.supplyUnit = supplyUnit;
     }
 
     @Override
@@ -131,9 +127,8 @@ public class NcpBasic {
                 ", nhBasicId='" + nhBasicId + '\'' +
                 ", ncpFeature='" + ncpFeature + '\'' +
                 ", ncpBrand='" + ncpBrand + '\'' +
-                ", ncpAnnualOutput='" + ncpAnnualOutput + '\'' +
-                ", ncpSupplyAmount='" + ncpSupplyAmount + '\'' +
-                ", ncpReferencePrice='" + ncpReferencePrice + '\'' +
+                ", ncpSupplyAmount=" + ncpSupplyAmount +
+                ", supplyUnit='" + supplyUnit + '\'' +
                 '}';
     }
 }

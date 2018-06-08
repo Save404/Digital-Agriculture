@@ -17,14 +17,7 @@ public class NhMoreDto {
     private String nhPayPassword;
     @JsonIgnore
     private String nhPaySalt;
-
-    public String getNhPaySalt() {
-        return nhPaySalt;
-    }
-
-    public void setNhPaySalt(String nhPaySalt) {
-        this.nhPaySalt = nhPaySalt;
-    }
+    private String nhGhdwAreaCode;
 
     public String getNhRealName() {
         return nhRealName;
@@ -122,6 +115,22 @@ public class NhMoreDto {
         this.nhPayPassword = nhPayPassword;
     }
 
+    public String getNhPaySalt() {
+        return nhPaySalt;
+    }
+
+    public void setNhPaySalt(String nhPaySalt) {
+        this.nhPaySalt = nhPaySalt;
+    }
+
+    public String getNhGhdwAreaCode() {
+        return nhGhdwAreaCode;
+    }
+
+    public void setNhGhdwAreaCode(String nhGhdwAreaCode) {
+        this.nhGhdwAreaCode = nhGhdwAreaCode;
+    }
+
     @Override
     public String toString() {
         return "NhMoreDto{" +
@@ -138,6 +147,7 @@ public class NhMoreDto {
                 ", nhGhdwPhone='" + nhGhdwPhone + '\'' +
                 ", nhPayPassword='" + nhPayPassword + '\'' +
                 ", nhPaySalt='" + nhPaySalt + '\'' +
+                ", nhGhdwAreaCode='" + nhGhdwAreaCode + '\'' +
                 '}';
     }
 }

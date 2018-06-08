@@ -21,7 +21,7 @@ public class MD5Util {
                 "" + salt.charAt(0) + salt.charAt(2) + inputPass + salt.charAt(5) + salt;
         return md5(str);
     }
-
+    //COOKI_MJ_ID_TOKEN 2c4b844d6f6b4fdab9d77169aaf21e00
     /**
      * 将密码进行第二次加密
      * @param formPass 第一次加密后的密码字符串
