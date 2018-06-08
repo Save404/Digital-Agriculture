@@ -2,6 +2,7 @@ package com.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class NcpView {
@@ -15,9 +16,8 @@ public class NcpView {
     private String nhBasicId;
     private String ncpFeature;
     private String ncpBrand;
-    private String ncpAnnualOutput;
-    private String ncpSupplyAmount;
-    private String ncpReferencePrice;
+    private BigDecimal ncpSupplyAmount;
+    private String supplyUnit;
     @JsonIgnore
     private String ncpMoreId;
     private String ncpDetail;
@@ -26,13 +26,14 @@ public class NcpView {
     private String ncpDeliveryInfo;
     private String ncpGrowthInfo;
     private String ncpGrowthSurrounding;
-    private String ncpPlantArea;
-    private String ncpBatchPrice;
+    private BigDecimal ncpPlantArea;
     private Date ncpSupplyPeriodStart;
     private String ncpDeliveryAbility;
-    private String ncpMinCount;
-    private String ncpDeliveryCost;
     private Date ncpSupplyPeriodEnd;
+    private String plantUnit;
+    private String nameC;
+    private String nameA;
+    private String nameP;
 
     public String getNcpBasicId() {
         return ncpBasicId;
@@ -106,28 +107,20 @@ public class NcpView {
         this.ncpBrand = ncpBrand;
     }
 
-    public String getNcpAnnualOutput() {
-        return ncpAnnualOutput;
-    }
-
-    public void setNcpAnnualOutput(String ncpAnnualOutput) {
-        this.ncpAnnualOutput = ncpAnnualOutput;
-    }
-
-    public String getNcpSupplyAmount() {
+    public BigDecimal getNcpSupplyAmount() {
         return ncpSupplyAmount;
     }
 
-    public void setNcpSupplyAmount(String ncpSupplyAmount) {
+    public void setNcpSupplyAmount(BigDecimal ncpSupplyAmount) {
         this.ncpSupplyAmount = ncpSupplyAmount;
     }
 
-    public String getNcpReferencePrice() {
-        return ncpReferencePrice;
+    public String getSupplyUnit() {
+        return supplyUnit;
     }
 
-    public void setNcpReferencePrice(String ncpReferencePrice) {
-        this.ncpReferencePrice = ncpReferencePrice;
+    public void setSupplyUnit(String supplyUnit) {
+        this.supplyUnit = supplyUnit;
     }
 
     public String getNcpMoreId() {
@@ -186,20 +179,12 @@ public class NcpView {
         this.ncpGrowthSurrounding = ncpGrowthSurrounding;
     }
 
-    public String getNcpPlantArea() {
+    public BigDecimal getNcpPlantArea() {
         return ncpPlantArea;
     }
 
-    public void setNcpPlantArea(String ncpPlantArea) {
+    public void setNcpPlantArea(BigDecimal ncpPlantArea) {
         this.ncpPlantArea = ncpPlantArea;
-    }
-
-    public String getNcpBatchPrice() {
-        return ncpBatchPrice;
-    }
-
-    public void setNcpBatchPrice(String ncpBatchPrice) {
-        this.ncpBatchPrice = ncpBatchPrice;
     }
 
     public Date getNcpSupplyPeriodStart() {
@@ -218,28 +203,44 @@ public class NcpView {
         this.ncpDeliveryAbility = ncpDeliveryAbility;
     }
 
-    public String getNcpMinCount() {
-        return ncpMinCount;
-    }
-
-    public void setNcpMinCount(String ncpMinCount) {
-        this.ncpMinCount = ncpMinCount;
-    }
-
-    public String getNcpDeliveryCost() {
-        return ncpDeliveryCost;
-    }
-
-    public void setNcpDeliveryCost(String ncpDeliveryCost) {
-        this.ncpDeliveryCost = ncpDeliveryCost;
-    }
-
     public Date getNcpSupplyPeriodEnd() {
         return ncpSupplyPeriodEnd;
     }
 
     public void setNcpSupplyPeriodEnd(Date ncpSupplyPeriodEnd) {
         this.ncpSupplyPeriodEnd = ncpSupplyPeriodEnd;
+    }
+
+    public String getPlantUnit() {
+        return plantUnit;
+    }
+
+    public void setPlantUnit(String plantUnit) {
+        this.plantUnit = plantUnit;
+    }
+
+    public String getNameC() {
+        return nameC;
+    }
+
+    public void setNameC(String nameC) {
+        this.nameC = nameC;
+    }
+
+    public String getNameA() {
+        return nameA;
+    }
+
+    public void setNameA(String nameA) {
+        this.nameA = nameA;
+    }
+
+    public String getNameP() {
+        return nameP;
+    }
+
+    public void setNameP(String nameP) {
+        this.nameP = nameP;
     }
 
     @Override
@@ -254,9 +255,8 @@ public class NcpView {
                 ", nhBasicId='" + nhBasicId + '\'' +
                 ", ncpFeature='" + ncpFeature + '\'' +
                 ", ncpBrand='" + ncpBrand + '\'' +
-                ", ncpAnnualOutput='" + ncpAnnualOutput + '\'' +
-                ", ncpSupplyAmount='" + ncpSupplyAmount + '\'' +
-                ", ncpReferencePrice='" + ncpReferencePrice + '\'' +
+                ", ncpSupplyAmount=" + ncpSupplyAmount +
+                ", supplyUnit='" + supplyUnit + '\'' +
                 ", ncpMoreId='" + ncpMoreId + '\'' +
                 ", ncpDetail='" + ncpDetail + '\'' +
                 ", ncpPackage='" + ncpPackage + '\'' +
@@ -264,13 +264,14 @@ public class NcpView {
                 ", ncpDeliveryInfo='" + ncpDeliveryInfo + '\'' +
                 ", ncpGrowthInfo='" + ncpGrowthInfo + '\'' +
                 ", ncpGrowthSurrounding='" + ncpGrowthSurrounding + '\'' +
-                ", ncpPlantArea='" + ncpPlantArea + '\'' +
-                ", ncpBatchPrice='" + ncpBatchPrice + '\'' +
+                ", ncpPlantArea=" + ncpPlantArea +
                 ", ncpSupplyPeriodStart=" + ncpSupplyPeriodStart +
                 ", ncpDeliveryAbility='" + ncpDeliveryAbility + '\'' +
-                ", ncpMinCount='" + ncpMinCount + '\'' +
-                ", ncpDeliveryCost='" + ncpDeliveryCost + '\'' +
                 ", ncpSupplyPeriodEnd=" + ncpSupplyPeriodEnd +
+                ", plantUnit='" + plantUnit + '\'' +
+                ", nameC='" + nameC + '\'' +
+                ", nameA='" + nameA + '\'' +
+                ", nameP='" + nameP + '\'' +
                 '}';
     }
 }

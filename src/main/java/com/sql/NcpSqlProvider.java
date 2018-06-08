@@ -24,10 +24,8 @@ public class NcpSqlProvider {
         map.put("nh_basic_id", ncpBasic.getNhBasicId());
         map.put("ncp_feature", ncpBasic.getNcpFeature());
         map.put("ncp_brand", ncpBasic.getNcpBrand());
-        map.put("ncp_annual_output", ncpBasic.getNcpAnnualOutput());
         map.put("ncp_supply_amount", ncpBasic.getNcpSupplyAmount());
-        map.put("ncp_reference_price", ncpBasic.getNcpReferencePrice());
-
+        map.put("supplyUnit", ncpBasic.getSupplyUnit());
         return SqlProviderlUtil.returnInsertSql("ncp_basic", map);
 
     }
@@ -44,11 +42,9 @@ public class NcpSqlProvider {
         map.put("ncp_growth_info", ncpMore.getNcpGrowthInfo());
         map.put("ncp_growth_surrounding", ncpMore.getNcpGrowthSurrounding());
         map.put("ncp_plant_area", ncpMore.getNcpPlantArea());
-        map.put("ncp_batch_price", ncpMore.getNcpBatchPrice());
+        map.put("plantUnit", ncpMore.getPlantUnit());
         map.put("ncp_supply_period_start", ncpMore.getNcpSupplyPeriodStart());
         map.put("ncp_delivery_ability", ncpMore.getNcpDeliveryAbility());
-        map.put("ncp_min_count", ncpMore.getNcpMinCount());
-        map.put("ncp_delivery_cost", ncpMore.getNcpDeliveryCost());
         map.put("ncp_supply_period_end", ncpMore.getNcpSupplyPeriodEnd());
         return SqlProviderlUtil.returnInsertSql("ncp_more", map);
     }

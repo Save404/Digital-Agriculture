@@ -1,5 +1,6 @@
 package com.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class NcpMore {
@@ -11,13 +12,11 @@ public class NcpMore {
     private String ncpDeliveryInfo;
     private String ncpGrowthInfo;
     private String ncpGrowthSurrounding;
-    private String ncpPlantArea;
-    private String ncpBatchPrice;
+    private BigDecimal ncpPlantArea;
     private Date ncpSupplyPeriodStart;
     private String ncpDeliveryAbility;
-    private String ncpMinCount;
-    private String ncpDeliveryCost;
     private Date ncpSupplyPeriodEnd;
+    private String plantUnit;
 
     public String getNcpMoreId() {
         return ncpMoreId;
@@ -83,20 +82,12 @@ public class NcpMore {
         this.ncpGrowthSurrounding = ncpGrowthSurrounding;
     }
 
-    public String getNcpPlantArea() {
+    public BigDecimal getNcpPlantArea() {
         return ncpPlantArea;
     }
 
-    public void setNcpPlantArea(String ncpPlantArea) {
+    public void setNcpPlantArea(BigDecimal ncpPlantArea) {
         this.ncpPlantArea = ncpPlantArea;
-    }
-
-    public String getNcpBatchPrice() {
-        return ncpBatchPrice;
-    }
-
-    public void setNcpBatchPrice(String ncpBatchPrice) {
-        this.ncpBatchPrice = ncpBatchPrice;
     }
 
     public Date getNcpSupplyPeriodStart() {
@@ -115,28 +106,20 @@ public class NcpMore {
         this.ncpDeliveryAbility = ncpDeliveryAbility;
     }
 
-    public String getNcpMinCount() {
-        return ncpMinCount;
-    }
-
-    public void setNcpMinCount(String ncpMinCount) {
-        this.ncpMinCount = ncpMinCount;
-    }
-
-    public String getNcpDeliveryCost() {
-        return ncpDeliveryCost;
-    }
-
-    public void setNcpDeliveryCost(String ncpDeliveryCost) {
-        this.ncpDeliveryCost = ncpDeliveryCost;
-    }
-
     public Date getNcpSupplyPeriodEnd() {
         return ncpSupplyPeriodEnd;
     }
 
     public void setNcpSupplyPeriodEnd(Date ncpSupplyPeriodEnd) {
         this.ncpSupplyPeriodEnd = ncpSupplyPeriodEnd;
+    }
+
+    public String getPlantUnit() {
+        return plantUnit;
+    }
+
+    public void setPlantUnit(String plantUnit) {
+        this.plantUnit = plantUnit;
     }
 
     @Override
@@ -150,13 +133,11 @@ public class NcpMore {
                 ", ncpDeliveryInfo='" + ncpDeliveryInfo + '\'' +
                 ", ncpGrowthInfo='" + ncpGrowthInfo + '\'' +
                 ", ncpGrowthSurrounding='" + ncpGrowthSurrounding + '\'' +
-                ", ncpPlantArea='" + ncpPlantArea + '\'' +
-                ", ncpBatchPrice='" + ncpBatchPrice + '\'' +
+                ", ncpPlantArea=" + ncpPlantArea +
                 ", ncpSupplyPeriodStart=" + ncpSupplyPeriodStart +
                 ", ncpDeliveryAbility='" + ncpDeliveryAbility + '\'' +
-                ", ncpMinCount='" + ncpMinCount + '\'' +
-                ", ncpDeliveryCost='" + ncpDeliveryCost + '\'' +
                 ", ncpSupplyPeriodEnd=" + ncpSupplyPeriodEnd +
+                ", plantUnit='" + plantUnit + '\'' +
                 '}';
     }
 }
