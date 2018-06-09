@@ -26,6 +26,19 @@ public class NcpBasic {
     private BigDecimal ncpSupplyAmount;
     @NotEmpty(message = "年产量单位不能为空")
     private String supplyUnit;
+    @DecimalMin(value = "0", message = "价格不能为空")
+    private BigDecimal ncpPrice;
+    @NotEmpty(message = "价格单位不能为空")
+    private String priceUnit;
+    private String ncpStatus;
+
+    public String getNcpStatus() {
+        return ncpStatus;
+    }
+
+    public void setNcpStatus(String ncpStatus) {
+        this.ncpStatus = ncpStatus;
+    }
 
     public String getNcpBasicId() {
         return ncpBasicId;
@@ -115,20 +128,19 @@ public class NcpBasic {
         this.supplyUnit = supplyUnit;
     }
 
-    @Override
-    public String toString() {
-        return "NcpBasic{" +
-                "ncpBasicId='" + ncpBasicId + '\'' +
-                ", ncpName='" + ncpName + '\'' +
-                ", ncpPublishDate=" + ncpPublishDate +
-                ", ncpPCode='" + ncpPCode + '\'' +
-                ", ncpAreaCode='" + ncpAreaCode + '\'' +
-                ", ncpAddress='" + ncpAddress + '\'' +
-                ", nhBasicId='" + nhBasicId + '\'' +
-                ", ncpFeature='" + ncpFeature + '\'' +
-                ", ncpBrand='" + ncpBrand + '\'' +
-                ", ncpSupplyAmount=" + ncpSupplyAmount +
-                ", supplyUnit='" + supplyUnit + '\'' +
-                '}';
+    public BigDecimal getNcpPrice() {
+        return ncpPrice;
+    }
+
+    public void setNcpPrice(BigDecimal ncpPrice) {
+        this.ncpPrice = ncpPrice;
+    }
+
+    public String getPriceUnit() {
+        return priceUnit;
+    }
+
+    public void setPriceUnit(String priceUnit) {
+        this.priceUnit = priceUnit;
     }
 }

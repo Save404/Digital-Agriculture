@@ -17,6 +17,7 @@ public class NcpMore {
     private String ncpDeliveryAbility;
     private Date ncpSupplyPeriodEnd;
     private String plantUnit;
+    private String ncpImg;
 
     public String getNcpMoreId() {
         return ncpMoreId;
@@ -122,6 +123,14 @@ public class NcpMore {
         this.plantUnit = plantUnit;
     }
 
+    public String getNcpImg() {
+        return ncpImg;
+    }
+
+    public void setNcpImg(String ncpImg) {
+        this.ncpImg = ncpImg;
+    }
+
     @Override
     public String toString() {
         return "NcpMore{" +
@@ -138,6 +147,7 @@ public class NcpMore {
                 ", ncpDeliveryAbility='" + ncpDeliveryAbility + '\'' +
                 ", ncpSupplyPeriodEnd=" + ncpSupplyPeriodEnd +
                 ", plantUnit='" + plantUnit + '\'' +
+                ", ncpImg='" + ncpImg + '\'' +
                 '}';
     }
 }
