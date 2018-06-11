@@ -28,7 +28,7 @@ public class NcpSqlProvider {
         map.put("supplyUnit", ncpBasic.getSupplyUnit());
         map.put("ncp_price", ncpBasic.getNcpPrice());
         map.put("price_unit", ncpBasic.getPriceUnit());
-        map.put("ncp_status", ncpBasic.getNcpPrice());
+        //map.put("ncp_status", ncpBasic.getNcpPrice());
         return SqlProviderlUtil.returnInsertSql("ncp_basic", map);
 
     }
