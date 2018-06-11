@@ -1,5 +1,6 @@
 package com.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.validator.IsIdCard;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -17,8 +18,9 @@ public class NhMore {
     private String nhGhdwAreaCode;
     @NotEmpty(message = "供货单位联系方式不能为空")
     private String nhGhdwPhone;
-    @NotEmpty(message = "支付密码不能为空")
+    @JsonIgnore
     private String nhPayPassword;
+    @JsonIgnore
     private String nhPaySalt;
     private int nhStatus;
     @NotEmpty(message = "性别不能为空")

@@ -3,11 +3,11 @@ package com.controller;
 import com.domain.NcpBasic;
 import com.domain.NcpMore;
 import com.domain.NhBasic;
+import com.dto.NcpListDto;
 import com.result.CodeMsg;
 import com.result.Result;
 import com.service.NcpService;
 import com.vo.NcpView;
-import com.vo.NcpView1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,15 +44,21 @@ public class NcpController {
         return Result.success(true);
     }
 
+    @RequestMapping(value = "/get_all_ncp_list", method = RequestMethod.GET)
+    @ResponseBody
+    public Result<List<NcpView>> getAllNcpList() {
+        List<NcpView> list = ncpService.getAllNcpList();
+        return Result.success(list);
+    }
+
     @RequestMapping(value = "/get_ncp_list", method = RequestMethod.GET)
     @ResponseBody
-    public Result<List<NcpView1>> getNcpList(NhBasic nhBasic) {
-
+    public Result<List<NcpListDto>> getNcpList(NhBasic nhBasic) {
         //数据传输异常检测
         if (nhBasic == null){
             return Result.error(CodeMsg.SERVER_ERROR);
         }
-        List<NcpView1> list = ncpService.getNcpList(nhBasic);
+        List<NcpListDto> list = ncpService.getNcpList(nhBasic);
         return Result.success(list);
     }
 

@@ -14,9 +14,6 @@ public class NhMoreDto {
     private String nhIdCard;
     private String nhGhdwAddress;
     private String nhGhdwPhone;
-    private String nhPayPassword;
-    @JsonIgnore
-    private String nhPaySalt;
     private String nhGhdwAreaCode;
 
     public String getNhRealName() {
@@ -107,47 +104,11 @@ public class NhMoreDto {
         this.nhGhdwPhone = nhGhdwPhone;
     }
 
-    public String getNhPayPassword() {
-        return nhPayPassword;
-    }
-
-    public void setNhPayPassword(String nhPayPassword) {
-        this.nhPayPassword = nhPayPassword;
-    }
-
-    public String getNhPaySalt() {
-        return nhPaySalt;
-    }
-
-    public void setNhPaySalt(String nhPaySalt) {
-        this.nhPaySalt = nhPaySalt;
-    }
-
     public String getNhGhdwAreaCode() {
         return nhGhdwAreaCode;
     }
 
     public void setNhGhdwAreaCode(String nhGhdwAreaCode) {
         this.nhGhdwAreaCode = nhGhdwAreaCode;
-    }
-
-    @Override
-    public String toString() {
-        return "NhMoreDto{" +
-                "nhRealName='" + nhRealName + '\'' +
-                ", nhSex='" + nhSex + '\'' +
-                ", nameA='" + nameA + '\'' +
-                ", nameC='" + nameC + '\'' +
-                ", nameP='" + nameP + '\'' +
-                ", nhOrigin='" + nhOrigin + '\'' +
-                ", nhNation='" + nhNation + '\'' +
-                ", nhPolitics='" + nhPolitics + '\'' +
-                ", nhIdCard='" + nhIdCard + '\'' +
-                ", nhGhdwAddress='" + nhGhdwAddress + '\'' +
-                ", nhGhdwPhone='" + nhGhdwPhone + '\'' +
-                ", nhPayPassword='" + nhPayPassword + '\'' +
-                ", nhPaySalt='" + nhPaySalt + '\'' +
-                ", nhGhdwAreaCode='" + nhGhdwAreaCode + '\'' +
-                '}';
     }
 }

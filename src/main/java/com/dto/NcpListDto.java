@@ -1,18 +1,18 @@
-package com.vo;
+package com.dto;
 
 import java.util.Date;
 
-public class NcpView1 {
+public class NcpListDto {
     private String ncpBasicId;
     private String ncpName;
     private String c1Name;
     private String c2Name;
     private String c3Name;
-    private String pName;
     private String nameP;
     private String nameC;
     private String nameA;
     private String ncpFeature;
+    private int ncpStatus;
     private Date ncpPublishDate;
 
     public String getNcpBasicId() {
@@ -55,14 +55,6 @@ public class NcpView1 {
         this.c3Name = c3Name;
     }
 
-    public String getpName() {
-        return pName;
-    }
-
-    public void setpName(String pName) {
-        this.pName = pName;
-    }
-
     public String getNameP() {
         return nameP;
     }
@@ -95,28 +87,19 @@ public class NcpView1 {
         this.ncpFeature = ncpFeature;
     }
 
+    public int getNcpStatus() {
+        return ncpStatus;
+    }
+
+    public void setNcpStatus(int ncpStatus) {
+        this.ncpStatus = ncpStatus;
+    }
+
     public Date getNcpPublishDate() {
         return ncpPublishDate;
     }
 
     public void setNcpPublishDate(Date ncpPublishDate) {
         this.ncpPublishDate = ncpPublishDate;
-    }
-
-    @Override
-    public String toString() {
-        return "NcpView1{" +
-                "ncpBasicId='" + ncpBasicId + '\'' +
-                ", ncpName='" + ncpName + '\'' +
-                ", c1Name='" + c1Name + '\'' +
-                ", c2Name='" + c2Name + '\'' +
-                ", c3Name='" + c3Name + '\'' +
-                ", pName='" + pName + '\'' +
-                ", nameP='" + nameP + '\'' +
-                ", nameC='" + nameC + '\'' +
-                ", nameA='" + nameA + '\'' +
-                ", ncpFeature='" + ncpFeature + '\'' +
-                ", ncpPublishDate=" + ncpPublishDate +
-                '}';
     }
 }
