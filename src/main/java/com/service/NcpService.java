@@ -105,7 +105,11 @@ public class NcpService {
 
     public List<NcpView> getAllNcpList() {
         List<NcpView> list = null;
-        list = ncpDao.getAllNcpList();
+        try {
+            list = ncpDao.getAllNcpList();
+        } catch (Exception e) {
+            throw new GlobalException(CodeMsg.DB_ERROR);
+        }
         return list;
     }
 }
