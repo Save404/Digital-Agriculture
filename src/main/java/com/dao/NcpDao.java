@@ -1,8 +1,8 @@
 package com.dao;
 
 import com.domain.*;
+import com.dto.NcpListDto;
 import com.vo.NcpView;
-import com.vo.NcpView1;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -26,13 +26,10 @@ public interface NcpDao {
     List<Product> getProductByCategory3(@Param("fCode") String fCode);
 
     @InsertProvider(type=com.sql.NcpSqlProvider.class, method = "insertNcpBasicInfo")
-    public int addNcpBasicInfo(NcpBasic ncpBasic);
+    int addNcpBasicInfo(NcpBasic ncpBasic);
 
     @InsertProvider(type=com.sql.NcpSqlProvider.class, method="insertNcpMoreInfo")
-    public int addNcpMoreInfo(NcpMore ncpMore);
-
-    @Delete("delete from ncp_more where ncp_more_id = #{ncpMoreId}")
-    int deleteMoreById(@Param("ncpMoreId") String ncpMoreId);
+    int addNcpMoreInfo(NcpMore ncpMore);
 
     @Delete("delete from ncp_more where ncp_basic_id = #{ncpBasicId}")
     int deleteMoreByBasicId(@Param("ncpBasicId") String ncpBasicId);
@@ -41,12 +38,15 @@ public interface NcpDao {
     int deleteBasicById(@Param("ncpBasicId") String ncpBasicId);
 
     @Select("select ncp_basic.ncp_basic_id, ncp_basic.ncp_name, " +
-            "cp.c1_name, cp.c2_name, cp.c3_name, cp.p_name, " +
+            "cp.c1_name, cp.c2_name, cp.c3_name, ncp_basic.ncpStatus, " +
             "pca.name_p, pca.name_c, pca.name_a, ncp_basic.ncp_feature, " +
             "ncp_basic.ncp_publish_date from ncp_basic, category_product_view as cp, province_city_area_view as pca " +
             "where ncp_basic.ncp_p_code = cp.p_code and ncp_basic.ncp_area_code = pca.code_a and ncp_basic.nh_basic_id = #{nhid}")
-    List<NcpView1> getNcpList(@Param("nhid") String nhBasic);
+    List<NcpListDto> getNcpList(@Param("nhid") String nhBasic);
 
     @Select("select * from ncp_view where ncp_basic_id = #{ncpBasicId}")
     NcpView getNcpByNcpBasicId(@Param("ncpBasicId") String ncpBasicId);
+
+    @Select("select * from ncp_view")
+    List<NcpView> getAllNcpList();
 }

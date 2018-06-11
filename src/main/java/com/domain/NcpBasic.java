@@ -30,13 +30,13 @@ public class NcpBasic {
     private BigDecimal ncpPrice;
     @NotEmpty(message = "价格单位不能为空")
     private String priceUnit;
-    private String ncpStatus;
+    private int ncpStatus;
 
-    public String getNcpStatus() {
+    public int getNcpStatus() {
         return ncpStatus;
     }
 
-    public void setNcpStatus(String ncpStatus) {
+    public void setNcpStatus(int ncpStatus) {
         this.ncpStatus = ncpStatus;
     }
 

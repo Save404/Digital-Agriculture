@@ -34,6 +34,10 @@ public class NcpView {
     private String nameC;
     private String nameA;
     private String nameP;
+    private BigDecimal ncpPrice;
+    private String priceUnit;
+    private int ncpStatus;
+    private String ncpImg;
 
     public String getNcpBasicId() {
         return ncpBasicId;
@@ -243,35 +247,35 @@ public class NcpView {
         this.nameP = nameP;
     }
 
-    @Override
-    public String toString() {
-        return "NcpView{" +
-                "ncpBasicId='" + ncpBasicId + '\'' +
-                ", ncpName='" + ncpName + '\'' +
-                ", ncpPublishDate=" + ncpPublishDate +
-                ", ncpPCode='" + ncpPCode + '\'' +
-                ", ncpAreaCode='" + ncpAreaCode + '\'' +
-                ", ncpAddress='" + ncpAddress + '\'' +
-                ", nhBasicId='" + nhBasicId + '\'' +
-                ", ncpFeature='" + ncpFeature + '\'' +
-                ", ncpBrand='" + ncpBrand + '\'' +
-                ", ncpSupplyAmount=" + ncpSupplyAmount +
-                ", supplyUnit='" + supplyUnit + '\'' +
-                ", ncpMoreId='" + ncpMoreId + '\'' +
-                ", ncpDetail='" + ncpDetail + '\'' +
-                ", ncpPackage='" + ncpPackage + '\'' +
-                ", ncpQuality='" + ncpQuality + '\'' +
-                ", ncpDeliveryInfo='" + ncpDeliveryInfo + '\'' +
-                ", ncpGrowthInfo='" + ncpGrowthInfo + '\'' +
-                ", ncpGrowthSurrounding='" + ncpGrowthSurrounding + '\'' +
-                ", ncpPlantArea=" + ncpPlantArea +
-                ", ncpSupplyPeriodStart=" + ncpSupplyPeriodStart +
-                ", ncpDeliveryAbility='" + ncpDeliveryAbility + '\'' +
-                ", ncpSupplyPeriodEnd=" + ncpSupplyPeriodEnd +
-                ", plantUnit='" + plantUnit + '\'' +
-                ", nameC='" + nameC + '\'' +
-                ", nameA='" + nameA + '\'' +
-                ", nameP='" + nameP + '\'' +
-                '}';
+    public BigDecimal getNcpPrice() {
+        return ncpPrice;
+    }
+
+    public void setNcpPrice(BigDecimal ncpPrice) {
+        this.ncpPrice = ncpPrice;
+    }
+
+    public String getPriceUnit() {
+        return priceUnit;
+    }
+
+    public void setPriceUnit(String priceUnit) {
+        this.priceUnit = priceUnit;
+    }
+
+    public int getNcpStatus() {
+        return ncpStatus;
+    }
+
+    public void setNcpStatus(int ncpStatus) {
+        this.ncpStatus = ncpStatus;
+    }
+
+    public String getNcpImg() {
+        return ncpImg;
+    }
+
+    public void setNcpImg(String ncpImg) {
+        this.ncpImg = ncpImg;
     }
 }

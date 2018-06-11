@@ -2,12 +2,12 @@ package com.service;
 
 import com.dao.NcpDao;
 import com.domain.*;
+import com.dto.NcpListDto;
 import com.exception.GlobalException;
 import com.result.CodeMsg;
 import com.util.StringUtils;
 import com.util.UUIDUtil;
 import com.vo.NcpView;
-import com.vo.NcpView1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,11 +62,11 @@ public class NcpService {
         return ncpDao.getCategory1All();
     }
 
-    public List<NcpView1> getNcpList(NhBasic nhBasic) {
+    public List<NcpListDto> getNcpList(NhBasic nhBasic) {
         if(null == nhService.getNhBasicByTelephone(nhBasic.getNhTelephone())) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
-        List<NcpView1> list = null;
+        List<NcpListDto> list = null;
         try {
             list = ncpDao.getNcpList(nhBasic.getNhBasicId());
         } catch (Exception e) {
@@ -101,5 +101,11 @@ public class NcpService {
             throw new GlobalException(CodeMsg.DB_ERROR);
         }
         addNcpInfo(ncpBasic, ncpMore);
+    }
+
+    public List<NcpView> getAllNcpList() {
+        List<NcpView> list = null;
+        list = ncpDao.getAllNcpList();
+        return list;
     }
 }

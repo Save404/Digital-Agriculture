@@ -30,7 +30,7 @@ public interface NhDao {
 
     @Select("select pca.name_p, pca.name_c, pca.name_a,nh_more.nh_real_name, nh_more.nh_sex,nh_more.nh_origin," +
             "nh_more.nh_nation,nh_more.nh_politics,nh_more.nh_id_card,nh_more.nh_ghdw_address,nh_more.nh_ghdw_phone, nh_more.nh_ghdw_area_code" +
-            "nh_more.nh_pay_password,nh_more.nh_pay_salt from nh_more,province_city_area_view as pca where " +
+            "from nh_more,province_city_area_view as pca where " +
             "nh_more.nh_ghdw_area_code=pca.code_a and nh_basic_id = #{nhBasicId}")
     NhMoreDto getNhMoreDtoByBasicId(@Param("nhBasicId") String nhBasicId);
 

@@ -6,9 +6,6 @@ public class MjMoreDto {
     private String mjRealName;
     private String mjIdCard;
     private String mjSex;
-    private String mjPayPassword;
-    @JsonIgnore
-    private String mjPaySalt;
     private String mjOrigin;
     private String mjNation;
     private String mjPolitics;
@@ -39,22 +36,6 @@ public class MjMoreDto {
 
     public void setMjSex(String mjSex) {
         this.mjSex = mjSex;
-    }
-
-    public String getMjPayPassword() {
-        return mjPayPassword;
-    }
-
-    public void setMjPayPassword(String mjPayPassword) {
-        this.mjPayPassword = mjPayPassword;
-    }
-
-    public String getMjPaySalt() {
-        return mjPaySalt;
-    }
-
-    public void setMjPaySalt(String mjPaySalt) {
-        this.mjPaySalt = mjPaySalt;
     }
 
     public String getMjOrigin() {
