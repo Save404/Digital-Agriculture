@@ -3,6 +3,7 @@ package com.controller;
 import com.domain.NcpBasic;
 import com.domain.NcpMore;
 import com.domain.NhBasic;
+import com.dto.NcpAllListDto;
 import com.dto.NcpListDto;
 import com.result.CodeMsg;
 import com.result.Result;
@@ -46,8 +47,8 @@ public class NcpController {
 
     @RequestMapping(value = "/get_all_ncp_list", method = RequestMethod.GET)
     @ResponseBody
-    public Result<List<NcpView>> getAllNcpList() {
-        List<NcpView> list = ncpService.getAllNcpList();
+    public Result<List<NcpAllListDto>> getAllNcpList() {
+        List<NcpAllListDto> list = ncpService.getAllNcpList();
         return Result.success(list);
     }
 

@@ -2,12 +2,15 @@ package com.service;
 
 import com.dao.NcpDao;
 import com.domain.*;
+import com.dto.NcpAllListDto;
 import com.dto.NcpListDto;
 import com.exception.GlobalException;
 import com.result.CodeMsg;
 import com.util.StringUtils;
 import com.util.UUIDUtil;
+import com.vo.CPView;
 import com.vo.NcpView;
+import com.vo.PCAView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +27,9 @@ public class NcpService {
 
     @Autowired
     NhService nhService;
+
+    @Autowired
+    InfoService infoService;
 
     @Transactional
     public Boolean addNcpInfo(NcpBasic ncpBasic, NcpMore ncpMore){
@@ -82,6 +88,12 @@ public class NcpService {
             if (ncpView == null){
                 throw new GlobalException(CodeMsg.SERVER_ERROR);
             }
+            String ncpPCode = ncpView.getNcpPCode();
+            String ncpAreaCode = ncpView.getNcpAreaCode();
+            PCAView pcaView = infoService.getPCAViewByAreaCode(ncpAreaCode);
+            CPView cpView = infoService.getCPViewByPCode(ncpPCode);
+            ncpView.setCpView(cpView);
+            ncpView.setPcaView(pcaView);
         } catch (Exception e) {
             throw new GlobalException(CodeMsg.DB_ERROR);
         }
@@ -103,8 +115,8 @@ public class NcpService {
         addNcpInfo(ncpBasic, ncpMore);
     }
 
-    public List<NcpView> getAllNcpList() {
-        List<NcpView> list = null;
+    public List<NcpAllListDto> getAllNcpList() {
+        List<NcpAllListDto> list = null;
         try {
             list = ncpDao.getAllNcpList();
         } catch (Exception e) {
