@@ -25,7 +25,7 @@ public class NcpSqlProvider {
         map.put("ncp_feature", ncpBasic.getNcpFeature());
         map.put("ncp_brand", ncpBasic.getNcpBrand());
         map.put("ncp_supply_amount", ncpBasic.getNcpSupplyAmount());
-        map.put("supplyUnit", ncpBasic.getSupplyUnit());
+        map.put("supply_unit", ncpBasic.getSupplyUnit());
         map.put("ncp_price", ncpBasic.getNcpPrice());
         map.put("price_unit", ncpBasic.getPriceUnit());
         //map.put("ncp_status", ncpBasic.getNcpPrice());
@@ -45,7 +45,7 @@ public class NcpSqlProvider {
         map.put("ncp_growth_info", ncpMore.getNcpGrowthInfo());
         map.put("ncp_growth_surrounding", ncpMore.getNcpGrowthSurrounding());
         map.put("ncp_plant_area", ncpMore.getNcpPlantArea());
-        map.put("plantUnit", ncpMore.getPlantUnit());
+        map.put("plant_unit", ncpMore.getPlantUnit());
         map.put("ncp_supply_period_start", ncpMore.getNcpSupplyPeriodStart());
         map.put("ncp_delivery_ability", ncpMore.getNcpDeliveryAbility());
         map.put("ncp_supply_period_end", ncpMore.getNcpSupplyPeriodEnd());
