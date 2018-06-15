@@ -107,7 +107,7 @@ public class NcpService {
         addNcpInfo(ncpBasic, ncpMore);
     }
 
-    public List<NcpAllListDto> getAllNcpList() {
+    public List<NcpAllListDto> getMjAllNcpList() {
         List<NcpAllListDto> list = null;
         try {
             list = ncpDao.getMjAllNcpList();
@@ -120,6 +120,16 @@ public class NcpService {
     public void deleteNcp(String ncpBasicId) {
         try {
             if(ncpDao.deleteMoreByBasicId(ncpBasicId) != 1 || ncpDao.deleteBasicById(ncpBasicId) != 1) {
+                throw new GlobalException(CodeMsg.SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            throw new GlobalException(CodeMsg.DB_ERROR);
+        }
+    }
+
+    public void onSell(String ncpBasicId) {
+        try {
+            if(ncpDao.onSell(ncpBasicId) != 1) {
                 throw new GlobalException(CodeMsg.SERVER_ERROR);
             }
         } catch (Exception e) {
