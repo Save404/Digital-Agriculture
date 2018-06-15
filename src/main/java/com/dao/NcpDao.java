@@ -66,6 +66,6 @@ public interface NcpDao {
             "where n.ncp_area_code = pca.code_a and n.ncp_p_code = cpv.p_code and n.ncp_status = 1")
     List<NcpAllListDto> getMjAllNcpList();
 
-    @Update("update ncp_basic set ncp_status = 1")
+    @Update("update ncp_basic set ncp_status = (ncp_status+1)%2 where ncp_basic_id= #{ncpBasicId}")
     int onSell(@Param("ncpBasicId") String ncpBasicId);
 }
