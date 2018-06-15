@@ -15,9 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.SQLException;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class NcpService {
@@ -105,6 +103,21 @@ public class NcpService {
         if (null == ncpBasic || null == ncpMore || StringUtils.isEmpty(ncpBasicId)){
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
+        deleteNcp(ncpBasicId);
+        addNcpInfo(ncpBasic, ncpMore);
+    }
+
+    public List<NcpAllListDto> getMjAllNcpList() {
+        List<NcpAllListDto> list = null;
+        try {
+            list = ncpDao.getMjAllNcpList();
+        } catch (Exception e) {
+            throw new GlobalException(CodeMsg.DB_ERROR);
+        }
+        return list;
+    }
+
+    public void deleteNcp(String ncpBasicId) {
         try {
             if(ncpDao.deleteMoreByBasicId(ncpBasicId) != 1 || ncpDao.deleteBasicById(ncpBasicId) != 1) {
                 throw new GlobalException(CodeMsg.SERVER_ERROR);
@@ -112,16 +125,15 @@ public class NcpService {
         } catch (Exception e) {
             throw new GlobalException(CodeMsg.DB_ERROR);
         }
-        addNcpInfo(ncpBasic, ncpMore);
     }
 
-    public List<NcpAllListDto> getAllNcpList() {
-        List<NcpAllListDto> list = null;
+    public void onSell(String ncpBasicId) {
         try {
-            list = ncpDao.getAllNcpList();
+            if(ncpDao.onSell(ncpBasicId) != 1) {
+                throw new GlobalException(CodeMsg.SERVER_ERROR);
+            }
         } catch (Exception e) {
             throw new GlobalException(CodeMsg.DB_ERROR);
         }
-        return list;
     }
 }

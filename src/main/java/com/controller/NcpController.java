@@ -45,11 +45,18 @@ public class NcpController {
         return Result.success(true);
     }
 
-    @RequestMapping(value = "/get_all_ncp_list", method = RequestMethod.GET)
+    @RequestMapping(value = "/get_mj_all_ncp_list", method = RequestMethod.GET)
     @ResponseBody
-    public Result<List<NcpAllListDto>> getAllNcpList() {
-        List<NcpAllListDto> list = ncpService.getAllNcpList();
+    public Result<List<NcpAllListDto>> getMjAllNcpList() {
+        List<NcpAllListDto> list = ncpService.getMjAllNcpList();
         return Result.success(list);
+    }
+
+    @RequestMapping(value = "/on_sell/{NcpBasicId}", method = RequestMethod.POST)
+    @ResponseBody
+    public Result<Boolean> onSell(@PathVariable("NcpBasicId") String ncpBasicId) {
+        ncpService.onSell(ncpBasicId);
+        return Result.success(true);
     }
 
     @RequestMapping(value = "/get_ncp_list", method = RequestMethod.GET)
@@ -61,6 +68,13 @@ public class NcpController {
         }
         List<NcpListDto> list = ncpService.getNcpList(nhBasic);
         return Result.success(list);
+    }
+
+    @RequestMapping(value = "/delete_ncp/{NcpBasicId}", method = RequestMethod.POST)
+    @ResponseBody
+    public Result<Boolean> deleteNcp(@PathVariable("NcpBasicId") String ncpBasicId) {
+        ncpService.deleteNcp(ncpBasicId);
+        return Result.success(true);
     }
 
     @RequestMapping(value = "/get_ncp/{NcpBasicId}", method = RequestMethod.GET)
