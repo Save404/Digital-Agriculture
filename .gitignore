@@ -1,11 +1,8 @@
 .idea/
-<<<<<<< HEAD
-target/
-=======
 target/
 *.ipr
 *.iws
->>>>>>> 67cab516c8d70b19f2e058e1b0bda346b4db63c1
+
 src/test/
-logback.logdir_IS_UNDEFINED
+logback.logdir_IS_UNDEFINED/
 
