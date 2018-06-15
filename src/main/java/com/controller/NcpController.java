@@ -63,6 +63,13 @@ public class NcpController {
         return Result.success(list);
     }
 
+    @RequestMapping(value = "/delete_ncp/{NcpBasicId}", method = RequestMethod.POST)
+    @ResponseBody
+    public Result<Boolean> deleteNcp(@PathVariable("NcpBasicId") String ncpBasicId) {
+        ncpService.deleteNcp(ncpBasicId);
+        return Result.success(true);
+    }
+
     @RequestMapping(value = "/get_ncp/{NcpBasicId}", method = RequestMethod.GET)
     @ResponseBody
     public Result<NcpView> getNcpByNcpBasicId(@PathVariable("NcpBasicId") String ncpBasicId) {

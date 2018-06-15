@@ -56,4 +56,13 @@ public interface NcpDao {
             "from ncp_view as n, category_product_view as cpv, province_city_area_view as pca " +
             "where n.ncp_area_code = pca.code_a and n.ncp_p_code = cpv.p_code")
     List<NcpAllListDto> getAllNcpList();
+
+    @Select("select n.ncp_basic_id, n.ncp_name, n.ncp_publish_date, n.ncp_address, n.ncp_feature, n.ncp_brand, " +
+            "n.ncp_supply_amount, n.supply_unit, n.ncp_price, n.price_unit, n.ncp_status, n.ncp_detail, n.ncp_package, " +
+            "n.ncp_quality, n.ncp_delivery_info, n.ncp_growth_info, n.ncp_growth_surrounding, n.ncp_supply_period_start," +
+            "n.ncp_supply_period_end, n.ncp_img, n.ncp_plant_area, n.plant_unit, n.nh_basic_id, " +
+            "cpv.c1_name, cpv.c2_name, cpv.c3_name, pca.name_p, pca.name_c, pca.name_a " +
+            "from ncp_view as n, category_product_view as cpv, province_city_area_view as pca " +
+            "where n.ncp_area_code = pca.code_a and n.ncp_p_code = cpv.p_code and n.ncp_status = 1")
+    List<NcpAllListDto> getMjAllNcpList();
 }
