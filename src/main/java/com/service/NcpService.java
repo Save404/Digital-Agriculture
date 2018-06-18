@@ -136,4 +136,14 @@ public class NcpService {
             throw new GlobalException(CodeMsg.DB_ERROR);
         }
     }
+
+    public List<NcpAllListDto> getByProduct(String pCode) {
+        List<NcpAllListDto> list = null;
+        try {
+            list = ncpDao.getByProduct(pCode);
+        } catch (Exception e) {
+            throw new GlobalException(CodeMsg.DB_ERROR);
+        }
+        return list;
+    }
 }

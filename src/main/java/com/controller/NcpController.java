@@ -59,6 +59,13 @@ public class NcpController {
         return Result.success(true);
     }
 
+    @RequestMapping(value = "/getByProduct/{pCode}", method = RequestMethod.GET)
+    @ResponseBody
+    public Result<List<NcpAllListDto>> getByProduct(@PathVariable("pCode") String pCode) {
+        List<NcpAllListDto> list = ncpService.getByProduct(pCode);
+        return Result.success(list);
+    }
+
     @RequestMapping(value = "/get_ncp_list", method = RequestMethod.GET)
     @ResponseBody
     public Result<List<NcpListDto>> getNcpList(NhBasic nhBasic) {
