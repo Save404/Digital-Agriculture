@@ -12,8 +12,8 @@ public class Test {
     @Autowired
     NcpService ncpService;
 
-    @org.junit.Test
-    public void getAllNcpList() {
-        System.out.println(ncpService.getAllNcpList());
-    }
+//    @org.junit.Test
+//    public void getAllNcpList() {
+//        System.out.println(ncpService.getAllNcpList());
+//    }
 }
