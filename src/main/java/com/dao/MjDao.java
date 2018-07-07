@@ -4,6 +4,8 @@ import com.domain.MjBasic;
 import com.domain.MjMore;
 import com.domain.NhBasic;
 import com.dto.MjMoreDto;
+import com.sql.MjSqlProvider;
+import com.sql.NhSqlProvider;
 import org.apache.ibatis.annotations.*;
 
 @Mapper
@@ -19,10 +21,11 @@ public interface MjDao {
     @Delete("delete from mj_more where mj_basic_id = #{mjBasicId}")
     int deleteMoreByBasicId(@Param("mjBasicId") String mjBasicId);
 
+    @InsertProvider(type=MjSqlProvider.class, method="insertMjDetailInfo")
     int addMjDetailInfo(MjMore mjMore);
 
     @Select("select pca.name_p, pca.name_c, pca.name_a,mj_more.mj_real_name, mj_more.mj_sex,mj_more.mj_origin," +
-            "mj_more.mj_nation,mj_more.mj_politics,mj_more.mj_id_card,mj_more.mj_a_code," +
+            "mj_more.mj_nation,mj_more.mj_politics,mj_more.mj_id_card,mj_more.mj_a_code " +
             "from mj_more,province_city_area_view as pca where " +
             "mj_more.mj_a_code=pca.code_a and mj_basic_id = #{mjBasicId}")
     MjMoreDto getMjMoreDtoByBasicId(@Param("mjBasicId") String mjBasicId);
