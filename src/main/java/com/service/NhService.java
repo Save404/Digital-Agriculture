@@ -5,13 +5,13 @@ import com.domain.NhBasic;
 import com.domain.NhMore;
 import com.dto.NhMoreDto;
 import com.exception.GlobalException;
-import com.redis.NhKey;
+import com.redis.key.NhKey;
 import com.redis.RedisService;
 import com.result.CodeMsg;
-import com.util.MD5Util;
-import com.util.SaltUtil;
-import com.util.StringUtils;
-import com.util.UUIDUtil;
+import com.util.commonUtils.MD5Util;
+import com.util.commonUtils.SaltUtil;
+import com.util.commonUtils.StringUtils;
+import com.util.commonUtils.UUIDUtil;
 import com.vo.NhLoginVo;
 import com.vo.NhRegisterVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import java.util.UUID;
-import java.util.prefs.BackingStoreException;
 
 @Service
 public class NhService {
@@ -81,7 +79,7 @@ public class NhService {
         return nhBasic;
     }
 
-    public Boolean login(HttpServletResponse response, NhLoginVo vo) {
+    public String login(HttpServletResponse response, NhLoginVo vo) {
         if(null == response || null == vo) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
@@ -101,7 +99,7 @@ public class NhService {
         }
         //生成cookie
         addCookie(nhBasic, response);
-        return true;
+        return nhBasic.getNhBasicId();
     }
 
     public void addCookie(NhBasic nhBasic, HttpServletResponse response) {

@@ -63,8 +63,8 @@ public class MjController {
 
     @RequestMapping(value="/mj_login", method=RequestMethod.POST)
     @ResponseBody
-    public Result<Boolean> mjLogin(HttpServletResponse response, @Valid MjLoginVo vo) {
-        mjService.login(response, vo);
-        return Result.success(true);
+    public Result<String> mjLogin(HttpServletResponse response, @Valid MjLoginVo vo) {
+        String id = mjService.login(response, vo);
+        return Result.success(id);
     }
 }

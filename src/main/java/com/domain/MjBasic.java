@@ -1,7 +1,10 @@
 package com.domain;
 
+import lombok.Data;
+
 import java.util.Date;
 
+@Data
 public class MjBasic {
     private String mjBasicId;
     private String mjTelephone;
@@ -10,73 +13,4 @@ public class MjBasic {
     private Date mjRegisterDate;
     private Date mjLastLoginDate;
     private Long mjLoginCount;
-
-    public String getMjBasicId() {
-        return mjBasicId;
-    }
-
-    public void setMjBasicId(String mjBasicId) {
-        this.mjBasicId = mjBasicId;
-    }
-
-    public String getMjTelephone() {
-        return mjTelephone;
-    }
-
-    public void setMjTelephone(String mjTelephone) {
-        this.mjTelephone = mjTelephone;
-    }
-
-    public String getMjPassword() {
-        return mjPassword;
-    }
-
-    public void setMjPassword(String mjPassword) {
-        this.mjPassword = mjPassword;
-    }
-
-    public String getMjSalt() {
-        return mjSalt;
-    }
-
-    public void setMjSalt(String mjSalt) {
-        this.mjSalt = mjSalt;
-    }
-
-    public Date getMjRegisterDate() {
-        return mjRegisterDate;
-    }
-
-    public void setMjRegisterDate(Date mjRegisterDate) {
-        this.mjRegisterDate = mjRegisterDate;
-    }
-
-    public Date getMjLastLoginDate() {
-        return mjLastLoginDate;
-    }
-
-    public void setMjLastLoginDate(Date mjLastLoginDate) {
-        this.mjLastLoginDate = mjLastLoginDate;
-    }
-
-    public Long getMjLoginCount() {
-        return mjLoginCount;
-    }
-
-    public void setMjLoginCount(Long mjLoginCount) {
-        this.mjLoginCount = mjLoginCount;
-    }
-
-    @Override
-    public String toString() {
-        return "MjBasic{" +
-                "mjBasicId='" + mjBasicId + '\'' +
-                ", mjTelephone='" + mjTelephone + '\'' +
-                ", mjPassword='" + mjPassword + '\'' +
-                ", mjSalt='" + mjSalt + '\'' +
-                ", mjRegisterDate=" + mjRegisterDate +
-                ", mjLastLoginDate=" + mjLastLoginDate +
-                ", mjLoginCount=" + mjLoginCount +
-                '}';
-    }
 }

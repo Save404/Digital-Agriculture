@@ -5,13 +5,13 @@ import com.domain.MjBasic;
 import com.domain.MjMore;
 import com.dto.MjMoreDto;
 import com.exception.GlobalException;
-import com.redis.MjKey;
+import com.redis.key.MjKey;
 import com.redis.RedisService;
 import com.result.CodeMsg;
-import com.util.MD5Util;
-import com.util.SaltUtil;
-import com.util.StringUtils;
-import com.util.UUIDUtil;
+import com.util.commonUtils.MD5Util;
+import com.util.commonUtils.SaltUtil;
+import com.util.commonUtils.StringUtils;
+import com.util.commonUtils.UUIDUtil;
 import com.vo.MjLoginVo;
 import com.vo.MjRegisterVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import java.util.UUID;
 
 @Service
 public class MjService {
@@ -75,7 +74,7 @@ public class MjService {
         return mjBasic;
     }
 
-    public Boolean login(HttpServletResponse response, MjLoginVo vo) {
+    public String login(HttpServletResponse response, MjLoginVo vo) {
         if(null == response || null == vo) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
@@ -95,7 +94,7 @@ public class MjService {
         }
         //生成cookie
         addCookie(mjBasic, response);
-        return true;
+        return mjBasic.getMjBasicId();
     }
 
     public void addCookie(MjBasic mjBasic, HttpServletResponse response) {

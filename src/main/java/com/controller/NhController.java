@@ -64,8 +64,8 @@ public class NhController {
 
     @RequestMapping(value="/nh_login", method=RequestMethod.POST)
     @ResponseBody
-    public Result<Boolean> nhLogin(HttpServletResponse response, @Valid NhLoginVo vo) {
-        nhService.login(response, vo);
-        return Result.success(true);
+    public Result<String> nhLogin(HttpServletResponse response, @Valid NhLoginVo vo) {
+        String id = nhService.login(response, vo);
+        return Result.success(id);
     }
 }

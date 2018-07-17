@@ -1,9 +1,7 @@
 package com.vo;
 
-import com.validator.IsMobile;
+import com.util.validator.IsMobile;
 import org.hibernate.validator.constraints.NotEmpty;
-
-import javax.validation.constraints.NotNull;
 
 public class NhRegisterVo {
 
