@@ -3,6 +3,7 @@ package com;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /*
  * 使用@SpringBootApplication注解标记的类会被SpringBoot进行加载
@@ -11,6 +12,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
  */
 @ServletComponentScan
 @SpringBootApplication
+@EnableSwagger2
 public class MainApplication {
     public static void main(String[] args) {
         SpringApplication.run(MainApplication.class, args);
