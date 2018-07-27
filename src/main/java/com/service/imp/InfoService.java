@@ -1,4 +1,4 @@
-package com.service;
+package com.service.imp;
 
 import com.dao.InfoDao;
 import com.exception.GlobalException;

@@ -2,7 +2,7 @@ package com.sql;
 
 import com.domain.NcpBasic;
 import com.domain.NcpMore;
-import com.util.SqlProviderlUtil;
+import com.common.SqlProviderlUtil;
 
 import java.util.*;
 

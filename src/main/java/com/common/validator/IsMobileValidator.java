@@ -1,7 +1,7 @@
-package com.util.validator;
+package com.common.validator;
 
-import com.util.commonUtils.StringUtils;
-import com.util.commonUtils.ValidatorUtil;
+import com.common.commonUtils.StringUtils;
+import com.common.commonUtils.ValidatorUtil;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

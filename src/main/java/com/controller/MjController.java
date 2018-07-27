@@ -5,7 +5,7 @@ import com.domain.MjMore;
 import com.dto.MjMoreDto;
 import com.result.CodeMsg;
 import com.result.Result;
-import com.service.MjService;
+import com.service.imp.MjService;
 import com.vo.MjLoginVo;
 import com.vo.MjRegisterVo;
 import org.springframework.beans.factory.annotation.Autowired;

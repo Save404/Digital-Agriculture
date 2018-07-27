@@ -1,7 +1,7 @@
 package com.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.util.validator.IsIdCard;
+import com.common.validator.IsIdCard;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 

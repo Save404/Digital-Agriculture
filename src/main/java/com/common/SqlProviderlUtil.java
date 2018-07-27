@@ -1,6 +1,6 @@
-package com.util;
+package com.common;
 
-import com.util.commonUtils.StringUtils;
+import com.common.commonUtils.StringUtils;
 import org.apache.ibatis.jdbc.SQL;
 
 import java.text.SimpleDateFormat;

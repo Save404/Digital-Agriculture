@@ -7,7 +7,7 @@ import com.dto.NcpAllListDto;
 import com.dto.NcpListDto;
 import com.result.CodeMsg;
 import com.result.Result;
-import com.service.NcpService;
+import com.service.imp.NcpService;
 import com.vo.NcpView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
