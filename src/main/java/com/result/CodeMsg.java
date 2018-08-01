@@ -19,7 +19,7 @@ public class CodeMsg {
     public static CodeMsg REPASSWORD_ERROR = new CodeMsg(500204, "两次密码不一致");
     public static CodeMsg NH_NOT_EXISTS = new CodeMsg(500205, "该用户不存在");
     public static CodeMsg PASSWORD_ERROR = new CodeMsg(500206, "密码错误");
-<<<<<<< HEAD
+
     //农产品信息记录模块 5005XX
     public static CodeMsg NCP_SUPPLY_PERIOD_ERROR = new CodeMsg(500505, "农产品供应时间错误");
 
@@ -29,12 +29,6 @@ public class CodeMsg {
     public static CodeMsg CONTRACT_STATU_ERROR = new CodeMsg(500902, "合同状态异常~请稍后重试");
     public static CodeMsg CONTRACT_COMPLETE_ERROR = new CodeMsg(500903, "合同信息异常~请稍后重试");
     public static CodeMsg CONTRACT_PAY_STATU_ERROR = new CodeMsg(500904, "支付系统异常~请稍后重试");
-=======
-    //农户信息完善模块 5003XX
-    //买家信息完善模块 5004XX
-    //农产品信息记录模块 5005XX
-    public static CodeMsg NCP_SUPPLY_PERIOD_ERROR = new CodeMsg(500505, "农产品供应时间错误");
->>>>>>> origin/master
 
     private CodeMsg() {
     }

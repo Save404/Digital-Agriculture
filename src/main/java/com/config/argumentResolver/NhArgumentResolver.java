@@ -1,15 +1,10 @@
 package com.config.argumentResolver;
 
+import com.common.commonUtils.StringUtils;
 import com.domain.NhBasic;
 import com.exception.GlobalException;
 import com.result.CodeMsg;
-<<<<<<< HEAD:src/main/java/com/config/argumentResolver/NhArgumentResolver.java
 import com.service.imp.NhServiceImp;
-import com.common.commonUtils.StringUtils;
-=======
-import com.service.NhService;
-import com.util.commonUtils.StringUtils;
->>>>>>> origin/master:src/main/java/com/config/argumentResolver/NhArgumentResolver.java
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Service;

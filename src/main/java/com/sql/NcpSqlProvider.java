@@ -2,11 +2,7 @@ package com.sql;
 
 import com.domain.NcpBasic;
 import com.domain.NcpMore;
-<<<<<<< HEAD
 import com.common.SqlProviderlUtil;
-=======
-import com.util.SqlProviderlUtil;
->>>>>>> origin/master
 
 import java.util.*;
 

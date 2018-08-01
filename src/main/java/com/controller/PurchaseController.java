@@ -1,10 +1,7 @@
 package com.controller;
 
 import com.domain.Purchases;
-<<<<<<< HEAD
 import com.github.pagehelper.PageInfo;
-=======
->>>>>>> origin/master
 import com.result.Result;
 import com.service.PurchaseService;
 import io.swagger.annotations.*;
@@ -12,19 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-<<<<<<< HEAD
-import java.util.List;
-=======
->>>>>>> origin/master
+
 
 
 @RestController
 @RequestMapping("/purchases")
-<<<<<<< HEAD
 @Api(description="求购信息模块")
-=======
-@Api(value="求购信息模块")
->>>>>>> origin/master
 public class PurchaseController {
 
     @Autowired
@@ -66,7 +56,6 @@ public class PurchaseController {
     public Result<Boolean> updateRequirement(@RequestParam(value = "type") String type,
                                              @PathVariable("id") String id,
                                              @Valid Purchases purchases) {
-<<<<<<< HEAD
         purchaseService.updateRequirement(id, type, purchases);
         return Result.success(true);
     }
@@ -95,23 +84,5 @@ public class PurchaseController {
                                                     @RequestParam(value = "size", required = false, defaultValue="10") int size) {
         PageInfo<Purchases> list = purchaseService.getRequirementList(type, currentPage, size);
         return Result.success(list);
-=======
-        purchaseService.deleteRequirement(id, type);
-        purchaseService.releaseRequirement(type, purchases);
-        return Result.success(true);
-    }
-
-    @GetMapping("/{id}")
-    public Result<Boolean> getPurchase(@PathVariable String id) {
-        return Result.success(true);
-    }
-
-    @GetMapping
-    public Result<Boolean> getPurchases(@RequestParam(value = "type") String type,
-                                        @RequestParam(value = "id") String id,
-                                        @RequestParam(value = "offset", required = false) String offset,
-                                        @RequestParam(value = "limit", required = false) String limit) {
-        return Result.success(true);
->>>>>>> origin/master
     }
 }
