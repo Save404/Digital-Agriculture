@@ -19,7 +19,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/mj")
-public class MjController {
+public class MjController{
 
     @Autowired
     MjService mjService;
@@ -27,23 +27,13 @@ public class MjController {
     @RequestMapping(value = "/get_mj_detail", method = RequestMethod.GET)
     @ResponseBody
     public Result<MjMoreDto> getMjDetail(MjBasic mjBasic) {
-        if(null == mjBasic) {
-            return Result.error(CodeMsg.LOGIN_ERROR);
-        }
         MjMoreDto mjMoreDto = mjService.getMjDetail(mjBasic);
-        if(null != mjMoreDto) {
-            return Result.success(mjMoreDto);
-        } else {
-            return Result.error(null);
-        }
+        return Result.success(mjMoreDto);
     }
 
     @RequestMapping(value = "/add_mj_detail", method = RequestMethod.POST)
     @ResponseBody
     public Result<Boolean> addMjDetail(@Valid MjMore mjMore, MjBasic mjBasic) {
-        if(null == mjBasic) {
-            return Result.error(CodeMsg.LOGIN_ERROR);
-        }
         mjService.addMjDetailInfo(mjBasic, mjMore);
         return Result.success(true);
     }
@@ -63,8 +53,8 @@ public class MjController {
 
     @RequestMapping(value="/mj_login", method=RequestMethod.POST)
     @ResponseBody
-    public Result<Boolean> mjLogin(HttpServletResponse response, @Valid MjLoginVo vo) {
-        mjService.login(response, vo);
-        return Result.success(true);
+    public Result<String> mjLogin(HttpServletResponse response, @Valid MjLoginVo vo) {
+        String id = mjService.login(response, vo);
+        return Result.success(id);
     }
 }

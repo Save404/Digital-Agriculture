@@ -2,11 +2,8 @@ package com.sql;
 
 import com.domain.NcpBasic;
 import com.domain.NcpMore;
-import com.util.SqlProviderlUtil;
-import com.util.StringUtils;
-import org.apache.ibatis.jdbc.SQL;
+import com.common.SqlProviderlUtil;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 

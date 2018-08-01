@@ -29,10 +29,6 @@ public class NcpController {
     @RequestMapping("/add_ncp")
     @ResponseBody
     public Result<Boolean> addNcp(NhBasic nhBasic, @Valid NcpBasic ncpBasic, @Valid NcpMore ncpMore) {
-        //登录检验
-        if (nhBasic == null){
-            return Result.error(CodeMsg.LOGIN_ERROR);
-        }
         //数据传输检验
         if (ncpMore.getNcpSupplyPeriodStart() != null && ncpMore.getNcpSupplyPeriodEnd() != null){
             if(ncpMore.getNcpSupplyPeriodStart().getTime() > ncpMore.getNcpSupplyPeriodEnd().getTime()) {
@@ -59,13 +55,16 @@ public class NcpController {
         return Result.success(true);
     }
 
+    @RequestMapping(value = "/getByProduct/{pCode}", method = RequestMethod.GET)
+    @ResponseBody
+    public Result<List<NcpAllListDto>> getByProduct(@PathVariable("pCode") String pCode) {
+        List<NcpAllListDto> list = ncpService.getByProduct(pCode);
+        return Result.success(list);
+    }
+
     @RequestMapping(value = "/get_ncp_list", method = RequestMethod.GET)
     @ResponseBody
     public Result<List<NcpListDto>> getNcpList(NhBasic nhBasic) {
-        //数据传输异常检测
-        if (nhBasic == null){
-            return Result.error(CodeMsg.SERVER_ERROR);
-        }
         List<NcpListDto> list = ncpService.getNcpList(nhBasic);
         return Result.success(list);
     }
@@ -88,10 +87,6 @@ public class NcpController {
     @ResponseBody
     public Result<Boolean> modifyNcp(@PathVariable("NcpBasicId") String ncpBasicId,NhBasic nhBasic,
                                      @Valid NcpBasic ncpBasic, @Valid NcpMore ncpMore) {
-        //登录检验
-        if (nhBasic == null){
-            return Result.error(CodeMsg.LOGIN_ERROR);
-        }
         if (ncpMore.getNcpSupplyPeriodStart() != null && ncpMore.getNcpSupplyPeriodEnd() != null){
             if(ncpMore.getNcpSupplyPeriodStart().getTime() > ncpMore.getNcpSupplyPeriodEnd().getTime()) {
                 return Result.error(CodeMsg.NCP_SUPPLY_PERIOD_ERROR);

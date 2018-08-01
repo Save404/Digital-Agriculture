@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ContractDao">
+    <insert id="createContract">
+        INSERT INTO
+        contract (contract_id, nh_basic_id, mj_basic_id, ncp_basic_id,
+        purchaser_name, purchase_quantity, purchase_unit, sales_liquidated_damages, receiving_address)
+        VALUES
+        (#{contractId}, #{nhBasicId}, #{mjBasicId}, #{ncpBasicId},
+        #{purchaserName}, #{purchaseQuantity}, #{purchaseUnit}, #{salesLiquidatedDamages}, #{receivingAddress})
+    </insert>
+    
+    <select id="getContract"
+            parameterType="String"
+            resultType="Contract"
+    >
+        SELECT
+        contract_id,
+        create_time,
+        purchaser_name,
+        sales_name,
+        alipay_account,
+        purchase_quantity,
+        purchase_unit,
+        purchase_price,
+        sales_liquidated_damages,
+        purchases_liquidated_damages,
+        statu,
+        receiving_address,
+        pre_payment,
+        pay_statu
+        FROM
+        contract
+        WHERE
+        contract_id = #{id}
+    </select>
+    
+    <update id="updateContractStatu">
+        UPDATE
+        contract
+        SET
+        statu = #{statu}
+        WHERE
+        contract_id = #{id}
+    </update>
+    
+    <select id="existById"
+            parameterType="String"
+            resultType="int">
+        SELECT
+        1
+        FROM
+        contract
+        WHERE
+        contract_id = #{id}
+        LIMIT
+        1
+    </select>
+
+    <update id="completeContract">
+        UPDATE
+        contract
+        SET
+        sales_name = #{salesName},
+        alipay_account = #{alipayAccount},
+        purchase_price = #{purchasePrice},
+        purchases_liquidated_damages = #{purchasesLiquidatedDamages},
+        pre_payment = #{prePayment}
+        WHERE
+        contract_id = #{contractId}
+    </update>
+    
+    <update id="updatePayStatu">
+        UPDATE
+        contract
+        SET
+        pay_statu = #{statu}
+        WHERE
+        contract_id = #{id}
+    </update>
+
+    <select id="getNhContractList" resultType="com.domain.Contract">
+        SELECT
+        contract_id,
+        create_time,
+        purchaser_name,
+        sales_name,
+        alipay_account,
+        purchase_quantity,
+        purchase_unit,
+        purchase_price,
+        sales_liquidated_damages,
+        purchases_liquidated_damages,
+        statu,
+        receiving_address,
+        pre_payment,
+        pay_statu
+        FROM
+        contract
+        WHERE
+        nh_basic_id = #{id}
+    </select>
+
+    <select id="getMJContractList" resultType="com.domain.Contract">
+        SELECT
+        contract_id,
+        create_time,
+        purchaser_name,
+        sales_name,
+        alipay_account,
+        purchase_quantity,
+        purchase_unit,
+        purchase_price,
+        sales_liquidated_damages,
+        purchases_liquidated_damages,
+        statu,
+        receiving_address,
+        pre_payment,
+        pay_statu
+        FROM
+        contract
+        WHERE
+        mj_basic_id = #{id}
+    </select>
+</mapper>

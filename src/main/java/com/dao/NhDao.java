@@ -16,17 +16,11 @@ public interface NhDao {
     @Select("select * from nh_basic where nh_telephone=#{telephone}")
     NhBasic getNhBasicByTelephone(@Param("telephone") String telephone);
 
-    @Select("select * from nh_basic where nh_basic_id=#{nhBasicId}")
-    NhBasic getNhBasicById(@Param("nhBasicId") String nhBasicId);
+    @Select("SELECT 1 FROM nh_basic WHERE nh_basic_id = #{id} LIMIT 1")
+    int existByBasicId(@Param("id") String id);
 
     @InsertProvider(type=NhSqlProvider.class, method="insertNhDetailInfo")
     int addNhDetailInfo(NhMore nhMore);
-
-    @Select("select * from nh_more where nh_basic_id = #{nhBasicId}")
-    NhMore getNhDetail(@Param("nhBasicId") String nhBasicId);
-
-    @Delete("delete from nh_more where nh_more_id = #{nhMoreId}")
-    int deleteMoreById(@Param("nhMoreId") String nhMoreId);
 
     @Select("select pca.name_p, pca.name_c, pca.name_a,nh_more.nh_real_name, nh_more.nh_sex,nh_more.nh_origin," +
             "nh_more.nh_nation,nh_more.nh_politics,nh_more.nh_id_card,nh_more.nh_ghdw_address,nh_more.nh_ghdw_phone, nh_more.nh_ghdw_area_code " +
