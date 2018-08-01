@@ -1,6 +1,10 @@
 package com.vo;
 
+<<<<<<< HEAD
 import com.common.validator.IsMobile;
+=======
+import com.util.validator.IsMobile;
+>>>>>>> origin/master
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class MjLoginVo {

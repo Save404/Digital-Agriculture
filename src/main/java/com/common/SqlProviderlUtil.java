@@ -1,6 +1,10 @@
 package com.common;
 
+<<<<<<< HEAD:src/main/java/com/common/SqlProviderlUtil.java
 import com.common.commonUtils.StringUtils;
+=======
+import com.util.commonUtils.StringUtils;
+>>>>>>> origin/master:src/main/java/com/util/SqlProviderlUtil.java
 import org.apache.ibatis.jdbc.SQL;
 
 import java.text.SimpleDateFormat;

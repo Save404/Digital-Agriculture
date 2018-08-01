@@ -3,8 +3,13 @@ package com.config.argumentResolver;
 import com.domain.MjBasic;
 import com.exception.GlobalException;
 import com.result.CodeMsg;
+<<<<<<< HEAD:src/main/java/com/config/argumentResolver/MjArgumentResolver.java
 import com.service.imp.MjServiceImp;
 import com.common.commonUtils.StringUtils;
+=======
+import com.service.MjService;
+import com.util.commonUtils.StringUtils;
+>>>>>>> origin/master:src/main/java/com/config/argumentResolver/MjArgumentResolver.java
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Service;
