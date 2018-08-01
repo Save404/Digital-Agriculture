@@ -1,6 +1,7 @@
 package com.vo;
 
-import com.util.validator.IsMobile;
+
+import com.common.validator.IsMobile;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class MjRegisterVo {

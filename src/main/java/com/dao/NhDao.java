@@ -16,8 +16,8 @@ public interface NhDao {
     @Select("select * from nh_basic where nh_telephone=#{telephone}")
     NhBasic getNhBasicByTelephone(@Param("telephone") String telephone);
 
-    @Select("select * from nh_basic where nh_basic_id=#{nhBasicId}")
-    NhBasic getNhBasicById(@Param("nhBasicId") String nhBasicId);
+    @Select("SELECT 1 FROM nh_basic WHERE nh_basic_id = #{id} LIMIT 1")
+    int existByBasicId(@Param("id") String id);
 
     @InsertProvider(type=NhSqlProvider.class, method="insertNhDetailInfo")
     int addNhDetailInfo(NhMore nhMore);

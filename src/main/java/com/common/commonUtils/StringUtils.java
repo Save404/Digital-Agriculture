@@ -1,4 +1,4 @@
-package com.util.commonUtils;
+package com.common.commonUtils;
 
 public class StringUtils {
 

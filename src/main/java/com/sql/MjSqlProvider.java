@@ -1,7 +1,7 @@
 package com.sql;
 
 import com.domain.MjMore;
-import com.util.SqlProviderlUtil;
+import com.common.SqlProviderlUtil;
 
 import java.util.HashMap;
 import java.util.Map;

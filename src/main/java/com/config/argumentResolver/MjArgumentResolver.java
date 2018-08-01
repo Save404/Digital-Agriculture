@@ -3,8 +3,8 @@ package com.config.argumentResolver;
 import com.domain.MjBasic;
 import com.exception.GlobalException;
 import com.result.CodeMsg;
-import com.service.MjService;
-import com.util.commonUtils.StringUtils;
+import com.service.imp.MjServiceImp;
+import com.common.commonUtils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MjArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Autowired
-    MjService mjService;
+    MjServiceImp mjService;
 
     @Override
     public boolean supportsParameter(MethodParameter methodParameter) {
@@ -32,11 +32,11 @@ public class MjArgumentResolver implements HandlerMethodArgumentResolver {
     @Override
     public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer,
                                   NativeWebRequest nativeWebRequest,
-                                  WebDataBinderFactory webDataBinderFactory) throws Exception {
+                                  WebDataBinderFactory webDataBinderFactory) {
         HttpServletRequest request = nativeWebRequest.getNativeRequest(HttpServletRequest.class);
         HttpServletResponse response = nativeWebRequest.getNativeResponse(HttpServletResponse.class);
-        String paramToken = request.getParameter(MjService.COOKI_MJ_ID_TOKEN);
-        String cookieToken = getCookieValue(request, MjService.COOKI_MJ_ID_TOKEN);
+        String paramToken = request.getParameter(MjServiceImp.COOKI_MJ_ID_TOKEN);
+        String cookieToken = getCookieValue(request, MjServiceImp.COOKI_MJ_ID_TOKEN);
         if(StringUtils.isEmpty(cookieToken) && StringUtils.isEmpty(paramToken)) {
             throw new GlobalException(CodeMsg.LOGIN_ERROR);
         }
