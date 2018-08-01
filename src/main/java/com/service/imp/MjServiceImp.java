@@ -12,16 +12,18 @@ import com.common.commonUtils.MD5Util;
 import com.common.commonUtils.SaltUtil;
 import com.common.commonUtils.StringUtils;
 import com.common.commonUtils.UUIDUtil;
+import com.service.MjService;
 import com.vo.MjLoginVo;
 import com.vo.MjRegisterVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 @Service
-public class MjService {
+public class MjServiceImp implements MjService {
 
     public static final String COOKI_MJ_ID_TOKEN = "COOKI_MJ_ID_TOKEN";
 
@@ -31,10 +33,8 @@ public class MjService {
     @Autowired
     RedisService redisService;
 
-    public Boolean register(MjRegisterVo vo) {
-        if(null == vo) {
-            throw new GlobalException(CodeMsg.SERVER_ERROR);
-        }
+    @Override
+    public void register(MjRegisterVo vo) {
         String telephone = vo.getMjTelephone();
         //查询手机号是否已经注册
         MjBasic mj = mjDao.getMjBasicByTelephone(telephone);
@@ -53,10 +53,9 @@ public class MjService {
         if(res != 1) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
-        return true;
     }
 
-    public MjBasic getMjBasicByTelephone(String telephone) {
+    private MjBasic getMjBasicByTelephone(String telephone) {
         return mjDao.getMjBasicByTelephone(telephone);
     }
 
@@ -74,10 +73,8 @@ public class MjService {
         return mjBasic;
     }
 
+    @Override
     public String login(HttpServletResponse response, MjLoginVo vo) {
-        if(null == response || null == vo) {
-            throw new GlobalException(CodeMsg.SERVER_ERROR);
-        }
         String mjTelephone = vo.getMjTelephone();
         String mjPassword = vo.getMjPassword();
         //判断用户是否存在
@@ -97,7 +94,7 @@ public class MjService {
         return mjBasic.getMjBasicId();
     }
 
-    public void addCookie(MjBasic mjBasic, HttpServletResponse response) {
+    private void addCookie(MjBasic mjBasic, HttpServletResponse response) {
         String token = UUIDUtil.uuid();
         redisService.set(MjKey.token, token, mjBasic);
         Cookie cookie = new Cookie(COOKI_MJ_ID_TOKEN, token);
@@ -106,10 +103,9 @@ public class MjService {
         response.addCookie(cookie);
     }
 
-    public Boolean addMjDetailInfo(MjBasic mjBasic, MjMore mjMore) {
-        if(null == mjMore || null == mjBasic) {
-            throw new GlobalException(CodeMsg.SERVER_ERROR);
-        }
+    @Transactional
+    @Override
+    public void addMjDetailInfo(MjBasic mjBasic, MjMore mjMore) {
         try {
             mjDao.deleteMoreByBasicId(mjBasic.getMjBasicId());
         } catch (Exception e) {
@@ -129,25 +125,17 @@ public class MjService {
         } catch (Exception e) {
             throw new GlobalException(CodeMsg.DB_ERROR);
         }
-        return true;
     }
 
+    @Override
     public MjMoreDto getMjDetail(MjBasic mjBasic) {
-        if(null == mjBasic) {
-            throw new GlobalException(CodeMsg.SERVER_ERROR);
-        }
         String mjBasicId = mjBasic.getMjBasicId();
-        MjMoreDto mjMoreDto = null;
+        MjMoreDto mjMoreDto;
         try {
             mjMoreDto = mjDao.getMjMoreDtoByBasicId(mjBasicId);
-            //需解析密码
         } catch (Exception e) {
             throw new GlobalException(CodeMsg.DB_ERROR);
         }
-        if(null == mjMoreDto) {
-            return null;
-        } else {
-            return mjMoreDto;
-        }
+        return mjMoreDto;
     }
 }

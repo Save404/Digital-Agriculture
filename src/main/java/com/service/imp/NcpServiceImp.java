@@ -8,6 +8,7 @@ import com.exception.GlobalException;
 import com.result.CodeMsg;
 import com.common.commonUtils.StringUtils;
 import com.common.commonUtils.UUIDUtil;
+import com.service.NcpService;
 import com.vo.CPView;
 import com.vo.NcpView;
 import com.vo.PCAView;
@@ -18,23 +19,20 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class NcpService {
+public class NcpServiceImp implements NcpService {
 
     @Autowired
     NcpDao ncpDao;
 
     @Autowired
-    NhService nhService;
+    NhServiceImp nhService;
 
     @Autowired
     InfoService infoService;
 
     @Transactional
-    public Boolean addNcpInfo(NcpBasic ncpBasic, NcpMore ncpMore){
-        //输入参数检验
-        if (null == ncpBasic || null == ncpMore){
-            throw new GlobalException(CodeMsg.SERVER_ERROR);
-        }
+    @Override
+    public void addNcpInfo(NcpBasic ncpBasic, NcpMore ncpMore){
         //设置参数值
         String id = UUIDUtil.uuid();
         ncpBasic.setNcpBasicId(id);
@@ -47,30 +45,14 @@ public class NcpService {
         } catch (Exception e) {
             throw new GlobalException(CodeMsg.DB_ERROR);
         }
-        return true;
     }
 
-    public List<Category2> getCategory2ByCategory1(String f2Code) {
-        return ncpDao.getCategory2ByCategory1(f2Code);
-    }
-
-    public List<Category3> getCategory3ByCategory2(String f3Code) {
-        return ncpDao.getCategory3ByCategory2(f3Code);
-    }
-
-    public List<Product> getProductByCategory3(String fCode) {
-        return ncpDao.getProductByCategory3(fCode);
-    }
-
-    public List<Category1> getCategory1All() {
-        return ncpDao.getCategory1All();
-    }
-
+    @Override
     public List<NcpListDto> getNcpList(NhBasic nhBasic) {
         if(null == nhService.getNhBasicByTelephone(nhBasic.getNhTelephone())) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
-        List<NcpListDto> list = null;
+        List<NcpListDto> list;
         try {
             list = ncpDao.getNcpList(nhBasic.getNhBasicId());
         } catch (Exception e) {
@@ -79,8 +61,9 @@ public class NcpService {
         return list;
     }
 
+    @Override
     public NcpView getNcpByNcpBasicId(String ncpBasicId) {
-        NcpView ncpView = null;
+        NcpView ncpView;
         try {
             ncpView = ncpDao.getNcpByNcpBasicId(ncpBasicId);
             if (ncpView == null){
@@ -99,16 +82,14 @@ public class NcpService {
     }
 
     @Transactional
+    @Override
     public void modifyNcp(String ncpBasicId, NcpBasic ncpBasic, NcpMore ncpMore) {
-        if (null == ncpBasic || null == ncpMore || StringUtils.isEmpty(ncpBasicId)){
-            throw new GlobalException(CodeMsg.SERVER_ERROR);
-        }
         deleteNcp(ncpBasicId);
         addNcpInfo(ncpBasic, ncpMore);
     }
 
     public List<NcpAllListDto> getMjAllNcpList() {
-        List<NcpAllListDto> list = null;
+        List<NcpAllListDto> list;
         try {
             list = ncpDao.getMjAllNcpList();
         } catch (Exception e) {
@@ -117,6 +98,8 @@ public class NcpService {
         return list;
     }
 
+    @Transactional
+    @Override
     public void deleteNcp(String ncpBasicId) {
         try {
             if(ncpDao.deleteMoreByBasicId(ncpBasicId) != 1 || ncpDao.deleteBasicById(ncpBasicId) != 1) {
@@ -127,6 +110,7 @@ public class NcpService {
         }
     }
 
+    @Override
     public void onSell(String ncpBasicId) {
         try {
             if(ncpDao.onSell(ncpBasicId) != 1) {
@@ -137,8 +121,9 @@ public class NcpService {
         }
     }
 
+    @Override
     public List<NcpAllListDto> getByProduct(String pCode) {
-        List<NcpAllListDto> list = null;
+        List<NcpAllListDto> list;
         try {
             list = ncpDao.getByProduct(pCode);
         } catch (Exception e) {

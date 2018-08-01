@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.domain.Purchases;
+import com.github.pagehelper.PageInfo;
 import com.result.Result;
 import com.service.PurchaseService;
 import io.swagger.annotations.*;
@@ -74,14 +75,14 @@ public class PurchaseController {
     @ApiOperation(value="获取求购信息列表")
     @ApiImplicitParams({
             @ApiImplicitParam(name="type", value="用户类型,填NH或MJ", required=true, dataType="String", paramType="body"),
-            @ApiImplicitParam(name="offset", value="页数下标", dataType="int", paramType="body"),
-            @ApiImplicitParam(name="limit", value="记录条数", dataType="int", paramType="body")
+            @ApiImplicitParam(name="currentPage", value="当前页", required=false, dataType="int", paramType="body"),
+            @ApiImplicitParam(name="limit", value="查询条数", required=false, dataType="int", paramType="body")
     })
     @GetMapping
-    public Result<List<Purchases>> getPurchases(@RequestParam(value = "type") String type,
-                                     @RequestParam(value = "offset", required = false) int offset,
-                                     @RequestParam(value = "limit", required = false) int limit) {
-        List<Purchases> list = purchaseService.getRequirementList(type, offset, limit);
+    public Result<PageInfo<Purchases>> getPurchases(@RequestParam(value = "type") String type,
+                                                    @RequestParam(value = "currentPage", required = false, defaultValue="1") int currentPage,
+                                                    @RequestParam(value = "size", required = false, defaultValue="10") int size) {
+        PageInfo<Purchases> list = purchaseService.getRequirementList(type, currentPage, size);
         return Result.success(list);
     }
 }

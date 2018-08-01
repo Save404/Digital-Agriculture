@@ -3,7 +3,7 @@ package com.config.argumentResolver;
 import com.domain.NhBasic;
 import com.exception.GlobalException;
 import com.result.CodeMsg;
-import com.service.imp.NhService;
+import com.service.imp.NhServiceImp;
 import com.common.commonUtils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 public class NhArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Autowired
-    NhService nhService;
+    NhServiceImp nhService;
 
     @Override
     public boolean supportsParameter(MethodParameter methodParameter) {
@@ -31,11 +31,11 @@ public class NhArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer,
-                                  NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory) throws Exception {
+                                  NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory) {
         HttpServletRequest request = nativeWebRequest.getNativeRequest(HttpServletRequest.class);
         HttpServletResponse response = nativeWebRequest.getNativeResponse(HttpServletResponse.class);
-        String paramToken = request.getParameter(NhService.COOKI_NH_ID_TOKEN);
-        String cookieToken = getCookieValue(request, NhService.COOKI_NH_ID_TOKEN);
+        String paramToken = request.getParameter(NhServiceImp.COOKI_NH_ID_TOKEN);
+        String cookieToken = getCookieValue(request, NhServiceImp.COOKI_NH_ID_TOKEN);
         if(StringUtils.isEmpty(cookieToken) && StringUtils.isEmpty(paramToken)) {
             throw new GlobalException(CodeMsg.LOGIN_ERROR);
         }

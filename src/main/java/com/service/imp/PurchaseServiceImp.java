@@ -1,8 +1,11 @@
 package com.service.imp;
 
+import com.common.constant.UserConstant;
 import com.dao.PurchaseDao;
 import com.domain.Purchases;
 import com.exception.GlobalException;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.redis.RedisService;
 import com.result.CodeMsg;
 import com.service.PurchaseService;
@@ -23,7 +26,7 @@ public class PurchaseServiceImp implements PurchaseService {
     RedisService redisService;
 
     @Autowired
-    NhService nhService;
+    NhServiceImp nhService;
 
     @Override
     public void deleteRequirement(String id, String type) {
@@ -63,19 +66,21 @@ public class PurchaseServiceImp implements PurchaseService {
     }
 
     @Override
-    public List<Purchases> getRequirementList(String type, int offset, int limit) {
+    public PageInfo<Purchases> getRequirementList(String type, int currentPage, int size) {
         List<Purchases> list = null;
+        PageHelper.startPage(currentPage, size);
         try {
             //TODO 通过枚举判断类型
-            if(type.toUpperCase().equals("MJ")) {
+            if(type.toUpperCase().equals(UserConstant.USER_TYPE_MJ)) {
                 list = purchaseDao.getNhRequirementList();
-            } else if(type.toUpperCase().equals("NH")) {
+            } else if(type.toUpperCase().equals(UserConstant.USER_TYPE_NH)) {
 
             }
         } catch (Exception e) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
-        return list;
+        PageInfo<Purchases> purchasesPageInfo = new PageInfo<Purchases>(list);
+        return purchasesPageInfo;
     }
 
     @Override

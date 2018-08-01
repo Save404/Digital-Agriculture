@@ -1,9 +1,11 @@
 package com.controller;
 
 import com.domain.Contract;
+import com.github.pagehelper.PageInfo;
 import com.result.Result;
 import com.service.ContractService;
 import io.swagger.annotations.*;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -71,11 +73,16 @@ public class ContractController {
     @ApiOperation(value = "获取合同列表")
     @ApiImplicitParams({
             @ApiImplicitParam(name="type", value="用户类型 可填nh、mj", required=true, dataType="String", paramType="query"),
-            @ApiImplicitParam(name="id", value="用户id", required=true, dataType="String", paramType="query")
+            @ApiImplicitParam(name="id", value="用户id", required=true, dataType="String", paramType="query"),
+            @ApiImplicitParam(name="currentPage", value="当前页", required=false, dataType="int", paramType="query"),
+            @ApiImplicitParam(name="size", value="查询条数", required=false, dataType="int", paramType="query")
     })
     @GetMapping
-    public Result<List<Contract>> getContractList(@RequestParam("type") String type, @RequestParam("id") String id) {
-        List<Contract> list = contractService.getContractList(type, id);
+    public Result<PageInfo<Contract>> getContractList(@RequestParam("type") String type,
+                                                      @RequestParam("id") String id,
+                                                      @RequestParam(name="currentPage", defaultValue="1", required=false) int currentPage,
+                                                      @RequestParam(name="size", defaultValue="10", required=false) int size) {
+        PageInfo<Contract> list = contractService.getContractList(type, id, currentPage, size);
         return Result.success(list);
     }
 }

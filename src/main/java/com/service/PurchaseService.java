@@ -1,6 +1,7 @@
 package com.service;
 
 import com.domain.Purchases;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface PurchaseService {
     void releaseRequirement(String type, Purchases purchases);
 
     /** 获取求购信息列表 */
-    List<Purchases> getRequirementList(String type, int offset, int limit);
+    PageInfo<Purchases> getRequirementList(String type, int currentPage, int size);
 
     /** 获取求购信息 */
     Purchases getRequirement(String type, String id);

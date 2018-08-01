@@ -81,7 +81,7 @@
         contract_id = #{id}
     </update>
 
-    <select id="getNhContractList">
+    <select id="getNhContractList" resultType="com.domain.Contract">
         SELECT
         contract_id,
         create_time,
@@ -103,7 +103,7 @@
         nh_basic_id = #{id}
     </select>
 
-    <select id="getMJContractList">
+    <select id="getMJContractList" resultType="com.domain.Contract">
         SELECT
         contract_id,
         create_time,

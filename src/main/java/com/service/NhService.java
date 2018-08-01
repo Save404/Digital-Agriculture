@@ -12,19 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 public interface NhService {
 
     /** 农户注册 */
-    Boolean register(NhRegisterVo vo);
+    void register(NhRegisterVo vo);
 
     /** 根据手机号码获取农户基本信息 */
     NhBasic getNhBasicByTelephone(String telephone);
-
-    /** 根据id获取农户基本信息 */
-    NhBasic getNhBasicById(String nhBasicId);
 
     /** 农户登录 */
     String login(HttpServletResponse response, NhLoginVo vo);
 
     /** 添加农户详细信息 */
-    Boolean addNhDetailInfo(NhBasic nhBasic, NhMore nhMore);
+    void addNhDetailInfo(NhBasic nhBasic, NhMore nhMore);
 
     /** 获取农户详细信息 */
     NhMoreDto getNhDetail(NhBasic nhBasic);

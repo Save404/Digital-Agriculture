@@ -1,12 +1,16 @@
 package com.service.imp;
 
+import com.common.constant.ContractConstant;
 import com.common.constant.UserConstant;
 import com.dao.ContractDao;
 import com.domain.Contract;
 import com.exception.GlobalException;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.result.CodeMsg;
 import com.service.ContractService;
 import com.common.commonUtils.ObjectId;
+import com.service.NhService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,17 +19,11 @@ import java.util.List;
 @Service
 public class ContractServiceImp implements ContractService {
 
-    public final Integer CONTRACT_STATU_AGREE = 1;
-    public final Integer CONTRACT_STATU_CANCEL = 2;
-    public final Integer CONTRACT_STATU_SHIP = 3;
-    public final Integer CONTRACT_STATU_FINISH = 4;
-
-    public final Integer CONTRACT_PAY_STATU_UNFINISH = 0;
-    public final Integer CONTRACT_PAY_STATU_FINISH = 1;
-
-
     @Autowired
     ContractDao contractDao;
+
+    @Autowired
+    NhService nhService;
 
     @Override
     public void createContract(Contract contract) {
@@ -63,13 +61,13 @@ public class ContractServiceImp implements ContractService {
         try {
             int res = 0;
             if(statu.toUpperCase().equals("AGREE")) {
-                res = contractDao.updateContractStatu(id, CONTRACT_STATU_AGREE);
+                res = contractDao.updateContractStatu(id, ContractConstant.CONTRACT_STATU_AGREE);
             } else if(statu.toUpperCase().equals("CANCEL")) {
-                res = contractDao.updateContractStatu(id, CONTRACT_STATU_CANCEL);
+                res = contractDao.updateContractStatu(id, ContractConstant.CONTRACT_STATU_CANCEL);
             } else if(statu.toUpperCase().equals("SHIP")) {
-                res = contractDao.updateContractStatu(id, CONTRACT_STATU_SHIP);
+                res = contractDao.updateContractStatu(id, ContractConstant.CONTRACT_STATU_SHIP);
             } else if(statu.toUpperCase().equals("FINISH")) {
-                res = contractDao.updateContractStatu(id, CONTRACT_STATU_FINISH);
+                res = contractDao.updateContractStatu(id, ContractConstant.CONTRACT_STATU_FINISH);
             }
             if(res != 1)
                 throw new GlobalException(CodeMsg.CONTRACT_STATU_ERROR);
@@ -112,7 +110,7 @@ public class ContractServiceImp implements ContractService {
         try {
             int res = 0;
             if(statu.toUpperCase().equals("FINISH"))
-                res = contractDao.updatePayStatu(id, CONTRACT_PAY_STATU_FINISH);
+                res = contractDao.updatePayStatu(id, ContractConstant.CONTRACT_PAY_STATU_FINISH);
             if(res != 1)
                 throw new GlobalException(CodeMsg.CONTRACT_PAY_STATU_ERROR);
         } catch (Exception e) {
@@ -121,21 +119,27 @@ public class ContractServiceImp implements ContractService {
     }
 
     @Override
-    public List<Contract> getContractList(String type, String id) {
+    public PageInfo<Contract> getContractList(String type, String id, int currentPage, int size) {
         List<Contract> list;
         //TODO 验证用户是否存在
         try {
             if(type.toUpperCase().equals(UserConstant.USER_TYPE_NH)) {
+                if(!nhService.existByBasicId(id))
+                    throw new GlobalException(CodeMsg.USER_ERROR);
+                PageHelper.startPage(currentPage, size);
                 list = contractDao.getNhContractList(id);
             } else if(type.toUpperCase().equals(UserConstant.USER_TYPE_MJ)) {
+                PageHelper.startPage(currentPage, size);
                 list = contractDao.getMJContractList(id);
             } else {
                 throw new GlobalException(CodeMsg.USER_ERROR);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             throw new GlobalException(CodeMsg.DB_ERROR);
         }
-        return list;
+        PageInfo<Contract> pageInfo = new PageInfo<Contract>(list);
+        return pageInfo;
     }
 
 }

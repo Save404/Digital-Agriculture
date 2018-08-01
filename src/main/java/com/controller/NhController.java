@@ -5,7 +5,7 @@ import com.domain.NhMore;
 import com.dto.NhMoreDto;
 import com.result.CodeMsg;
 import com.result.Result;
-import com.service.imp.NhService;
+import com.service.NhService;
 import com.vo.NhLoginVo;
 import com.vo.NhRegisterVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +27,6 @@ public class NhController {
     @RequestMapping("/add_nh_detail")
     @ResponseBody
     public Result<Boolean> addNhDetailInfo(NhBasic nhBasic, @Valid NhMore nhMore) {
-        if(null == nhBasic) {
-            return Result.error(CodeMsg.LOGIN_ERROR);
-        }
         nhService.addNhDetailInfo(nhBasic, nhMore);
         return Result.success(true);
     }
@@ -37,15 +34,8 @@ public class NhController {
     @RequestMapping(value = "/get_nh_detail", method = RequestMethod.GET)
     @ResponseBody
     public Result<NhMoreDto> getNhDetail(NhBasic nhBasic) {
-        if(null == nhBasic) {
-            return Result.error(CodeMsg.LOGIN_ERROR);
-        }
         NhMoreDto nhMoreDto = nhService.getNhDetail(nhBasic);
-        if(null != nhMoreDto) {
-            return Result.success(nhMoreDto);
-        } else {
-            return Result.error(null);
-        }
+        return Result.success(nhMoreDto);
     }
 
     @RequestMapping(value="/nh_register", method=RequestMethod.POST)

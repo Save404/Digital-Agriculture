@@ -1,6 +1,7 @@
 package com.service;
 
 import com.domain.Contract;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -24,5 +25,6 @@ public interface ContractService {
     /** 更新支付状态 */
     void updatePayStatu(String id, String statu);
 
-    List<Contract> getContractList(String type, String id);
+    /** 获取合同列表 */
+    PageInfo<Contract> getContractList(String type, String id, int currentPage, int size);
 }
