@@ -18,6 +18,7 @@
     >
         SELECT
         contract_id,
+        ncp_basic_id,
         create_time,
         purchaser_name,
         sales_name,
@@ -84,6 +85,7 @@
     <select id="getNhContractList" resultType="com.domain.Contract">
         SELECT
         contract_id,
+        ncp_basic_id,
         create_time,
         purchaser_name,
         sales_name,
@@ -106,6 +108,7 @@
     <select id="getMJContractList" resultType="com.domain.Contract">
         SELECT
         contract_id,
+        ncp_basic_id,
         create_time,
         purchaser_name,
         sales_name,

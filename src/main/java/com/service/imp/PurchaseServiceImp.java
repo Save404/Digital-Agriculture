@@ -74,7 +74,7 @@ public class PurchaseServiceImp implements PurchaseService {
             if(type.toUpperCase().equals(UserConstant.USER_TYPE_MJ)) {
                 list = purchaseDao.getNhRequirementList();
             } else if(type.toUpperCase().equals(UserConstant.USER_TYPE_NH)) {
-
+                list = purchaseDao.getMjRequirementList();
             }
         } catch (Exception e) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
@@ -91,7 +91,7 @@ public class PurchaseServiceImp implements PurchaseService {
             if(type.toUpperCase().equals("NH")) {
                 purchases = purchaseDao.getNhRequirement(id);
             } else if(type.toUpperCase().equals("MJ")) {
-
+                purchases = purchaseDao.getMjRequirement(id);
             }
         } catch (Exception e) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);

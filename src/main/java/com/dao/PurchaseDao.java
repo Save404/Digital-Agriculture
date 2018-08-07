@@ -22,6 +22,10 @@ public interface PurchaseDao {
 
     List<Purchases> getNhRequirementList();
 
+    List<Purchases> getMjRequirementList();
+
     Purchases getNhRequirement(String id);
+
+    Purchases getMjRequirement(String id);
 
 }
