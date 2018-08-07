@@ -10,6 +10,7 @@ import com.github.pagehelper.PageInfo;
 import com.result.CodeMsg;
 import com.service.ContractService;
 import com.common.commonUtils.ObjectId;
+import com.service.NcpService;
 import com.service.NhService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,9 @@ public class ContractServiceImp implements ContractService {
 
     @Autowired
     NhService nhService;
+
+    @Autowired
+    NcpService ncpService;
 
     @Override
     public void createContract(Contract contract) {
@@ -46,6 +50,7 @@ public class ContractServiceImp implements ContractService {
             if(null == contract) {
                 throw new GlobalException(CodeMsg.CONTRACT_GET_ERROR);
             }
+            contract.setNcpView(ncpService.getNcpByNcpBasicId(contract.getNcpBasicId()));
         } catch (Exception e) {
             throw new GlobalException(CodeMsg.DB_ERROR);
         }
@@ -133,6 +138,9 @@ public class ContractServiceImp implements ContractService {
                 list = contractDao.getMJContractList(id);
             } else {
                 throw new GlobalException(CodeMsg.USER_ERROR);
+            }
+            for(Contract contract : list) {
+                contract.setNcpView(ncpService.getNcpByNcpBasicId(contract.getNcpBasicId()));
             }
         } catch (Exception e) {
             e.printStackTrace();
