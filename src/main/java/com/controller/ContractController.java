@@ -79,7 +79,7 @@ public class ContractController {
     })
     @GetMapping
     public Result<PageInfo<Contract>> getContractList(@RequestParam("type") String type,
-                                                      @RequestParam("id") String id,
+                                                      @RequestParam(name = "id") String id,
                                                       @RequestParam(name="currentPage", defaultValue="1", required=false) int currentPage,
                                                       @RequestParam(name="size", defaultValue="10", required=false) int size) {
         PageInfo<Contract> list = contractService.getContractList(type, id, currentPage, size);

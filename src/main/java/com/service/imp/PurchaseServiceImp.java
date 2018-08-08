@@ -10,6 +10,7 @@ import com.redis.RedisService;
 import com.result.CodeMsg;
 import com.service.PurchaseService;
 import com.common.commonUtils.ObjectId;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,15 +67,23 @@ public class PurchaseServiceImp implements PurchaseService {
     }
 
     @Override
-    public PageInfo<Purchases> getRequirementList(String type, int currentPage, int size) {
+    public PageInfo<Purchases> getRequirementList(String type, String id, int currentPage, int size) {
         List<Purchases> list = null;
         PageHelper.startPage(currentPage, size);
         try {
             //TODO 通过枚举判断类型
             if(type.toUpperCase().equals(UserConstant.USER_TYPE_MJ)) {
-                list = purchaseDao.getNhRequirementList();
+                if(StringUtils.isNotBlank(id)) {
+                    list = purchaseDao.getMjRequirementList(id);
+                } else {
+                    list = purchaseDao.getNhRequirementList(null);
+                }
             } else if(type.toUpperCase().equals(UserConstant.USER_TYPE_NH)) {
-                list = purchaseDao.getMjRequirementList();
+                if(StringUtils.isNotBlank(id)) {
+                    list = purchaseDao.getNhRequirementList(id);
+                } else {
+                    list = purchaseDao.getMjRequirementList(null);
+                }
             }
         } catch (Exception e) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);

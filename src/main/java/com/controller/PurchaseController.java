@@ -75,14 +75,16 @@ public class PurchaseController {
     @ApiOperation(value="获取求购信息列表")
     @ApiImplicitParams({
             @ApiImplicitParam(name="type", value="用户类型,填NH或MJ", required=true, dataType="String", paramType="body"),
+            @ApiImplicitParam(name = "id", value="用户id", required = false, dataType="String", paramType="body"),
             @ApiImplicitParam(name="currentPage", value="当前页", required=false, dataType="int", paramType="body"),
             @ApiImplicitParam(name="limit", value="查询条数", required=false, dataType="int", paramType="body")
     })
     @GetMapping
     public Result<PageInfo<Purchases>> getPurchases(@RequestParam(value = "type") String type,
+                                                    @RequestParam(value = "id", required = false) String id,
                                                     @RequestParam(value = "currentPage", required = false, defaultValue="1") int currentPage,
                                                     @RequestParam(value = "size", required = false, defaultValue="10") int size) {
-        PageInfo<Purchases> list = purchaseService.getRequirementList(type, currentPage, size);
+        PageInfo<Purchases> list = purchaseService.getRequirementList(type, id, currentPage, size);
         return Result.success(list);
     }
 }

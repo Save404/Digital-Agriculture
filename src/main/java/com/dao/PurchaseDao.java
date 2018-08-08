@@ -20,9 +20,9 @@ public interface PurchaseDao {
 
     int releaseMjRequirement(Purchases purchases);
 
-    List<Purchases> getNhRequirementList();
+    List<Purchases> getNhRequirementList(@Param("id") String id);
 
-    List<Purchases> getMjRequirementList();
+    List<Purchases> getMjRequirementList(@Param("id") String id);
 
     Purchases getNhRequirement(String id);
 

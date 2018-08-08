@@ -31,6 +31,11 @@
             statu
         FROM
             nh_purchases
+        <where>
+            <if test="id != null and id != ''">
+                nh_basic_id = #{id}
+            </if>
+        </where>
     </select>
 
     <select id="getMjRequirementList"
@@ -44,6 +49,11 @@
             statu
         FROM
             mj_purchases
+        <where>
+            <if test="id != null and id != ''">
+                mj_basic_id = #{id}
+            </if>
+        </where>
     </select>
     
     <select id="getNhRequirement"
