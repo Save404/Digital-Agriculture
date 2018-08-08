@@ -12,7 +12,7 @@ public interface PurchaseService {
     void releaseRequirement(String type, Purchases purchases);
 
     /** 获取求购信息列表 */
-    PageInfo<Purchases> getRequirementList(String type, int currentPage, int size);
+    PageInfo<Purchases> getRequirementList(String type, String id, int currentPage, int size);
 
     /** 获取求购信息 */
     Purchases getRequirement(String type, String id);

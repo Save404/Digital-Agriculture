@@ -88,7 +88,15 @@ public class Contract {
 
     /** 支付状态 */
     @ApiModelProperty(value = "支付状态")
-    private int pay_statu;
+
+    private int payStatu;
 
     private NcpView ncpView;
+
+    private String title;
+
+    private String nhTelephone;
+
+    private String mjTelephone;
+
 }
