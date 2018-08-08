@@ -59,6 +59,7 @@ public class MjServiceImp implements MjService {
         return mjDao.getMjBasicByTelephone(telephone);
     }
 
+    @Override
     public MjBasic getMjBasicByIdToken(HttpServletResponse response, String token) {
         if(StringUtils.isEmpty(token)) {
             return null;

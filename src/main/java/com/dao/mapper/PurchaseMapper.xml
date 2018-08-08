@@ -56,19 +56,6 @@
         </where>
     </select>
 
-    <select id="getMjRequirementList"
-            resultType="Purchases">
-        SELECT
-            mj_purchases_id as purchases_id,
-            title,
-            content,
-            telephone,
-            create_date,
-            statu
-        FROM
-            mj_purchases
-    </select>
-    
     <select id="getNhRequirement"
             resultType="Purchases">
         SELECT

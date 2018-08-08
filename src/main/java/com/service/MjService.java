@@ -22,4 +22,5 @@ public interface MjService {
     /** 获取买家详细信息 */
     MjMoreDto getMjDetail(MjBasic mjBasic);
 
+    MjBasic getMjBasicByIdToken(HttpServletResponse response, String token);
 }
