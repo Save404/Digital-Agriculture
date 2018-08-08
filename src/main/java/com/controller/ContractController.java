@@ -4,6 +4,7 @@ import com.domain.Contract;
 import com.github.pagehelper.PageInfo;
 import com.result.Result;
 import com.service.ContractService;
+import com.service.NcpService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

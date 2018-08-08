@@ -1,5 +1,6 @@
 package com.domain;
 
+import com.vo.NcpView;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -88,4 +89,6 @@ public class Contract {
     /** 支付状态 */
     @ApiModelProperty(value = "支付状态")
     private int pay_statu;
+
+    private NcpView ncpView;
 }
