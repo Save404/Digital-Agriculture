@@ -6,10 +6,12 @@
     <insert id="createContract">
         INSERT INTO
         contract (contract_id, nh_basic_id, mj_basic_id, ncp_basic_id,
-        purchaser_name, purchase_quantity, purchase_unit, sales_liquidated_damages, receiving_address)
+        purchaser_name, purchase_quantity, purchase_unit, sales_liquidated_damages, receiving_address,
+        title, mj_telephone)
         VALUES
         (#{contractId}, #{nhBasicId}, #{mjBasicId}, #{ncpBasicId},
-        #{purchaserName}, #{purchaseQuantity}, #{purchaseUnit}, #{salesLiquidatedDamages}, #{receivingAddress})
+        #{purchaserName}, #{purchaseQuantity}, #{purchaseUnit}, #{salesLiquidatedDamages}, #{receivingAddress},
+        #{title}, #{mjTelephone})
     </insert>
     
     <select id="getContract"
@@ -31,7 +33,10 @@
         statu,
         receiving_address,
         pre_payment,
-        pay_statu
+        pay_statu,
+        title,
+        nh_telephone,
+        mj_telephone
         FROM
         contract
         WHERE
@@ -68,7 +73,8 @@
         alipay_account = #{alipayAccount},
         purchase_price = #{purchasePrice},
         purchases_liquidated_damages = #{purchasesLiquidatedDamages},
-        pre_payment = #{prePayment}
+        pre_payment = #{prePayment},
+        nh_telephone = #{nhTelephone}
         WHERE
         contract_id = #{contractId}
     </update>
@@ -98,7 +104,10 @@
         statu,
         receiving_address,
         pre_payment,
-        pay_statu
+        pay_statu,
+        title,
+        mj_telephone,
+        nh_telephone
         FROM
         contract
         WHERE
@@ -121,7 +130,10 @@
         statu,
         receiving_address,
         pre_payment,
-        pay_statu
+        pay_statu,
+        title,
+        mj_telephone,
+        nh_telephone
         FROM
         contract
         WHERE
