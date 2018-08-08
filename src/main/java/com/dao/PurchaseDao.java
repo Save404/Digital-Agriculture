@@ -24,6 +24,8 @@ public interface PurchaseDao {
 
     List<Purchases> getMjRequirementList(@Param("id") String id);
 
+    List<Purchases> getMjRequirementList();
+
     Purchases getNhRequirement(String id);
 
     Purchases getMjRequirement(String id);
