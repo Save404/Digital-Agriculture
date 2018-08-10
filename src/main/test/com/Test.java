@@ -16,4 +16,5 @@ public class Test {
 //    public void getAllNcpList() {
 //        System.out.println(ncpService.getAllNcpList());
 //    }
+
 }
