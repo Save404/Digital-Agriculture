@@ -4,12 +4,14 @@ import com.domain.Contract;
 import com.github.pagehelper.PageInfo;
 import com.result.Result;
 import com.service.ContractService;
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/contracts")
@@ -78,7 +80,7 @@ public class ContractController {
     })
     @GetMapping
     public Result<PageInfo<Contract>> getContractList(@RequestParam("type") String type,
-                                                      @RequestParam("id") String id,
+                                                      @RequestParam(name = "id") String id,
                                                       @RequestParam(name="currentPage", defaultValue="1", required=false) int currentPage,
                                                       @RequestParam(name="size", defaultValue="10", required=false) int size) {
         PageInfo<Contract> list = contractService.getContractList(type, id, currentPage, size);

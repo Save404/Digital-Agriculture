@@ -3,6 +3,7 @@ package com.config.argumentResolver;
 import com.domain.MjBasic;
 import com.exception.GlobalException;
 import com.result.CodeMsg;
+import com.service.MjService;
 import com.service.imp.MjServiceImp;
 import com.common.commonUtils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MjArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Autowired
-    MjServiceImp mjService;
+    MjService mjService;
 
     @Override
     public boolean supportsParameter(MethodParameter methodParameter) {
