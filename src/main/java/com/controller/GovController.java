@@ -31,7 +31,7 @@ public class GovController {
         return Result.success(id);
     }
 
-    @PostMapping(value = "/post/add")
+    @PostMapping(value = "/notice/add")
     @ResponseBody
     public Result<Boolean> addNotice(GovPmsnDto gov, Notice notice){
         Boolean res = noticeService.addNotice(gov, notice);
