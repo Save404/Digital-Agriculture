@@ -11,8 +11,7 @@ public class GovPmsnDto {
     private String govAccount;
     private String govPassword;
     private String govName;
-    private String govDepartment;
-    private String govAreaCode;
+    private int govDepartmentId;
     private String govSalt;
     private Data govRegisterDate;
     private Data govLastLoginDate;

@@ -1,5 +1,6 @@
 package com.config;
 
+import com.config.argumentResolver.GovPmsnDtoArgumentResolver;
 import com.config.argumentResolver.MjArgumentResolver;
 import com.config.argumentResolver.NhArgumentResolver;
 import com.config.converter.StringToBigDecimalConverter;
@@ -23,10 +24,14 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Autowired
     MjArgumentResolver mjArgumentResolver;
 
+    @Autowired
+    GovPmsnDtoArgumentResolver govPmsnDtoArgumentResolver;
+
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
         argumentResolvers.add(nhArgumentResolver);
         argumentResolvers.add(mjArgumentResolver);
+        argumentResolvers.add(govPmsnDtoArgumentResolver);
     }
 
     @Override
