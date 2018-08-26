@@ -1,6 +1,5 @@
 package com.service.imp;
 
-import com.common.commonUtils.MD5Util;
 import com.common.commonUtils.StringUtils;
 import com.common.commonUtils.UUIDUtil;
 import com.dao.GovDao;
@@ -86,6 +85,7 @@ public class GovServiceImp implements GovService {
         response.addCookie(cookie);
     }
 
+    @Override
     public GovPmsnDto getGovPmsnByIdToken(HttpServletResponse response, String token){
         if (StringUtils.isEmpty(token) || response == null){
             return null;
