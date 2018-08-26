@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -34,10 +33,8 @@ public class GovController {
 
     @PostMapping(value = "/post/add")
     @ResponseBody
-    //解析参数还没写
     public Result<Boolean> addNotice(GovPmsnDto gov, Notice notice){
         Boolean res = noticeService.addNotice(gov, notice);
         return Result.success(res);
     }
-
 }
