@@ -10,4 +10,5 @@ public interface GovService {
     /** 政府人员登录 */
     public String login(HttpServletResponse response, GovLoginVo vo);
     public GovPmsnDto getGovPmsnByIdToken(HttpServletResponse response, String token);
+
 }
