@@ -7,4 +7,7 @@ public class UserConstant {
 
     /** 买家用户 */
     public static final String USER_TYPE_MJ = "MJ";
+
+    /** 政府人员 */
+    public static final String USER_TYPE_GOV = "GOV";
 }

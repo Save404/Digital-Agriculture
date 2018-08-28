@@ -13,6 +13,9 @@ public class CodeMsg {
     public static CodeMsg LOGIN_ERROR = new CodeMsg(500102, "尚未登录");
     public static CodeMsg DB_ERROR = new CodeMsg(500103, "数据库正在维护~请稍后重试");
     public static CodeMsg USER_ERROR = new CodeMsg(500104, "用户信息异常~请稍后重试");
+    public static CodeMsg RESOURCE_NOT_EXIST_ERROR = new CodeMsg(500105, "访问资源不存在");
+    public static CodeMsg PARAM_ERROR = new CodeMsg(500106, "传入参数错误");
+
 
     //注册登录模块 5002XX
     public static CodeMsg TELEPHONE_REPEAT = new CodeMsg(500203, "手机号已被注册");
@@ -25,6 +28,7 @@ public class CodeMsg {
 
     //文件上传模块 5006XX
     public static CodeMsg FILE_UPLOAD_ERROR = new CodeMsg(500600, "文件上传失败");
+
 
     //合同签约模块 5009XX
     public static CodeMsg CONTRACT_CREATE_ERROR = new CodeMsg(500900, "合同创建失败~请稍后重试");

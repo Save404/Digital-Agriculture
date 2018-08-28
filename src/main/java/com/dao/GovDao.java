@@ -11,4 +11,8 @@ public interface GovDao {
 
     @Select("select * from gov where gov_account = #{account}")
     Gov getGovByAccount(@Param("account") String account);
+
+    @Select("select * from gov where gov_id = #{id}")
+    Gov getGovById(@Param("id") String id);
+
 }
