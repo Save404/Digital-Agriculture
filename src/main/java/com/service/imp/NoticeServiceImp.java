@@ -88,12 +88,14 @@ public class NoticeServiceImp implements NoticeService {
     }
 
     @Override
+    @Transactional
     public NoticeView getDetailNotice(String id) {
         //注解查询，判断是否为空
         NoticeView noticeView = noticeDao.findNoticeViewById(id);
         if (noticeView == null){
             throw new GlobalException(CodeMsg.RESOURCE_NOT_EXIST_ERROR);
         }
+        noticeDao.incrNoticeReadNum(id);
         return noticeView;
     }
 

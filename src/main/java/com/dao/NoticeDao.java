@@ -31,4 +31,7 @@ public interface NoticeDao {
 
     @Select("select * from notice_view where department_id = #{id} order by create_time desc")
     public List<NoticeView> findNoticesByDepartmentIdOrderByTimeDesc(@Param("id") int id);
+
+    @Update("update notice set read_num = read_num + 1 where notice_id = #{id}")
+    public int incrNoticeReadNum(@Param("id") String id);
 }
